@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "485535294205",
-    "project_id": "sdp-practice-47b4a",
-    "storage_bucket": "sdp-practice-47b4a.firebasestorage.app"
+    "project_number": "120823971326",
+    "project_id": "sdp-mechfall",
+    "storage_bucket": "sdp-mechfall.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:485535294205:android:77f584a2b67e89ba2b9494",
+        "mobilesdk_app_id": "1:120823971326:android:676cf4027fe6f6c1b254af",
         "android_client_info": {
           "package_name": "com.DefaultCompany.Mechfall"
         }
@@ -15,26 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCruUHeM2FC-HYyrBkFBbQ1gpR_E-6xF6k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:485535294205:android:88d0d3ca25e2b6262b9494",
-        "android_client_info": {
-          "package_name": "com.DefaultCompany.Myproject"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCruUHeM2FC-HYyrBkFBbQ1gpR_E-6xF6k"
+          "current_key": "AIzaSyAO5qv6Yjoq88xqEccTxIt81iPWY7xgwmE"
         }
       ],
       "services": {
