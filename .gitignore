@@ -102,3 +102,6 @@ InitTestScene*.unity*
 Mechfall/Assets/google-services.json
 Mechfall/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_0_0.bundle
 Mechfall/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_0_0.so
+Mechfall/Assets/google-services.json.meta
+Mechfall/Assets/StreamingAssets/google-services-desktop.json
+Mechfall/Assets/StreamingAssets/google-services-desktop.json.meta
