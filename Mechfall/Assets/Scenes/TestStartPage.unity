@@ -745,7 +745,7 @@ PrefabInstance:
       objectReference: {fileID: 1339960371}
     - target: {fileID: 7111823855672941401, guid: 36fe965c3fc551544b2947f5b89d4a16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLobby
+      value: LoadLogin
       objectReference: {fileID: 0}
     - target: {fileID: 7111823855672941401, guid: 36fe965c3fc551544b2947f5b89d4a16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

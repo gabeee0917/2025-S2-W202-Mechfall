@@ -8,7 +8,7 @@ public class SceneSwitcher : MonoBehaviour
   public GameObject beam;
   public Material change;
 
-  public void LoadLobby()
+  public void LoadLogin()
   {
     beam.SetActive(true);
     Image image = gameObject.GetComponent<Image>();
