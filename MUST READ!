@@ -1,7 +1,0 @@
-If this branch prevents compiling due to firebase external dependencies, trying reimporting using these two firebase sdks.
-
-https://drive.google.com/file/d/12Nrh-ez1kI0ozfAlBMJncgJaEBTFOozO/view?usp=sharing
-https://drive.google.com/file/d/1RkFkWXSLp02tWBNmU8ddOgDwW8xoRRt1/view?usp=sharing
-
-To actually communicate with the firebase setup through apis, you will need the google-services json file. 
-I will provide it to you guys seperately as uploading it to github causes secret scanning emails to alert.    
