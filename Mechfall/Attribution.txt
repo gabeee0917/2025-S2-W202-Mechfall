@@ -14,3 +14,9 @@ Game Assets
 (CC BY 4.0) 2D Sci-Fi Turret Pack - F0x0ne
 Warrior free set - Clembod
 Side Scrolling Hack n' Slash Character - M_acrophage
+Aura38.png - Soluna Software
+
+Sound
+080192_Sci Fi Light Beam - Freesound Community
+FX Light - PixxelPro (Freesound)
+
