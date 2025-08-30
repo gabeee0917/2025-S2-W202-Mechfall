@@ -68,6 +68,14 @@ public class UserSession : MonoBehaviour
         {
             Instance.displayUser.text = username;
         }
+
+        Dictionary<string, object> updateUsernameList = new Dictionary<string, object>
+        {
+            { this.username, (bool) true }
+        };
+
+        db.Collection("users").Document("usernames").SetAsync(updateUsernameList, SetOptions.MergeAll);
+
     }
 
 
@@ -103,7 +111,7 @@ public class UserSession : MonoBehaviour
         }
 
 
-       
+
     }
 
     public void Logout()
@@ -129,7 +137,7 @@ public class UserSession : MonoBehaviour
         username = "";
         score = 0;
         level = 0;
-        
+
         Instance.profile.gameObject.SetActive(false);
 
         GameObject player = GameObject.FindWithTag("Player");
@@ -179,4 +187,40 @@ public class UserSession : MonoBehaviour
     {
         StartCoroutine(SaveDataToFireStore());
     }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        TurnOffSingUI4Multi(scene);
+    }
+
+    void TurnOffSingUI4Multi(Scene scene)
+    {
+        if (scene.name == "Trial1")
+        {
+
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+             foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
+
+
 }

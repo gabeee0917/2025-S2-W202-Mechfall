@@ -20,18 +20,54 @@ public class TopThreeLeaderboard : MonoBehaviour
 
     public GameObject scorePage;
 
+    public TMP_InputField userSearch;
+    public TMP_Text statusText;
 
     void Start()
     {
         db = FirebaseFirestore.DefaultInstance;
+        statusText.text = "";
         GetTopThree();
     }
+
+    public void searchUser()
+    {
+        string username = userSearch.text;
+
+        Query userQuery = db.Collection("users").WhereEqualTo("username", username);
+
+        userQuery.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                statusText.text = "Failed to get data";
+                return;
+            }
+
+            QuerySnapshot snapshot = task.Result;
+            if (snapshot.Count == 0)
+            {
+                statusText.text = "No such user";
+                return;
+            }
+
+            foreach (DocumentSnapshot doc in snapshot.Documents)
+            {
+                Dictionary<string, object> data = doc.ToDictionary();
+                statusText.text = "score = " + data["score"].ToString() + "\nlevel = " + data["level"].ToString();
+            }
+            
+        });
+
+    }
+  
 
     public void GetTopThree()
     {
         Query topThree = db.Collection("users").OrderByDescending("score").Limit(3);
 
-        topThree.GetSnapshotAsync().ContinueWithOnMainThread(task => {
+        topThree.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
             if (task.IsFaulted || task.IsCanceled)
             {
                 return;
@@ -47,11 +83,12 @@ public class TopThreeLeaderboard : MonoBehaviour
 
 
                 string username = "";
-                if (data.ContainsKey("username")) {
+                if (data.ContainsKey("username"))
+                {
                     username = data["username"].ToString();
                 }
                 long score = System.Convert.ToInt64(data["score"]);
-               
+
 
                 topPlayers.Add(new UserDummyClass(username, score));
             }

@@ -165,6 +165,28 @@ public class AuthenticationManager : MonoBehaviour
         }
         else
         {
+            DocumentReference userDoc = db.Collection("users").Document("usernames");
+            var usernamecheck = userDoc.GetSnapshotAsync();
+            yield return new WaitUntil(() => usernamecheck.IsCompleted);
+            
+            if (usernamecheck.IsFaulted || usernamecheck.IsCanceled)
+            {
+                registerText.text = "Error occured during username check";
+                yield break;
+            }
+
+            DocumentSnapshot docSnapshot = usernamecheck.Result;
+            if (docSnapshot.Exists && docSnapshot.ContainsField(username))
+            {
+                registerText.text = "Username already exists!";
+                yield break;
+            }
+         
+
+
+
+
+
             var registerTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
             yield return new WaitUntil(() => registerTask.IsCompleted);
 

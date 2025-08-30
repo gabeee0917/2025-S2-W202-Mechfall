@@ -18,4 +18,13 @@ public class SettingsButton : MonoBehaviour
             settingsOpen = false;
         }
     }
+
+    public void closePanel()
+    {
+        settingsIcons.SetActive(false);
+    }
+    public void openPanel()
+    {
+        settingsIcons.SetActive(true);
+    }
 }
