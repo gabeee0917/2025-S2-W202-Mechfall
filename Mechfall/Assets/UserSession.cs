@@ -7,6 +7,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class UserSession : MonoBehaviour
 {
@@ -15,16 +16,18 @@ public class UserSession : MonoBehaviour
     public string userId;
     public string username;
     public long score;
-    public long level;
+    public long maxlevel;
     public FirebaseFirestore db;
     public TMP_Text displayUser;
     public TMP_Text saveDataStatus;
     private float spawnTime;
     private string previousUsername = "";
     public Button profile;
+
+    public long[] levelscores;
     void Start()
     {
-
+        levelscores = new long[10];
 
     }
     private void Awake()
@@ -47,9 +50,19 @@ public class UserSession : MonoBehaviour
     {
         Dictionary<string, object> updatedData = new Dictionary<string, object>
     {
+        { "username", this.username },
+        { "maxlevel", (long)this.maxlevel },
         { "score", (long)this.score },
-        { "level", (long)this.level },
-        { "username", this.username }
+        { "level1score", (long)this.levelscores[0]},
+        { "level2score", (long)this.levelscores[1]},
+        { "level3score", (long)this.levelscores[2]},
+        { "level4score", (long)this.levelscores[3]},
+        { "level5score", (long)this.levelscores[4]},
+        { "level6score", (long)this.levelscores[5]},
+        { "level7score", (long)this.levelscores[6]},
+        { "level8score", (long)this.levelscores[7]},
+        { "level9score", (long)this.levelscores[8]},
+        { "level10score", (long)this.levelscores[9]},
     };
 
         var task = db.Collection("users").Document(userId).SetAsync(updatedData, SetOptions.MergeAll);
@@ -71,7 +84,7 @@ public class UserSession : MonoBehaviour
 
         Dictionary<string, object> updateUsernameList = new Dictionary<string, object>
         {
-            { this.username, (bool) true }
+            { this.username, (long)this.score }
         };
 
         db.Collection("users").Document("usernames").SetAsync(updateUsernameList, SetOptions.MergeAll);
@@ -92,7 +105,17 @@ public class UserSession : MonoBehaviour
 
             this.username = snapshot.GetValue<string>("username");
             this.score = snapshot.GetValue<long>("score");
-            this.level = snapshot.GetValue<long>("level");
+            this.maxlevel = snapshot.GetValue<long>("maxlevel");
+            this.levelscores[0] = snapshot.GetValue<long>("level1score");
+            this.levelscores[1] = snapshot.GetValue<long>("level2score");
+            this.levelscores[2] = snapshot.GetValue<long>("level3score");
+            this.levelscores[3] = snapshot.GetValue<long>("level4score");
+            this.levelscores[4] = snapshot.GetValue<long>("level5score");
+            this.levelscores[5] = snapshot.GetValue<long>("level6score");
+            this.levelscores[6] = snapshot.GetValue<long>("level7score");
+            this.levelscores[7] = snapshot.GetValue<long>("level8score");
+            this.levelscores[8] = snapshot.GetValue<long>("level9score");
+            this.levelscores[9] = snapshot.GetValue<long>("level10score");
 
 
             Instance.displayUser.text = Instance.username;
@@ -136,7 +159,12 @@ public class UserSession : MonoBehaviour
         userId = "";
         username = "";
         score = 0;
-        level = 0;
+        maxlevel = 0;
+        for (int n = 0; n < 10; n++)
+        {
+            levelscores[n] = 0;
+        }
+
 
         Instance.profile.gameObject.SetActive(false);
 

@@ -236,7 +236,12 @@ public class AuthenticationManager : MonoBehaviour
 
                     UserSession.Instance.username = username;
                     UserSession.Instance.score = 0;
-                    UserSession.Instance.level = 1;
+                    UserSession.Instance.maxlevel = 1;
+
+                    for (int n = 0; n < 10; n++)
+                    {
+                        UserSession.Instance.levelscores[n] = 0;
+                    }
 
                     yield return StartCoroutine(UserSession.Instance.SaveDataToFireStore());
 
