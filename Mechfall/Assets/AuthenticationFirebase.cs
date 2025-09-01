@@ -8,9 +8,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System;
+
+// Script to attach to a firebase manager gameobject to manage login/register and getting data from Firebase and firestore 
 public class AuthenticationManager : MonoBehaviour
 {
- 
+
     public DependencyStatus dependencyStatus;
     public FirebaseAuth auth;
     public FirebaseUser User;
@@ -30,6 +32,7 @@ public class AuthenticationManager : MonoBehaviour
 
     public FirebaseFirestore db;
 
+    // On awake of the gameobject holding this script, check dependencies and initialise firebase make sure it stays active the entire time till program shuts down.
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -62,13 +65,14 @@ public class AuthenticationManager : MonoBehaviour
         }
 
         UserSession.Instance.db = db;
-    
+
     }
 
+    //This ienumerator will be used in the login ienumerator, to load the lobby when login is successful
     private IEnumerator LoadLobbyAfterLoadData()
     {
         yield return StartCoroutine(UserSession.Instance.LoadData());
-        
+
         if (UserSession.Instance.profile != null)
         {
             UserSession.Instance.profile.gameObject.SetActive(true);
@@ -77,16 +81,19 @@ public class AuthenticationManager : MonoBehaviour
         SceneManager.LoadScene("Lobby");
     }
 
+    // function to check login, assign to loginbutton onclick
     public void LoginButton()
     {
         StartCoroutine(Login(loginEmail.text, loginPW.text));
     }
 
+    // function to register, assign to registerbutton onclick
     public void RegisterButton()
     {
         StartCoroutine(Register(registerEmail.text, registerPW.text, registerUsername.text));
     }
 
+    //login ienumerator process that uses firebase-specific authentication login functions / updates UserSession prefab up to date data
     private IEnumerator Login(string email, string password)
     {
         loginWarning.text = "";
@@ -133,7 +140,7 @@ public class AuthenticationManager : MonoBehaviour
             User = loginTask.Result.User;
             loginConfirmt.text = "Login success!";
             UserSession.Instance.profile.gameObject.SetActive(true);
-            
+
             if (User != null)
             {
 
@@ -141,13 +148,14 @@ public class AuthenticationManager : MonoBehaviour
 
             }
 
-            
+
             StartCoroutine(LoadLobbyAfterLoadData());
 
 
         }
     }
 
+    //register ienumerator process that uses firebase-specific authentication register functions / updates UserSession prefab up to date data
     private IEnumerator Register(string email, string password, string username)
     {
         registerText.text = "";
@@ -168,7 +176,7 @@ public class AuthenticationManager : MonoBehaviour
             DocumentReference userDoc = db.Collection("users").Document("usernames");
             var usernamecheck = userDoc.GetSnapshotAsync();
             yield return new WaitUntil(() => usernamecheck.IsCompleted);
-            
+
             if (usernamecheck.IsFaulted || usernamecheck.IsCanceled)
             {
                 registerText.text = "Error occured during username check";
@@ -181,7 +189,7 @@ public class AuthenticationManager : MonoBehaviour
                 registerText.text = "Username already exists!";
                 yield break;
             }
-         
+
 
 
 
@@ -267,6 +275,7 @@ public class AuthenticationManager : MonoBehaviour
         Application.Quit();
     }
 
+    // function that detects changes in authentication state changes, not utilised yet as we manually control things but if project becomes bigger will have to utilise
     void AuthStateChanged(object sender, EventArgs eventArgs)
     {
         if (auth.CurrentUser != User)
@@ -275,7 +284,7 @@ public class AuthenticationManager : MonoBehaviour
 
             if (!signedIn && User != null)
             {
-               
+
             }
 
             User = auth.CurrentUser;
@@ -293,8 +302,8 @@ public class AuthenticationManager : MonoBehaviour
             }
         }
     }
-   
- 
+
+
     public void Cleanup()
     {
         if (auth != null)

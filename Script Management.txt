@@ -11,4 +11,4 @@ Login Page
 	UserSession.cs
 
 Leaderboard
-	Top3Leaders.cs
+	Top10Leaders.cs

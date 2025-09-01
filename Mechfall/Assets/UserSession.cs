@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
+// important class for usersession prefab. 
+//Will act as the intermediary between the game and the database, so that scores and data is stored here so that updates can occur after significant events rather than constantly.
+// also used for data to be shown in UI ingame and profiles etc
 public class UserSession : MonoBehaviour
 {
     public static UserSession Instance;
@@ -25,11 +28,15 @@ public class UserSession : MonoBehaviour
     public Button profile;
 
     public long[] levelscores;
+
+    //for now, we initialise with 10 even though we will not use all of them yet. 
     void Start()
     {
         levelscores = new long[10];
 
     }
+
+    //make sure the gameobject holding this script persists until program terminates
     private void Awake()
     {
         if (Instance == null)
@@ -45,7 +52,7 @@ public class UserSession : MonoBehaviour
 
     }
 
-
+    // save the data being updated in the usersession to firebase
     public IEnumerator SaveDataToFireStore()
     {
         Dictionary<string, object> updatedData = new Dictionary<string, object>
@@ -91,7 +98,7 @@ public class UserSession : MonoBehaviour
 
     }
 
-
+    //similar to load in firebase authentication but more tuned to the usersession 
     public IEnumerator LoadData()
     {
         DocumentReference docRef = db.Collection("users").Document(userId);
@@ -125,6 +132,7 @@ public class UserSession : MonoBehaviour
 
     }
 
+    //update the username in a UI text at the top left
     void Update()
     {
         if (previousUsername != username)
@@ -137,6 +145,7 @@ public class UserSession : MonoBehaviour
 
     }
 
+    // if a user logs out, then initialise the data being stored in the usersession to ensure that previous data does not inadvertantly remain
     public void Logout()
     {
         var auth = FirebaseAuth.DefaultInstance;
@@ -231,6 +240,8 @@ public class UserSession : MonoBehaviour
         TurnOffSingUI4Multi(scene);
     }
 
+    // since multiplayer will use a seperate UI, because we want to show both health bars at the top kind of like tekken, turn off in game UI if 
+    // the scene is Trial1 (name of multiplayer test scene) and turn it back on if it is single player 
     void TurnOffSingUI4Multi(Scene scene)
     {
         if (scene.name == "Trial1")
@@ -243,7 +254,7 @@ public class UserSession : MonoBehaviour
         }
         else
         {
-             foreach (Transform child in transform)
+            foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(true);
             }

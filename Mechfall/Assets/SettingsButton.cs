@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+
+//behavior script to show the panel of subbuttons when pressing the gear button (settings) at the top right
 public class SettingsButton : MonoBehaviour
 {
     private bool settingsOpen = false;

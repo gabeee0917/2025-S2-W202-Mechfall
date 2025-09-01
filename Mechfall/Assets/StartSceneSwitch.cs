@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+// Script for the process that runs when click on the start game button. 
 public class StartSceneSwitcher : MonoBehaviour
 {
-  public GameObject beam;
+  public GameObject beam; // simulate beam glow 
   public Material change;
 
   public AudioSource beamsound;
@@ -26,8 +28,8 @@ public class StartSceneSwitcher : MonoBehaviour
 
   public void PlayBeamSound()
   {
-    beamsound.Play();  
+    beamsound.Play();
   }
-        
+
 }
 
