@@ -8,10 +8,14 @@ public class Bullet : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        rb.linearVelocity = transform.right * speed;
     }
 
 
-
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Debug.Log(hitInfo.name);
+        Destroy(gameObject);
+    }
 
 }
