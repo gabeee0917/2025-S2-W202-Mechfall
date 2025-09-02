@@ -251,6 +251,8 @@ public class AuthenticationManager : MonoBehaviour
                         UserSession.Instance.levelscores[n] = 0;
                     }
 
+                    UserSession.Instance.profilemessage = "Sup";
+
                     yield return StartCoroutine(UserSession.Instance.SaveDataToFireStore());
 
 

@@ -9,8 +9,8 @@ using TMPro;
 using System.Collections;
 using System.Linq; //language integrated query c# thingy to help do queries from the local system instead of having to do queries at firebase server
 
-//NAME SAYS TOP THREE BUT THAT WAS THE ORIGNAL ATTEMPT. IT IS NOW TOP TEN! I DONT WANT TO BREAK LINKS SO I WILL KEEP IT LIKE THIS (02.09.25). 
-public class TopThreeLeaderboard : MonoBehaviour
+
+public class TopTenLeaderboard : MonoBehaviour
 {
     FirebaseFirestore db;
 
@@ -62,6 +62,7 @@ public class TopThreeLeaderboard : MonoBehaviour
                 {
                     statusText.text += $"\nLevel{n + 1} score = " + data[$"level{n + 1}score"].ToString();
                 }
+                statusText.text += "\n\n-- " + data["username"] +"'s message -- \n" + data["profilemessage"];
             }
 
         });

@@ -27,6 +27,8 @@ public class UserSession : MonoBehaviour
     private string previousUsername = "";
     public Button profile;
 
+    public string profilemessage;
+
     public long[] levelscores;
 
     //for now, we initialise with 10 even though we will not use all of them yet. 
@@ -70,6 +72,7 @@ public class UserSession : MonoBehaviour
         { "level8score", (long)this.levelscores[7]},
         { "level9score", (long)this.levelscores[8]},
         { "level10score", (long)this.levelscores[9]},
+        { "profilemessage", this.profilemessage},
     };
 
         var task = db.Collection("users").Document(userId).SetAsync(updatedData, SetOptions.MergeAll);
@@ -123,6 +126,7 @@ public class UserSession : MonoBehaviour
             this.levelscores[7] = snapshot.GetValue<long>("level8score");
             this.levelscores[8] = snapshot.GetValue<long>("level9score");
             this.levelscores[9] = snapshot.GetValue<long>("level10score");
+            this.profilemessage = snapshot.GetValue<string>("profilemessage");
 
 
             Instance.displayUser.text = Instance.username;
