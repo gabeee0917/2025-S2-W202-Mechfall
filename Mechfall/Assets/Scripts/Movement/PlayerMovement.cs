@@ -133,15 +133,14 @@ public class PlayerMovement : MonoBehaviour
         // When we press Jump
         if (InputManager.jumpPressed)
         {
-            Debug.Log("JumpDebug: Jump button pressed");
             _jumpBufferTimer = MoveStats.JumpBufferTime;
             _jumpReleasedDuringBuffer = false;
+            Debug.Log("JumpDebug: Jump button pressed");
         }
 
         // When we release Jump
         if (InputManager.jumpReleased)
         {
-            Debug.Log("JumpDebug: Jump button released");
             if (_jumpBufferTimer > 0f)
             {
                 _jumpReleasedDuringBuffer = true;
@@ -170,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("JumpDebug: Ground / Coyote jump");
             InitiateJump(1);
+            _jumpBufferTimer = 0f;
 
             if (_jumpReleasedDuringBuffer)
             {
@@ -184,14 +184,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("JumpDebug: Double jump triggered");
             _isFastFalling = false;
             InitiateJump(1);
-        }
-
-        // Air Jump Coyote Time Lapsed
-        else if (_jumpBufferTimer > 0f && _isFalling && _numberOfJumpsUsed < MoveStats.NumberOfJumpsAllowed - 1)
-        {
-            Debug.Log("JumpDebug: Air jump (coyote time lapsed)");
-            InitiateJump(2);
-            _isFastFalling = false;
         }
 
         // Landed
@@ -216,7 +208,6 @@ public class PlayerMovement : MonoBehaviour
             _isJumping = true;
         }
 
-        _jumpBufferTimer = 0f;
         _numberOfJumpsUsed += numberOfJumpsUsed;
         VerticalVelocity = MoveStats.InitialJumpVelocity;
     }
