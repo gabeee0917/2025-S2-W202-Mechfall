@@ -36,18 +36,6 @@ public class PlayerMovementStats : ScriptableObject
     [Header("Jump Coyote Time")]
     [Range(0f, 1f)] public float JumpCoyoteTime = 0.1f;
 
-    [Header("Debug")]
-    public bool DebugShowIsGroundedBox;
-    public bool DebugShowHeadBumpBox;
-
-    [Header("Jump Visualisation Tool")]
-    public bool ShowWalkJumpArc = false;
-    public bool ShowRunJumpArc = false;
-    public bool StopOnCollision = true;
-    public bool DrawRight = true;
-    [Range(5, 100)] public float ArcResolution = 20;
-    [Range(0, 100)] public float VisualisationSteps = 90;
-
     [Header("Grounded/Collision Checks")]
     public LayerMask GroundLayer;
     public float GroundDectectionRayLength = 0.02f;
