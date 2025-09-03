@@ -53,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
     {
         CountTimers();
         JumpChecks();
+
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
     private void FixedUpdate()
