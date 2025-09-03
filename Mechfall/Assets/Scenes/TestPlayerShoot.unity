@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 1469319667}
   - component: {fileID: 1469319666}
   - component: {fileID: 1469319668}
+  - component: {fileID: 1469319669}
   m_Layer: 0
   m_Name: Enemy test
   m_TagString: enemy
@@ -579,6 +580,20 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
+--- !u!114 &1469319669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469319665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c6604cea4aa9143bbc76e61878fe29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  hp: 5
+  deathE: {fileID: 0}
 --- !u!1 &2105082267
 GameObject:
   m_ObjectHideFlags: 0
