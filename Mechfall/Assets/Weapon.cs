@@ -21,12 +21,12 @@ public class Weapon : MonoBehaviour
     {
         playerShootAction = playerControls.Player.Player_Shoot;
         playerShootAction.Enable();
-        playerShootAction.performed += OnPlayerShoot; // Subscribe to event
+        playerShootAction.performed += OnPlayerShoot;
     }
 
     public void OnDisable()
     {
-        playerShootAction.performed -= OnPlayerShoot; // Unsubscribe
+        playerShootAction.performed -= OnPlayerShoot;
         playerShootAction.Disable();
     }
 
