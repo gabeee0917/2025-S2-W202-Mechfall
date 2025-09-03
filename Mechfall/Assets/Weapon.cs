@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     public InputSystem_Actions playerControls;
     public float gunCDT = 1f;
     private InputAction playerShootAction;
-    private Boolean gunCD = false;
+    private Boolean isFiring = true;
 
     private void Awake()
     {
@@ -21,27 +21,32 @@ public class Weapon : MonoBehaviour
     {
         playerShootAction = playerControls.Player.Player_Shoot;
         playerShootAction.Enable();
-        playerShootAction.performed += OnPlayerShoot;
+        playerShootAction.started += OnPlayerShoot;
+        playerShootAction.canceled += OnPlayerShootStop;
     }
 
     public void OnDisable()
     {
-        playerShootAction.performed -= OnPlayerShoot;
+        playerShootAction.started -= OnPlayerShoot;
+        playerShootAction.canceled -= OnPlayerShootStop;
         playerShootAction.Disable();
     }
 
     private void OnPlayerShoot(InputAction.CallbackContext context)
     {
-        if (!gunCD)
-        {
-            Instantiate(bullet, firepoint.position, firepoint.rotation);
-            Invoke("ResetGunCD", gunCDT);
-            gunCD = true;
-        }
+        isFiring = true;
+        InvokeRepeating(nameof(Fire), 0f, gunCDT);
+    }
+    
+    private void OnPlayerShootStop(InputAction.CallbackContext context)
+    {
+        isFiring = false;
+        CancelInvoke(nameof(Fire));
     }
 
-    void ResetGunCD()
+    void Fire()
     {
-        gunCD = false;
+        Instantiate(bullet, firepoint.position, firepoint.rotation);
+
     }
 }
