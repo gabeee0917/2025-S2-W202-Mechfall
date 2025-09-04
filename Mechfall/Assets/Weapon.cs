@@ -49,4 +49,5 @@ public class Weapon : MonoBehaviour
         Instantiate(bullet, firepoint.position, firepoint.rotation);
 
     }
+    
 }

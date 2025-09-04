@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -9,6 +10,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb.linearVelocity = transform.right * speed;
+        Invoke(nameof(DeSpawn), 10);
     }
 
 
@@ -20,6 +22,10 @@ public class Bullet : MonoBehaviour
         {
             enemy.TakeDamage(damage);
         }
+        Destroy(gameObject);
+    }
+
+    void DeSpawn() {
         Destroy(gameObject);
     }
 
