@@ -7,6 +7,8 @@ public class SettingsButton : MonoBehaviour
     private bool settingsOpen = false;
     public GameObject settingsIcons;
 
+    public GameObject keymap;
+
     public void clickSettings()
     {
         if (settingsOpen == false)
@@ -28,5 +30,15 @@ public class SettingsButton : MonoBehaviour
     public void openPanel()
     {
         settingsIcons.SetActive(true);
+    }
+
+    public void openKeyMap()
+    {
+        keymap.SetActive(true);
+    }
+
+    public void closeKeyMap()
+    {
+        keymap.SetActive(false);
     }
 }

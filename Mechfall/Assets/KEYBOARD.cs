@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 public class KeyBoard : MonoBehaviour
 {
     public GameObject spacekey;
@@ -13,102 +14,132 @@ public class KeyBoard : MonoBehaviour
     public GameObject left;
     public GameObject right;
 
+    public GameObject esc;
+
+    private Image escRen;
+    private Image spaceRen;
+    private Image aRen;
+    private Image sRen;
+    private Image dRen;
+    private Image wRen;
+    private Image upRen;
+    private Image downRen;
+    private Image leftRen;
+    private Image rightRen;
     public TMP_Text explain;
 
     private void Start()
     {
-
+        spaceRen = spacekey.GetComponent<Image>();
+        aRen = a.GetComponent<Image>();
+        sRen = s.GetComponent<Image>();
+        dRen = d.GetComponent<Image>();
+        wRen = w.GetComponent<Image>();
+        upRen = up.GetComponent<Image>();
+        downRen = down.GetComponent<Image>();
+        leftRen = left.GetComponent<Image>();
+        rightRen = right.GetComponent<Image>();
+        escRen = esc.GetComponent<Image>();
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            spacekey.SetActive(true);
+            spaceRen.color = Color.white;
             explain.text = "SPACE: Jump";
         }
         else
         {
-            spacekey.SetActive(false);
+            spaceRen.color = Color.black;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            a.SetActive(true);
+            aRen.color = Color.white;
             explain.text = "A: Sword Attack";
         }
         else
         {
-            a.SetActive(false);
+            aRen.color = Color.black;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            s.SetActive(true);
+            sRen.color = Color.white;
             explain.text = "S: Shoot Laser";
         }
         else
         {
-            s.SetActive(false);
+            sRen.color = Color.black;
         }
 
-         if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            d.SetActive(true);
+            dRen.color = Color.white;
         }
         else
         {
-            d.SetActive(false);
+            dRen.color = Color.black;
         }
 
-         if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            w.SetActive(true);
+            wRen.color = Color.white;
         }
         else
         {
-            w.SetActive(false);
+            wRen.color = Color.black;
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            up.SetActive(true);
+            upRen.color = Color.white;
             explain.text = "Up: Interact";
         }
         else
         {
-            up.SetActive(false);
+            upRen.color = Color.black;
         }
 
-          if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
-            down.SetActive(true);
+            downRen.color = Color.white;
         }
         else
         {
-            down.SetActive(false);
+            downRen.color = Color.black;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            left.SetActive(true);
+            leftRen.color = Color.white;
             explain.text = "Left Arrow: Move Left";
         }
         else
         {
-            left.SetActive(false);
+            leftRen.color = Color.black;
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            right.SetActive(true);
+            rightRen.color = Color.white;
             explain.text = "Right Arrow: Move Right";
         }
         else
         {
-            right.SetActive(false);
+            rightRen.color = Color.black;
         }
 
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            escRen.color = Color.white;
+            explain.text = "Escape: Pause";
+        }
+        else
+        {
+            escRen.color = Color.black;
+        }
     }
 
    
