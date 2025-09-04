@@ -54,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
         CountTimers();
         JumpChecks();
 
-        animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
@@ -140,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpBufferTimer = MoveStats.JumpBufferTime;
             releasedDuringBuffer = false;
+            animator.SetBool("Jump", true);
         }
 
         // When we release Jump
@@ -321,7 +321,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
         }
         else { isGrounded = false; }
-
+        animator.SetBool("Jump", !isGrounded);
 
     }
 
