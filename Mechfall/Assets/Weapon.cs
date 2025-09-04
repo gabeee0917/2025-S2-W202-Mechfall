@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     public float gunCDT = 1f;
     private InputAction playerShootAction;
     private Boolean isFiring = true;
+    private Boolean gunCD = true;
 
     private void Awake()
     {
@@ -34,10 +35,15 @@ public class Weapon : MonoBehaviour
 
     private void OnPlayerShoot(InputAction.CallbackContext context)
     {
-        isFiring = true;
-        InvokeRepeating(nameof(Fire), 0f, gunCDT);
+        if (gunCD)
+        {
+            isFiring = true;
+            InvokeRepeating(nameof(Fire), 0f, gunCDT);
+            gunCD = false;
+            Invoke(nameof(CanShoot), gunCDT);
+        }
     }
-    
+
     private void OnPlayerShootStop(InputAction.CallbackContext context)
     {
         isFiring = false;
@@ -49,5 +55,9 @@ public class Weapon : MonoBehaviour
         Instantiate(bullet, firepoint.position, firepoint.rotation);
 
     }
-    
+
+    void CanShoot()
+    {
+        gunCD = true;
+    }
 }
