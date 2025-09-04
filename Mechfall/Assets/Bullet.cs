@@ -6,11 +6,12 @@ public class Bullet : MonoBehaviour
 
     public float speed = 20;
     public int damage = 1;
+    public float bulletDS = 10;
     public Rigidbody2D rb;
     void Start()
     {
         rb.linearVelocity = transform.right * speed;
-        Invoke(nameof(DeSpawn), 10);
+        Invoke(nameof(DeSpawn), bulletDS);
     }
 
 
