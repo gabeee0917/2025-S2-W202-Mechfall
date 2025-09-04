@@ -20,9 +20,9 @@ public class Profilepage : MonoBehaviour
 
     void Awake()
     {
-        username.text = "Username: " + UserSession.Instance.username;
-        maxlevel.text = "Max Level Reached: " + UserSession.Instance.maxlevel.ToString();
-        highscore.text = "High Score: " + UserSession.Instance.score.ToString();
+        username.text = UserSession.Instance.username;
+        maxlevel.text = UserSession.Instance.maxlevel.ToString();
+        highscore.text = UserSession.Instance.score.ToString();
         profilemessage.text = UserSession.Instance.profilemessage;
         
     }
@@ -42,9 +42,19 @@ public class Profilepage : MonoBehaviour
         changeprofilemessage.gameObject.SetActive(false);
     }
 
-    void Update(){
-        if( profilemessage.text != UserSession.Instance.profilemessage){
-             profilemessage.text = UserSession.Instance.profilemessage;
+    void Update()
+    {
+        if (profilemessage.text != UserSession.Instance.profilemessage)
+        {
+            profilemessage.text = UserSession.Instance.profilemessage;
+        }
+        if (maxlevel.text != UserSession.Instance.maxlevel.ToString())
+        {
+            maxlevel.text = UserSession.Instance.maxlevel.ToString();
+        }
+        if (highscore.text != UserSession.Instance.score.ToString())
+        {
+            highscore.text = UserSession.Instance.score.ToString();
         }
     }
 

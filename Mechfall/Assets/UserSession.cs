@@ -149,6 +149,16 @@ public class UserSession : MonoBehaviour
 
     }
 
+    public void updateHighScore()
+    {
+        long sum = 0;
+        for (int n = 0; n < 10; n++)
+        {
+            sum += levelscores[n];
+        }
+        score = (int)sum;
+    }
+
     // if a user logs out, then initialise the data being stored in the usersession to ensure that previous data does not inadvertantly remain
     public void Logout()
     {
