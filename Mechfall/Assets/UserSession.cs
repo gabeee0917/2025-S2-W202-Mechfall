@@ -255,10 +255,10 @@ public class UserSession : MonoBehaviour
     }
 
     // since multiplayer will use a seperate UI, because we want to show both health bars at the top kind of like tekken, turn off in game UI if 
-    // the scene is Trial1 (name of multiplayer test scene) and turn it back on if it is single player 
+    // the scene is PVP (name of multiplayer test scene) and turn it back on if it is single player 
     void TurnOffSingUI4Multi(Scene scene)
     {
-        if (scene.name == "Trial1")
+        if (scene.name == "PVP")
         {
 
             foreach (Transform child in transform)

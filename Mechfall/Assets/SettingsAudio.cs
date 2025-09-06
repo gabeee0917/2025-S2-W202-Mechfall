@@ -18,12 +18,36 @@ public class SettingsAudioButton : MonoBehaviour
             audioOn.SetActive(false);
             audioOff.SetActive(true);
             Sound = false;
+            AudioListener.volume = 0f;
         }
         else if (Sound == false)
         {
             audioOn.SetActive(true);
             audioOff.SetActive(false);
             Sound = true;
+            AudioListener.volume = 1f;
         }
     }
-}
+
+    public void Update()
+    {
+        if (AudioListener.volume > 0f)
+        {
+            if (Sound == false)
+            {
+                audioOn.SetActive(true);
+                audioOff.SetActive(false);
+                Sound = true;
+            }
+        }
+        else
+        {
+             if (Sound == true)
+            {
+                audioOn.SetActive(false);
+                audioOff.SetActive(true);
+                Sound = false;
+            }
+        }
+    }
+    }
