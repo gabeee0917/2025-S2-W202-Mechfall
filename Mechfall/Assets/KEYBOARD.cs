@@ -16,6 +16,12 @@ public class KeyBoard : MonoBehaviour
 
     public GameObject esc;
 
+    public GameObject f1;
+    public GameObject f2;
+    public GameObject f3;
+    public GameObject g;
+    public GameObject x;
+
     private Image escRen;
     private Image spaceRen;
     private Image aRen;
@@ -26,6 +32,11 @@ public class KeyBoard : MonoBehaviour
     private Image downRen;
     private Image leftRen;
     private Image rightRen;
+    private Image f1Ren;
+    private Image f2Ren;
+    private Image f3Ren;
+    private Image gRen;
+    private Image xRen;
     public TMP_Text explain;
 
     private void Start()
@@ -40,6 +51,11 @@ public class KeyBoard : MonoBehaviour
         leftRen = left.GetComponent<Image>();
         rightRen = right.GetComponent<Image>();
         escRen = esc.GetComponent<Image>();
+        f1Ren = f1.GetComponent<Image>();
+        f2Ren = f2.GetComponent<Image>();
+        f3Ren = f3.GetComponent<Image>();
+        gRen = g.GetComponent<Image>();
+        xRen = x.GetComponent<Image>();
     }
 
     private void Update()
@@ -51,7 +67,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            spaceRen.color = Color.black;
+            spaceRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -61,7 +77,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            aRen.color = Color.black;
+            aRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.S))
@@ -71,7 +87,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            sRen.color = Color.black;
+            sRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -80,7 +96,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            dRen.color = Color.black;
+            dRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -89,7 +105,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            wRen.color = Color.black;
+            wRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
@@ -99,7 +115,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            upRen.color = Color.black;
+            upRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
@@ -108,7 +124,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            downRen.color = Color.black;
+            downRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -118,7 +134,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            leftRen.color = Color.black;
+            leftRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -128,7 +144,7 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            rightRen.color = Color.black;
+            rightRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.Escape))
@@ -138,8 +154,65 @@ public class KeyBoard : MonoBehaviour
         }
         else
         {
-            escRen.color = Color.black;
+            escRen.color = Color.grey;
         }
+
+
+
+
+        if (Input.GetKey(KeyCode.F1))
+        {
+            f1Ren.color = Color.white;
+            explain.text = "F1: Emote1";
+        }
+        else
+        {
+            f1Ren.color = Color.grey;
+        }
+
+
+        if (Input.GetKey(KeyCode.F2))
+        {
+            f2Ren.color = Color.white;
+            explain.text = "F2: Emote2";
+        }
+        else
+        {
+            f2Ren.color = Color.grey;
+        }
+
+
+        if (Input.GetKey(KeyCode.F3))
+        {
+            f3Ren.color = Color.white;
+            explain.text = "F3: Emote3";
+        }
+        else
+        {
+            f3Ren.color = Color.grey;
+        }
+
+        if (Input.GetKey(KeyCode.G))
+        {
+            gRen.color = Color.white;
+            explain.text = "G: Ghost (PVP)";
+        }
+        else
+        {
+            gRen.color = Color.grey;
+        }
+
+         if (Input.GetKey(KeyCode.X))
+        {
+            xRen.color = Color.white;
+            explain.text = "X: Dash";
+        }
+        else
+        {
+            xRen.color = Color.grey;
+        }
+
+
     }
 
    

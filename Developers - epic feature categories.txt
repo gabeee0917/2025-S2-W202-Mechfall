@@ -1,0 +1,17 @@
+[Developers - epic feature categories ]
+
+
+
+SPRINT 1 (at least 2 per developer)
+
+
+[Chang Ho] - Navigation UI / Login / Multiplayer
+
+[Gabe] - Art Style / Map
+
+[Ted] - Player Movement / Sound
+
+[Te One] - Player Attacks / Enemy 
+
+[Vidu] - Menu Options / Score system 
+

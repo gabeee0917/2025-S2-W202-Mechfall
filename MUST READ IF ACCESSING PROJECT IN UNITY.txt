@@ -1,0 +1,7 @@
+NOTE: 
+
+If you wish to attempt compiling this game in unity editor, you will need to follow the instructions set out in Trello, 
+in the Lab Task Status list, in the description of the [Download files larger than 100mb] card. 
+
+ 
+ 
