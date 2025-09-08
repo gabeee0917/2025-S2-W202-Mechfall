@@ -96,11 +96,14 @@ InitTestScene*.unity*
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
 
 # Chang files that need ignoring
+# Ignore Firebase/Google config files
 Mechfall/Assets/google-services.json
-Mechfall/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_0_0.bundle
-Mechfall/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_0_0.so
 Mechfall/Assets/google-services.json.meta
 Mechfall/Assets/StreamingAssets/google-services-desktop.json
 Mechfall/Assets/StreamingAssets/google-services-desktop.json.meta
+
+# Ignore Firebase C++ plugin files for x86_64
+Mechfall/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_0_0.bundle
+Mechfall/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_0_0.so
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
