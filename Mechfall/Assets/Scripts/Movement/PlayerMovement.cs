@@ -43,7 +43,10 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimer;
 
     [Header("SoundFX")]
+    private AudioSource AudioSource;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip runSound;
+    [SerializeField] private AudioClip walkSound;
 
     #endregion
 
@@ -51,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isFacingRight = true;
         rb = GetComponent<Rigidbody2D>();
+        AudioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -79,6 +83,30 @@ public class PlayerMovement : MonoBehaviour
     #region Movement
     private void Move(float acceleration, float deceleration, Vector2 moveInput)
     {
+        bool isMoving = moveInput != Vector2.zero;
+        bool isRunning = isMoving && InputManager.RunHeld;
+
+        if (isMoving && !AudioSource.isPlaying)
+        {
+            AudioSource.loop = true;
+            AudioSource.clip = isRunning ? runSound : walkSound;
+            AudioSource.Play();
+        }
+
+        else if (isMoving && AudioSource.isPlaying)
+        {
+            AudioClip desiredClip = isRunning ? runSound : walkSound;
+            if (AudioSource.clip != desiredClip)
+            {
+                AudioSource.clip = desiredClip;
+                AudioSource.Play();
+            }
+        }
+        else if (!isMoving && AudioSource.isPlaying)
+        {
+            AudioSource.Stop();
+        }
+
         if (moveInput != Vector2.zero)
         {
             TurnCheck(moveInput);
@@ -93,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 targetVelocity = new Vector2(moveInput.x, 0f) * MoveStats.MaxWalkSpeed;
-                animator.SetBool("isRunning", true);
+                animator.SetBool("isWalking", true);
             }
 
             moveVelo = Vector2.Lerp(moveVelo, targetVelocity, acceleration * Time.fixedDeltaTime);
@@ -104,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
             moveVelo = Vector2.Lerp(moveVelo, Vector2.zero, deceleration * Time.fixedDeltaTime);
             rb.linearVelocity = new Vector2(moveVelo.x, rb.linearVelocity.y);
             animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", false);
         }
     }
 
