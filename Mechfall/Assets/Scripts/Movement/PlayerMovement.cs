@@ -41,6 +41,10 @@ public class PlayerMovement : MonoBehaviour
 
     //coyote time variables
     private float coyoteTimer;
+
+    [Header("SoundFX")]
+    [SerializeField] private AudioClip jumpSound;
+
     #endregion
 
     private void Awake()
@@ -84,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 targetVelocity = new Vector2(moveInput.x, 0f) * MoveStats.MaxRunSpeed;
                 animator.SetBool("isRunning", true);
+
             }
             else
             {
@@ -210,6 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
         numJumpsUsed += numberOfJumpsUsed;
         VerticalVelocity = MoveStats.InitialJumpVelocity;
+        SoundManager.instance.playSound(jumpSound);
     }
 
     private void Jump()
