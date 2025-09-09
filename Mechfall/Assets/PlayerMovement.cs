@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+// Remove after real player movment is completed
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +11,14 @@ public class PlayerMovement : MonoBehaviour
     private InputSystem_Actions playerControls;
     private InputAction playerMovement;
     private Vector2 moveDirection = Vector2.zero;
+
+    private Boolean isright = true;
+
+    public Boolean getIsRight()
+    {
+
+        return isright;
+    }
 
     private void Awake()
     {
@@ -34,6 +44,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        if (isright && moveDirection.x < 0)
+        {
+            FlipCharacter();
+        }
+        if (!isright && moveDirection.x > 0)
+        {
+            FlipCharacter();
+        }
+    }
+    
+    void FlipCharacter()
+    {
+        isright = !isright;
+        transform.Rotate(0, 180, 0);
     }
 }

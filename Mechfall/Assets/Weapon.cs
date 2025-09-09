@@ -20,14 +20,18 @@ public class Weapon : MonoBehaviour
 
     public void OnEnable()
     {
+        // Subscribe to the player shoot action
         playerShootAction = playerControls.Player.Player_Shoot;
         playerShootAction.Enable();
+        // Get when the player shoot button is pressed down
         playerShootAction.started += OnPlayerShoot;
+        // Get when the player shoot action is released
         playerShootAction.canceled += OnPlayerShootStop;
     }
 
     public void OnDisable()
     {
+        // Unsubscibe from the actions making sure to stop listening whne thye are uneeded
         playerShootAction.started -= OnPlayerShoot;
         playerShootAction.canceled -= OnPlayerShootStop;
         playerShootAction.Disable();
@@ -35,10 +39,14 @@ public class Weapon : MonoBehaviour
 
     private void OnPlayerShoot(InputAction.CallbackContext context)
     {
+        // Check if the gun is on cooldown
         if (gunCD)
         {
+            // Set the gun to fireing and start invoking the shoot action
             isFiring = true;
             InvokeRepeating(nameof(Fire), 0f, gunCDT);
+            
+            // Make the gun abke to shoot after the cooldown
             gunCD = false;
             Invoke(nameof(CanShoot), gunCDT);
         }
@@ -46,12 +54,14 @@ public class Weapon : MonoBehaviour
 
     private void OnPlayerShootStop(InputAction.CallbackContext context)
     {
+        // On release of the shoot key cancel the invoke of the shoot action
         isFiring = false;
         CancelInvoke(nameof(Fire));
     }
 
     void Fire()
     {
+        // Create a bullet firing from the firepoint;
         Instantiate(bullet, firepoint.position, firepoint.rotation);
 
     }

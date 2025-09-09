@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int d)
     {
+        // Makes the object take damage and removes it if its hp is 0
         hp -= d;
 
         if (hp <= 0)
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        // Destroys the object
         Destroy(gameObject);
     }
 
