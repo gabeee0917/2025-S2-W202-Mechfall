@@ -45,8 +45,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("SoundFX")]
     private AudioSource AudioSource;
     [SerializeField] private AudioClip jumpSound;
-    [SerializeField] private AudioClip runSound;
-    [SerializeField] private AudioClip walkSound;
 
     #endregion
 
@@ -83,29 +81,6 @@ public class PlayerMovement : MonoBehaviour
     #region Movement
     private void Move(float acceleration, float deceleration, Vector2 moveInput)
     {
-        bool isMoving = moveInput != Vector2.zero;
-        bool isRunning = isMoving && InputManager.RunHeld;
-
-        if (isMoving && !AudioSource.isPlaying)
-        {
-            AudioSource.loop = true;
-            AudioSource.clip = isRunning ? runSound : walkSound;
-            AudioSource.Play();
-        }
-
-        else if (isMoving && AudioSource.isPlaying)
-        {
-            AudioClip desiredClip = isRunning ? runSound : walkSound;
-            if (AudioSource.clip != desiredClip)
-            {
-                AudioSource.clip = desiredClip;
-                AudioSource.Play();
-            }
-        }
-        else if (!isMoving && AudioSource.isPlaying)
-        {
-            AudioSource.Stop();
-        }
 
         if (moveInput != Vector2.zero)
         {
