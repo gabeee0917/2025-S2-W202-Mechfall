@@ -31,6 +31,9 @@ public class UserSession : MonoBehaviour
 
     public long[] levelscores;
 
+    public long PvPWin;
+    public long PvPLose;
+
     //for now, we initialise with 10 even though we will not use all of them yet. 
     void Start()
     {
@@ -73,6 +76,8 @@ public class UserSession : MonoBehaviour
         { "level9score", (long)this.levelscores[8]},
         { "level10score", (long)this.levelscores[9]},
         { "profilemessage", this.profilemessage},
+        { "PvPWin", (long)this.PvPWin},
+        { "PvPLose", (long)this.PvPLose},
     };
 
         var task = db.Collection("users").Document(userId).SetAsync(updatedData, SetOptions.MergeAll);
@@ -127,6 +132,8 @@ public class UserSession : MonoBehaviour
             this.levelscores[8] = snapshot.GetValue<long>("level9score");
             this.levelscores[9] = snapshot.GetValue<long>("level10score");
             this.profilemessage = snapshot.GetValue<string>("profilemessage");
+            this.PvPWin = snapshot.GetValue<long>("PvPWin");
+            this.PvPLose = snapshot.GetValue<long>("PvPLose");
 
 
             Instance.displayUser.text = Instance.username;

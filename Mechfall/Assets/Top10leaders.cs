@@ -62,6 +62,7 @@ public class TopTenLeaderboard : MonoBehaviour
                 {
                     statusText.text += $"\nLevel{n + 1} score = " + data[$"level{n + 1}score"].ToString();
                 }
+                statusText.text += "\nPvP = W" + data["PvPWin"].ToString() + " - L" + data["PvPLose"].ToString();  
                 statusText.text += "\n\n-- " + data["username"] +"'s message -- \n" + data["profilemessage"];
             }
 

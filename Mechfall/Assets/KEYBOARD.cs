@@ -93,6 +93,7 @@ public class KeyBoard : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             dRen.color = Color.white;
+            explain.text = "D: Dash";
         }
         else
         {
@@ -150,7 +151,7 @@ public class KeyBoard : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             escRen.color = Color.white;
-            explain.text = "Escape: Pause";
+            explain.text = "Escape: Pause (StoryMode)";
         }
         else
         {
@@ -163,7 +164,7 @@ public class KeyBoard : MonoBehaviour
         if (Input.GetKey(KeyCode.F1))
         {
             f1Ren.color = Color.white;
-            explain.text = "F1: Emote1";
+            explain.text = "F1: Emote1 (PvP)";
         }
         else
         {
@@ -174,7 +175,7 @@ public class KeyBoard : MonoBehaviour
         if (Input.GetKey(KeyCode.F2))
         {
             f2Ren.color = Color.white;
-            explain.text = "F2: Emote2";
+            explain.text = "F2: Emote2 (PvP)";
         }
         else
         {
@@ -185,7 +186,7 @@ public class KeyBoard : MonoBehaviour
         if (Input.GetKey(KeyCode.F3))
         {
             f3Ren.color = Color.white;
-            explain.text = "F3: Emote3";
+            explain.text = "F3: Emote3 (PvP)";
         }
         else
         {
@@ -195,7 +196,7 @@ public class KeyBoard : MonoBehaviour
         if (Input.GetKey(KeyCode.G))
         {
             gRen.color = Color.white;
-            explain.text = "G: Ghost (PVP)";
+            explain.text = "G: GhostStealth (PvP)";
         }
         else
         {
@@ -205,7 +206,6 @@ public class KeyBoard : MonoBehaviour
          if (Input.GetKey(KeyCode.X))
         {
             xRen.color = Color.white;
-            explain.text = "X: Dash";
         }
         else
         {

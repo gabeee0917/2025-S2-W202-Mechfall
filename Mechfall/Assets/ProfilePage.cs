@@ -18,13 +18,17 @@ public class Profilepage : MonoBehaviour
 
     private string previousmessage;
 
+    public TMP_Text PvPWin;
+    public TMP_Text PvPLose;
+
     void Awake()
     {
         username.text = UserSession.Instance.username;
         maxlevel.text = UserSession.Instance.maxlevel.ToString();
         highscore.text = UserSession.Instance.score.ToString();
         profilemessage.text = UserSession.Instance.profilemessage;
-        
+        PvPWin.text = UserSession.Instance.PvPWin.ToString();
+        PvPLose.text = UserSession.Instance.PvPLose.ToString();
     }
 
     public void ChangeMessage() {
@@ -55,6 +59,14 @@ public class Profilepage : MonoBehaviour
         if (highscore.text != UserSession.Instance.score.ToString())
         {
             highscore.text = UserSession.Instance.score.ToString();
+        }
+        if (PvPWin.text != UserSession.Instance.PvPWin.ToString())
+        {
+            PvPWin.text = UserSession.Instance.PvPWin.ToString();
+        }
+        if (PvPLose.text != UserSession.Instance.PvPLose.ToString())
+        {
+            PvPLose.text = UserSession.Instance.PvPLose.ToString();
         }
     }
 

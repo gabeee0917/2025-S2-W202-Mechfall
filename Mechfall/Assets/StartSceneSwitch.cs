@@ -9,11 +9,13 @@ public class StartSceneSwitcher : MonoBehaviour
 {
   public GameObject beam; // simulate beam glow 
   public Material change;
+  public GameObject enemy;
 
   public AudioSource beamsound;
   public void LoadLogin()
   {
     beam.SetActive(true);
+    enemy.SetActive(false);
     Image image = gameObject.GetComponent<Image>();
     image.material = change;
     StartCoroutine(Delay(2));

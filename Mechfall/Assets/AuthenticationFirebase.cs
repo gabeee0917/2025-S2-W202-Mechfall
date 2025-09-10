@@ -252,7 +252,9 @@ public class AuthenticationManager : MonoBehaviour
                     }
 
                     UserSession.Instance.profilemessage = "Sup";
-
+                    UserSession.Instance.PvPWin = 0;
+                    UserSession.Instance.PvPLose = 0;
+                    
                     yield return StartCoroutine(UserSession.Instance.SaveDataToFireStore());
 
 
