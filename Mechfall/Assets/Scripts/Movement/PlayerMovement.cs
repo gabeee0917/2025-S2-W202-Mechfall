@@ -222,15 +222,6 @@ public class PlayerMovement : MonoBehaviour
                 closestDirection = Vector2.left;
             }
         }
-
-        // Prevent Directional Dash on Ground
-        if (isGrounded)
-        {
-            closestDirection.y = 0f;
-            VerticalVelo = 0f;
-            isJumping = false;
-            isFastFalling = false;
-        }
         dashDirection = closestDirection;
         numDashesUsed++;
         isDashing = true;
@@ -246,11 +237,6 @@ public class PlayerMovement : MonoBehaviour
             dashTimer += Time.fixedDeltaTime;
             if (dashTimer >= MoveStats.DashTime)
             {
-                if (isGrounded)
-                {
-                    ResetDashes();
-                }
-
                 isAirDashing = false;
                 isDashing = false;
 
@@ -461,13 +447,13 @@ public class PlayerMovement : MonoBehaviour
         // Landed
         if ((isJumping || isFalling) && isGrounded && VerticalVelo <= 0f)
         {
+            ResetDashes();
             isJumping = false;
             isFalling = false;
             isFastFalling = false;
             fastFallTime = 0f;
             isPastApexThreshold = false;
             numJumpsUsed = 0;
-
             VerticalVelo = 0f;
         }
     }
