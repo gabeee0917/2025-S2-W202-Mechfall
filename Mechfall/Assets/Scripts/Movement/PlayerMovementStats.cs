@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovementStats : ScriptableObject
 {
     [Header("Walk")]
+    [Range(0f, 1f)] public float MoveThreshold = 0.25f;
     [Range(1f, 100f)] public float MaxWalkSpeed = 12.5f;
     [Range(0.25f, 50f)] public float GroundAcceleration = 5f;
     [Range(0.25f, 50f)] public float GroundDeceleration = 20f;
@@ -22,6 +23,17 @@ public class PlayerMovementStats : ScriptableObject
     [Range(0.01f, 5f)] public float GravityOnReleaseMultiplier = 2f;
     public float MaxFallSpeed = 26f;
     [Range(1, 5)] public int NumberOfJumpsAllowed = 2;
+
+    [Header("Dash")]
+    [Range(0f, 1f)] public float DashTime = 0.11f;
+    [Range(1f, 200f)] public float DashSpeed = 40f;
+    [Range(0f, 1f)] public float DashOnGroundTime = 0.225f;
+    [Range(0, 5)] public int NumOfDashes = 2;
+    [Range(0f, 0.5f)] public float DiagonalDashBias = 0.4f;
+
+    [Header("Dash Cancel")]
+    [Range(0.01f, 5f)] public float DashGravityOnReleaseMultiplier = 1f;
+    [Range(0.02f, 0.3f)] public float UpwardsCancelDashTime = 0.027f;
 
     [Header("Jump Cut")]
     [Range(0.02f, 0.3f)] public float TimeForUpwardsCancel = 0.027f;
@@ -46,6 +58,18 @@ public class PlayerMovementStats : ScriptableObject
     public float InitialJumpVelocity { get; private set; }
     public float AdjustedJumpHeight{ get; private set; }
 
+    public readonly Vector2[] DashDirections = new Vector2[]
+    {
+        new Vector2(0, 0), //Nothing
+        new Vector2(1, 0), //Right
+        new Vector2(1, 1).normalized, //Right Up
+        new Vector2(0, 1), //Up
+        new Vector2(-1, 0), //Left
+        new Vector2(-1, 1).normalized, //Left Up
+        new Vector2(-1, -1).normalized, //Left Down
+        new Vector2(0, -1), //Down
+        new Vector2(1, -1).normalized, //Right Down
+    };
     private void OnValidate()
     {
         CalculateValues();

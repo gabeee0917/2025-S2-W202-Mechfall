@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region Variables
     //movement variables
-    private Vector2 moveVelo;
+    public float HorizontalVelo { get; private set; }
     private bool isFacingRight;
 
     //collision check variables
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool headBumped;
 
     //jump variables
-    public float VerticalVelocity { get; private set; }
+    public float VerticalVelo { get; private set; }
     private bool isJumping;
     private bool isFastFalling;
     private bool isFalling;
@@ -42,6 +42,17 @@ public class PlayerMovement : MonoBehaviour
     //coyote time variables
     private float coyoteTimer;
 
+    //dash variables
+    private bool isDashing;
+    private bool isAirDashing;
+    private float dashTimer;
+    private float dashGroundTimer;
+    private int numDashesUsed;
+    private Vector2 dashDirection;
+    private bool isDashFastFalling;
+    private float dashFastFallTime;
+    private float dashFastFallReleaseSpeed;
+
     [Header("SoundFX")]
     private AudioSource AudioSource;
     [SerializeField] private AudioClip jumpSound;
@@ -59,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
     {
         CountTimers();
         JumpChecks();
+        LandCheck();
+        DashCheck();
 
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
@@ -66,7 +79,9 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         CollisionChecks();
+        Dash();
         Jump();
+        Fall();
 
         if (isGrounded)
         {
@@ -76,36 +91,42 @@ public class PlayerMovement : MonoBehaviour
         {
             Move(MoveStats.AirAcceleration, MoveStats.AirDeceleration, InputManager.Movement);
         }
+        ApplyVelo();
     }
-    
+
+    private void ApplyVelo()
+    {
+         // Clamp Fall Speed
+        VerticalVelo = Mathf.Clamp(VerticalVelo, -MoveStats.MaxFallSpeed, 50f);
+        rb.linearVelocity = new Vector2(HorizontalVelo, VerticalVelo);
+    }
+
     #region Movement
     private void Move(float acceleration, float deceleration, Vector2 moveInput)
     {
 
-        if (moveInput != Vector2.zero)
+        if (Mathf.Abs(moveInput.x) >= MoveStats.MoveThreshold)
         {
             TurnCheck(moveInput);
 
-            Vector2 targetVelocity = Vector2.zero;
+            float targetVelocity = 0f;
             if (InputManager.RunHeld)
             {
-                targetVelocity = new Vector2(moveInput.x, 0f) * MoveStats.MaxRunSpeed;
+                targetVelocity = moveInput.x * MoveStats.MaxRunSpeed;
                 animator.SetBool("isRunning", true);
 
             }
             else
             {
-                targetVelocity = new Vector2(moveInput.x, 0f) * MoveStats.MaxWalkSpeed;
+                targetVelocity = moveInput.x * MoveStats.MaxWalkSpeed;
                 animator.SetBool("isWalking", true);
             }
 
-            moveVelo = Vector2.Lerp(moveVelo, targetVelocity, acceleration * Time.fixedDeltaTime);
-            rb.linearVelocity = new Vector2(moveVelo.x, rb.linearVelocity.y);
+            HorizontalVelo = Mathf.Lerp(HorizontalVelo, targetVelocity, acceleration * Time.fixedDeltaTime);
         }
-        else if (moveInput == Vector2.zero)
+        else if (Mathf.Abs(moveInput.x) < MoveStats.MoveThreshold)
         {
-            moveVelo = Vector2.Lerp(moveVelo, Vector2.zero, deceleration * Time.fixedDeltaTime);
-            rb.linearVelocity = new Vector2(moveVelo.x, rb.linearVelocity.y);
+            HorizontalVelo = Mathf.Lerp(HorizontalVelo, 0f, deceleration * Time.fixedDeltaTime);
             animator.SetBool("isRunning", false);
             animator.SetBool("isWalking", false);
         }
@@ -139,6 +160,149 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Dash
+
+    private void DashCheck()
+    {
+        if (InputManager.DashPressed)
+        {
+            //ground dash
+            if (isGrounded && dashGroundTimer < 0 && !isDashing)
+            {
+                InitiateDash();
+            }
+            //air dash
+            else if (!isGrounded && !isDashing && numDashesUsed < MoveStats.NumOfDashes)
+            {
+                isAirDashing = true;
+                InitiateDash();
+            }
+        }
+    }
+
+    private void InitiateDash()
+    {
+        dashDirection = InputManager.Movement;
+        Vector2 closestDirection = Vector2.zero;
+        float minDist = Vector2.Distance(dashDirection, MoveStats.DashDirections[0]);
+
+        for (int i = 0; i < MoveStats.DashDirections.Length; i++)
+        {
+            //skip if we hit direction
+            if (dashDirection == MoveStats.DashDirections[i])
+            {
+                closestDirection = dashDirection;
+                break;
+            }
+
+            float distance = Vector2.Distance(dashDirection, MoveStats.DashDirections[i]);
+
+            //check diagonal distance and apply the bias
+            bool isDiagonal = (Mathf.Abs(MoveStats.DashDirections[i].x) == 1 && Mathf.Abs(MoveStats.DashDirections[i].y) == 1);
+            if (isDiagonal)
+            {
+                distance -= MoveStats.DiagonalDashBias;
+            }
+            else if (distance < minDist)
+            {
+                minDist = distance;
+                closestDirection = MoveStats.DashDirections[i];
+            }
+        }
+
+        // handle no direction
+        if (closestDirection == Vector2.zero)
+        {
+            if (isFacingRight)
+            {
+                closestDirection = Vector2.right;
+            }
+            else
+            {
+                closestDirection = Vector2.left;
+            }
+        }
+
+        // Prevent Directional Dash on Ground
+        if (isGrounded)
+        {
+            closestDirection.y = 0f;
+            VerticalVelo = 0f;
+            isJumping = false;
+            isFastFalling = false;
+        }
+        dashDirection = closestDirection;
+        numDashesUsed++;
+        isDashing = true;
+        dashTimer = 0f;
+        dashGroundTimer = MoveStats.DashOnGroundTime;
+    }
+
+    private void Dash()
+    {
+        if (isDashing)
+        {
+            //stop dash timer
+            dashTimer += Time.fixedDeltaTime;
+            if (dashTimer >= MoveStats.DashTime)
+            {
+                if (isGrounded)
+                {
+                    ResetDashes();
+                }
+
+                isAirDashing = false;
+                isDashing = false;
+
+                if (!isJumping)
+                {
+                    dashFastFallTime = 0f;
+                    dashFastFallReleaseSpeed = VerticalVelo;
+
+                    if (!isGrounded)
+                    {
+                        isDashFastFalling = true;
+                    }
+                }
+                return;
+            }
+            HorizontalVelo = MoveStats.DashSpeed * dashDirection.x;
+
+            if (dashDirection.y != 0f || isAirDashing)
+            {
+                VerticalVelo = MoveStats.DashSpeed * dashDirection.y;
+            }
+        }
+
+        //Dash Cut Time
+        else if (isDashFastFalling)
+        {
+            if (VerticalVelo > 0f)
+            {
+                if (dashFastFallTime < MoveStats.UpwardsCancelDashTime)
+                {
+                    VerticalVelo = Mathf.Lerp(dashFastFallReleaseSpeed, 0f, (dashFastFallTime / MoveStats.UpwardsCancelDashTime));
+                }
+                else if (dashFastFallTime >= MoveStats.UpwardsCancelDashTime)
+                {
+                    VerticalVelo += MoveStats.Gravity * MoveStats.DashGravityOnReleaseMultiplier * Time.fixedDeltaTime;
+                }
+                dashFastFallTime += Time.fixedDeltaTime;
+            }
+            else
+            {
+                VerticalVelo += MoveStats.Gravity * MoveStats.DashGravityOnReleaseMultiplier * Time.fixedDeltaTime;
+            }
+        }
+    }
+
+    private void ResetDashes()
+    {
+        numDashesUsed = 0;
+    }
+
+    #endregion
+
     #region Jump
 
     private void JumpChecks()
@@ -159,19 +323,19 @@ public class PlayerMovement : MonoBehaviour
                 releasedDuringBuffer = true;
             }
 
-            if (isJumping && VerticalVelocity > 0f)
+            if (isJumping && VerticalVelo > 0f)
             {
                 if (isPastApexThreshold)
                 {
                     isPastApexThreshold = false;
                     isFastFalling = true;
                     fastFallTime = MoveStats.TimeForUpwardsCancel;
-                    VerticalVelocity = 0f;
+                    VerticalVelo = 0f;
                 }
                 else
                 {
                     isFastFalling = true;
-                    fastFallReleaseSpeed = VerticalVelocity;
+                    fastFallReleaseSpeed = VerticalVelo;
                 }
             }
         }
@@ -185,7 +349,7 @@ public class PlayerMovement : MonoBehaviour
             if (releasedDuringBuffer)
             {
                 isFastFalling = true;
-                fastFallReleaseSpeed = VerticalVelocity;
+                fastFallReleaseSpeed = VerticalVelo;
             }
         }
 
@@ -194,19 +358,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isFastFalling = false;
             InitiateJump(1);
-        }
-
-        // Landed
-        if ((isJumping || isFalling) && isGrounded && VerticalVelocity <= 0f)
-        {
-            isJumping = false;
-            isFalling = false;
-            isFastFalling = false;
-            fastFallTime = 0f;
-            isPastApexThreshold = false;
-            numJumpsUsed = 0;
-
-            VerticalVelocity = 0f;
         }
     }
 
@@ -218,7 +369,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         numJumpsUsed += numberOfJumpsUsed;
-        VerticalVelocity = MoveStats.InitialJumpVelocity;
+        VerticalVelo = MoveStats.InitialJumpVelocity;
         SoundManager.instance.playSound(jumpSound);
     }
 
@@ -234,10 +385,10 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Gravity on Ascending
-            if (VerticalVelocity >= 0f)
+            if (VerticalVelo >= 0f)
             {
                 // Apex Controls
-                apexJumpPoint = Mathf.InverseLerp(MoveStats.InitialJumpVelocity, 0f, VerticalVelocity);
+                apexJumpPoint = Mathf.InverseLerp(MoveStats.InitialJumpVelocity, 0f, VerticalVelo);
                 if (apexJumpPoint > MoveStats.ApexThreshold)
                 {
                     if (!isPastApexThreshold)
@@ -251,11 +402,11 @@ public class PlayerMovement : MonoBehaviour
                         timePastApexThreshold += Time.fixedDeltaTime;
                         if (timePastApexThreshold < MoveStats.ApexHangTime)
                         {
-                            VerticalVelocity = 0f;
+                            VerticalVelo = 0f;
                         }
                         else
                         {
-                            VerticalVelocity = -0.01f;
+                            VerticalVelo = -0.01f;
                         }
                     }
                 }
@@ -263,7 +414,7 @@ public class PlayerMovement : MonoBehaviour
                 // Gravity on Ascending But not past apex threshold
                 else
                 {
-                    VerticalVelocity += MoveStats.Gravity * Time.fixedDeltaTime;
+                    VerticalVelo += MoveStats.Gravity * Time.fixedDeltaTime;
                     if (isPastApexThreshold)
                     {
                         isPastApexThreshold = false;
@@ -274,10 +425,10 @@ public class PlayerMovement : MonoBehaviour
             // Gravity on Descending
             else if (!isFastFalling)
             {
-                VerticalVelocity += MoveStats.Gravity * MoveStats.GravityOnReleaseMultiplier * Time.fixedDeltaTime;
+                VerticalVelo += MoveStats.Gravity * MoveStats.GravityOnReleaseMultiplier * Time.fixedDeltaTime;
             }
 
-            else if (VerticalVelocity < 0f)
+            else if (VerticalVelo < 0f)
             {
                 if (!isFalling)
                 {
@@ -291,15 +442,38 @@ public class PlayerMovement : MonoBehaviour
         {
             if (fastFallTime >= MoveStats.TimeForUpwardsCancel)
             {
-                VerticalVelocity += MoveStats.Gravity * MoveStats.GravityOnReleaseMultiplier * Time.fixedDeltaTime;
+                VerticalVelo += MoveStats.Gravity * MoveStats.GravityOnReleaseMultiplier * Time.fixedDeltaTime;
             }
             else if (fastFallTime < MoveStats.TimeForUpwardsCancel)
             {
-                VerticalVelocity = Mathf.Lerp(fastFallReleaseSpeed, 0f, (fastFallTime / MoveStats.TimeForUpwardsCancel));
+                VerticalVelo = Mathf.Lerp(fastFallReleaseSpeed, 0f, (fastFallTime / MoveStats.TimeForUpwardsCancel));
             }
             fastFallTime += Time.fixedDeltaTime;
         }
+    }
 
+    #endregion
+
+    #region Landing
+
+    private void LandCheck()
+    {
+        // Landed
+        if ((isJumping || isFalling) && isGrounded && VerticalVelo <= 0f)
+        {
+            isJumping = false;
+            isFalling = false;
+            isFastFalling = false;
+            fastFallTime = 0f;
+            isPastApexThreshold = false;
+            numJumpsUsed = 0;
+
+            VerticalVelo = 0f;
+        }
+    }
+
+    private void Fall()
+    {
         // Normal Gravity While Falling
         if (!isGrounded && !isJumping)
         {
@@ -308,12 +482,8 @@ public class PlayerMovement : MonoBehaviour
                 isFalling = true;
             }
 
-            VerticalVelocity += MoveStats.Gravity * Time.fixedDeltaTime;
+            VerticalVelo += MoveStats.Gravity * Time.fixedDeltaTime;
         }
-        // Clamp Fall Speed
-        VerticalVelocity = Mathf.Clamp(VerticalVelocity, -MoveStats.MaxFallSpeed, 50f);
-
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, VerticalVelocity);
     }
 
     #endregion
@@ -360,13 +530,21 @@ public class PlayerMovement : MonoBehaviour
     #region Timers
     private void CountTimers()
     {
+        // Jump Buffer
         jumpBufferTimer -= Time.deltaTime;
 
+        //Jump Coyote Timer
         if (!isGrounded)
         {
             coyoteTimer -= Time.deltaTime;
         }
-        else{ coyoteTimer = MoveStats.JumpCoyoteTime; }
+        else { coyoteTimer = MoveStats.JumpCoyoteTime; }
+
+        //Dash Timer
+        if (isGrounded)
+        {
+            dashGroundTimer -= Time.fixedDeltaTime;
+        }
     }
     #endregion
 

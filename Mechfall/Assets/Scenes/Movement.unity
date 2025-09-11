@@ -430,7 +430,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 19584aab8782c4ce59869fbe615b1198, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.254
+  m_Volume: 0.116
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -559,6 +559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ae52f5ae4a3427f88ffa7a456b2c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  footsteps:
+  - {fileID: 8300000, guid: 09f6a96024ab549b0845a77851423e96, type: 3}
+  - {fileID: 8300000, guid: e446b27d5c1cb48f3b393313c4b6eb05, type: 3}
 --- !u!82 &1688433197
 AudioSource:
   m_ObjectHideFlags: 0
@@ -682,9 +685,8 @@ GameObject:
   - component: {fileID: 1710320954}
   - component: {fileID: 1710320953}
   - component: {fileID: 1710320952}
-  - component: {fileID: 1710320951}
   - component: {fileID: 1710320955}
-  - component: {fileID: 1710320956}
+  - component: {fileID: 1710320951}
   - component: {fileID: 1710320957}
   m_Layer: 0
   m_Name: Player
@@ -833,7 +835,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1710320956
+--- !u!114 &1710320957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -842,109 +844,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1710320950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85540c81561e34ee89ec914d616b3c78, type: 3}
+  m_Script: {fileID: 11500000, guid: f338fa687762f4979863914e3ce4004b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FootstepHandler
-  footstepClips:
-  - {fileID: 8300000, guid: 5e5e0555525a048638978a466175c555, type: 3}
-  - {fileID: 8300000, guid: f42c46e12cb254ee3afaae3dfa75342e, type: 3}
---- !u!82 &1710320957
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710320950}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.455
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorClassIdentifier: Assembly-CSharp::PlayFootstep
+  stepCooldown: 0.08
 --- !u!1 &1768946178
 GameObject:
   m_ObjectHideFlags: 0
