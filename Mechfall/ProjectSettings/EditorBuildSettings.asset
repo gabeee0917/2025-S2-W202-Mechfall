@@ -10,10 +10,13 @@ EditorBuildSettings:
     guid: a5fea021f3fce9546bfe10a5af095eef
   - enabled: 1
     path: Assets/Scenes/Login.unity
-    guid: 4da66fae6c28a0243af96fb3faea3458
+    guid: fe2a778c11b484448be9faacd306f2c4
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
-    guid: 83f207b8718acca4a8ee903f8e9baa8d
+    guid: d0961f809fcc29a45abc94a1b51679f5
+  - enabled: 1
+    path: Assets/PVP.unity
+    guid: 44f6c762297793444a6856f70db829f4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

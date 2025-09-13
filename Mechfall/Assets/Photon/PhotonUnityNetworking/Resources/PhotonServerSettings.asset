@@ -28,7 +28,7 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: 
+  DevRegion: au
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
@@ -39,6 +39,31 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - RPC_DashAnim
+  - RPC_Flip
+  - RPC_JumpAnim
+  - RPC_RunNoAnim
+  - RPC_RunYesAnim
+  - RPC_ShowEmote
+  - RPC_AttachFeet
+  - RPC_DetachFeet
+  - ActivateSwordRPC
+  - DeactivateSwordRPC
+  - HideMuzzleFlashRPC
+  - RPC_BeamLight
+  - RPC_Die
+  - RPC_DisableSword
+  - RPC_GetKnockedback
+  - RPC_SetGlowOff
+  - RPC_SetGlowOn
+  - RPC_StartCooldown
+  - RPC_Stealth
+  - RPC_TakeDamage
+  - RPC_wallslideOff
+  - RPC_wallslideOn
+  - RPC_wingonoff
+  - ShowMuzzleFlashRPC
+  - UpdateHealthRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
-  DevRegionSetOnce: 0
+  DevRegionSetOnce: 1

@@ -19,8 +19,10 @@ Aura38.png - Soluna Software
 (CC0) Cyborg player - ankousse26
 Pixel Art VFX_Slashes - Frostwindz
 Pixel Art VFX_Warrior - Frostwindz
+Pixel Art Gems/Crystals - ma9ici4n
 
 Sound
 080192_Sci Fi Light Beam - Freesound Community
 FX Light - PixxelPro (Freesound)
+robot-tank-34600 - reacthor (Freesound Community)
 
