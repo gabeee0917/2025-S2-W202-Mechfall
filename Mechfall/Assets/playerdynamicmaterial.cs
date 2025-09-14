@@ -64,27 +64,27 @@ public class PlayerAppearance :  MonoBehaviourPun
                 if (glowColor == "NO GLOW")
                 {
                     sword.material = new Material(noGlow);
-                    transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(noGlow);
+                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(noGlow);
                 }
                 else if (glowColor == "RED")
                 {
                     sword.material = new Material(redGlow);
-                    transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(redGlow);
+                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(redGlow);
                 }
                 else if (glowColor == "BLUE")
                 {
                     sword.material = new Material(blueGlow);
-                    transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(blueGlow);
+                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(blueGlow);
                 }
                 else if (glowColor == "GREEN")
                 {
                     sword.material = new Material(greenGlow);
-                    transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(greenGlow);
+                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(greenGlow);
                 }
                 else if (glowColor == "YELLOW")
                 {
                     sword.material = new Material(yellaGlow);
-                    transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(yellaGlow);
+                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(yellaGlow);
                 }
             }
             

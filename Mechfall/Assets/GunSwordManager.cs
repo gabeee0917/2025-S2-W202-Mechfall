@@ -111,7 +111,9 @@ private void HideMuzzleFlashRPC()
         }
 
         yield return new WaitForSeconds(laserLifetime);
-        PhotonNetwork.Destroy(laser);
+        if(laser != null){
+            PhotonNetwork.Destroy(laser);
+        }
     }
 
 

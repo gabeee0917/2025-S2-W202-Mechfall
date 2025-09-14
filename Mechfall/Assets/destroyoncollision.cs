@@ -57,11 +57,6 @@ public class DestroyOnCollision : MonoBehaviour
             {
                 ps.photonView.RPC("RPC_TakeDamage", RpcTarget.AllBuffered, 5);
 
-                Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
-                float knockbackForce = 10f;
-
-
-                ps.photonView.RPC("RPC_GetKnockedback", RpcTarget.AllBuffered, knockbackDir, knockbackForce);
             }
             if (gameObject.CompareTag("bullet"))
             {

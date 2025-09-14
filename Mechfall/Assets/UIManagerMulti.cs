@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-// Individual UI for each side in the PVP map
+// Individual UI links for each side in the PVP map
 public class UIManagerMulti : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI healthText;

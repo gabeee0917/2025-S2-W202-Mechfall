@@ -6,6 +6,9 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 // Player status manager for PVP
+// Note: for the details of movement, jump and dash, AI was used in its entirety (the code block of fixed update) as 
+// they are dummy/placeholder code that is to be replaced by the codes teammates are developing (not my development feature) 
+
 public class PlayerStatus : MonoBehaviourPunCallbacks
 {
     public int health = 100;
@@ -466,22 +469,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
 
 
-    [PunRPC]
-    public void RPC_GetKnockedback(Vector2 direction, float force)
-    {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = direction * force;
-            StartCoroutine(StopKnockback(rb, 1f));
-        }
-    }
-
-    private IEnumerator StopKnockback(Rigidbody2D rb, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        rb.linearVelocity = Vector2.zero;
-    }
 
 
     public void Flip()
