@@ -20,17 +20,17 @@ MonoBehaviour:
   AirDeceleration: 4.5
   MaxRunSpeed: 13.1
   jumpHeight: 4.5
-  JumpHeightCompensationFactor: 1.0193
+  JumpHeightCompensationFactor: 1.0118
   TimeTillJumpApex: 0.45
   GravityOnReleaseMultiplier: 1.65
   MaxFallSpeed: 20
   NumberOfJumpsAllowed: 2
-  DashTime: 0.225
+  DashTime: 0.125
   DashSpeed: 21.7
-  DashOnGroundTime: 0.225
+  DashOnGroundTime: 0.125
   NumOfDashes: 2
   DiagonalDashBias: 0.4
-  DashGravityOnReleaseMultiplier: 1
+  DashGravityOnReleaseMultiplier: 0.81
   UpwardsCancelDashTime: 0.027
   TimeForUpwardsCancel: 0.04
   ApexThreshold: 0.811

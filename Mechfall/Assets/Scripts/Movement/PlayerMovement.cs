@@ -252,32 +252,36 @@ public class PlayerMovement : MonoBehaviour
                 }
                 return;
             }
+
             HorizontalVelo = MoveStats.DashSpeed * dashDirection.x;
 
-            if (dashDirection.y != 0f || isAirDashing)
+            if (dashDirection.y > 0f)
             {
-                VerticalVelo = MoveStats.DashSpeed * dashDirection.y;
-            }
-        }
-
-        //Dash Cut Time
-        else if (isDashFastFalling)
-        {
-            if (VerticalVelo > 0f)
-            {
-                if (dashFastFallTime < MoveStats.UpwardsCancelDashTime)
+                float dashVert = MoveStats.DashSpeed * dashDirection.y;
+                if (dashVert > VerticalVelo)
                 {
-                    VerticalVelo = Mathf.Lerp(dashFastFallReleaseSpeed, 0f, (dashFastFallTime / MoveStats.UpwardsCancelDashTime));
+                    VerticalVelo = dashVert;
                 }
-                else if (dashFastFallTime >= MoveStats.UpwardsCancelDashTime)
+            }
+            //Dash Cut Time
+            else if (isDashFastFalling)
+            {
+                if (VerticalVelo > 0f)
+                {
+                    if (dashFastFallTime < MoveStats.UpwardsCancelDashTime)
+                    {
+                        VerticalVelo = Mathf.Lerp(dashFastFallReleaseSpeed, 0f, (dashFastFallTime / MoveStats.UpwardsCancelDashTime));
+                    }
+                    else if (dashFastFallTime >= MoveStats.UpwardsCancelDashTime)
+                    {
+                        VerticalVelo += MoveStats.Gravity * MoveStats.DashGravityOnReleaseMultiplier * Time.fixedDeltaTime;
+                    }
+                    dashFastFallTime += Time.fixedDeltaTime;
+                }
+                else
                 {
                     VerticalVelo += MoveStats.Gravity * MoveStats.DashGravityOnReleaseMultiplier * Time.fixedDeltaTime;
                 }
-                dashFastFallTime += Time.fixedDeltaTime;
-            }
-            else
-            {
-                VerticalVelo += MoveStats.Gravity * MoveStats.DashGravityOnReleaseMultiplier * Time.fixedDeltaTime;
             }
         }
     }
