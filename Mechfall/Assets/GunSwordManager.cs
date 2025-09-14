@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using Photon.Pun;
+
+// For managing the gun and sword functions in PVP
 public class GunSwordManager : MonoBehaviour
 {
     public GameObject laserPrefab;    

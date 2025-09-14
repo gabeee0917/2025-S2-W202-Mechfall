@@ -1,6 +1,8 @@
 using UnityEngine;
 
 using System.Collections;
+
+// pseudo wallslide using trigger colliders. If player enters, make the player's wallslide animation parameter true and on exit false
 public class WallslideanimationWall : MonoBehaviour
 {
 

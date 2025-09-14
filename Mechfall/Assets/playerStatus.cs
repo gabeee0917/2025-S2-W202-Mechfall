@@ -4,6 +4,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+
+// Player status manager for PVP
 public class PlayerStatus : MonoBehaviourPunCallbacks
 {
     public int health = 100;

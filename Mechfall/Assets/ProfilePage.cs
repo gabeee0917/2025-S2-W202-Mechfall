@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
+// Profile page that reads data from UserSession (which is updated with firestore database reads) 
 public class Profilepage : MonoBehaviour
 {
     public TMP_Text username;

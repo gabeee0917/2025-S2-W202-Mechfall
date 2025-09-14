@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
+// Customisation panel, uses Player Prefs to store character appearance settings locally
 public class CustomizePage : MonoBehaviour
 {
     public Toggle boyToggle;
@@ -15,7 +16,7 @@ public class CustomizePage : MonoBehaviour
 
     void Update()
     {
-    if (boyToggle.isOn)
+        if (boyToggle.isOn)
         {
             descrip.text = "[Master Hunter]\nHe will not rest until he has hunted down all his enemies...";
         }
@@ -26,7 +27,7 @@ public class CustomizePage : MonoBehaviour
         else
         {
             descrip.text = "";
-        }    
+        }
     }
 
     public void SaveCharacterChoice()

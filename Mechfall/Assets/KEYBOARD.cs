@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.UI;
+
+// Script for changing color when key pressed on the keymap panel
 public class KeyBoard : MonoBehaviour
 {
     public GameObject spacekey;

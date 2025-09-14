@@ -6,6 +6,8 @@ using TMPro;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
+
+// For connecting to server and creating rooms for PVP
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public TMP_InputField createInput;
@@ -154,7 +156,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel("PVP");
-            
+
         }
     }
 
@@ -212,10 +214,12 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public void StoryMode()
     {
-        if(UserSession.Instance.maxlevel == 1){
-        SceneManager.LoadScene("Storyintro");
+        if (UserSession.Instance.maxlevel == 1)
+        {
+            SceneManager.LoadScene("Storyintro");
         }
-        else{
+        else
+        {
             SceneManager.LoadScene("StagePage");
         }
     }
@@ -224,4 +228,23 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         Application.Quit();
     }
+
+    public void TrainingMap()
+    {
+
+        RoomOptions roomOptions = new RoomOptions { MaxPlayers = 1 };
+        PhotonNetwork.CreateRoom("TrainingRoom", roomOptions);
+        StartCoroutine(WaitForJoinAndLoadScene());
+
+    }
+
+    private IEnumerator WaitForJoinAndLoadScene()
+    {
+        while (!PhotonNetwork.InRoom)
+        {
+            yield return null;
+        }
+        SceneManager.LoadScene("PVP Training Map");
+    }
+
 }

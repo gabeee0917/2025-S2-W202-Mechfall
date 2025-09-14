@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;  
 
+
+// orignal attempt at healthbar without any link to PVP environment. HealthBarMulti derived from this.
 public class HealthBar : MonoBehaviour
 {
    

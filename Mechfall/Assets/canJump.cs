@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 public class canJump : MonoBehaviour
 {
-    
+    // pseudo jump check for PVP using trigger colliders on the ground and walls
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

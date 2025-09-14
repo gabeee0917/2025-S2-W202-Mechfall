@@ -1,6 +1,8 @@
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+
+// in game player spawner for PVP, uses Player Prefs set out in customisation panel to instantiate the correct player prefab.
 public class SpawnPlayers : MonoBehaviourPunCallbacks
 {
     public GameObject boyPrefab;
@@ -13,7 +15,7 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        if (PhotonNetwork.IsConnectedAndReady)
+        if (PhotonNetwork.InRoom)
         {
             string selectedCharacter = PlayerPrefs.GetString("Character", "Girl");
             GameObject playerPrefab;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+//For the master warrior prefab (girl character in PVP). Does not have a gun animation so just make it look like its shooting from a light gun. rotates towards opponenet.
 public class GunFollowOpp : MonoBehaviour
 {
     public Transform target;

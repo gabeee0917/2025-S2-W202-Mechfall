@@ -1,6 +1,8 @@
 using Photon.Pun;
 using UnityEngine;
 
+
+// when the players are instantiated in PVP map, change the glow of outline, wing, sword, and muzz (only applies to girl character, is actually the light gun)
 public class PlayerAppearance :  MonoBehaviourPun
 {
     public Material noGlow;

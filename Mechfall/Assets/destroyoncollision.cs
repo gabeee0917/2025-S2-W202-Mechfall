@@ -1,6 +1,8 @@
 using UnityEngine;
 using Photon.Pun;
 using System.Collections;
+
+// For attack collisions and interactions in PVP
 public class DestroyOnCollision : MonoBehaviour
 {
     public GameObject effectPrefab;
@@ -22,7 +24,7 @@ public class DestroyOnCollision : MonoBehaviour
 
             Vector2 contactPoint = other.ClosestPoint(transform.position);
             GameObject effect = PhotonNetwork.Instantiate(effectPrefab.name, contactPoint, Quaternion.identity);
-            
+
             PhotonView otherPV = other.GetComponent<PhotonView>();
             if (otherPV != null)
             {

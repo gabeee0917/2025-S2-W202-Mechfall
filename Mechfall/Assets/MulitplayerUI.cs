@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using Photon.Pun;
 
+// Manages both left and right UI (of class UIManagerMulti) in PVP
 public class MultiplayerUIManager : MonoBehaviourPunCallbacks
 {
 

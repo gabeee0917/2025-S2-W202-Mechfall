@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
+// In customisation panel, make it so that the preview characters change animations on toggle press and change material of outline on dropdown change.
 public class PreviewAnimation : MonoBehaviour
 {
     public Toggle toggle;

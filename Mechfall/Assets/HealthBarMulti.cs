@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;  // Import UI elements
 
+// Health bar for multiplayer PVP
 public class HealthBarMulti : MonoBehaviour
 {
    
