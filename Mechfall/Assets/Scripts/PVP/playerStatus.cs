@@ -70,6 +70,12 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
                 lightInstance.transform.localPosition = new Vector3(0f, 0f, 0);
             }
         }
+        
+        camerapvpmove cameraFollow = Camera.main.GetComponent<camerapvpmove>();
+        if (cameraFollow != null)
+        {
+            cameraFollow.target = this.transform;
+        }
 
         Transform glowTransform = transform.Find("glow");
         if (glowTransform != null)
@@ -114,7 +120,10 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             photonView.RPC("RPC_RunNoAnim", RpcTarget.AllBuffered);
         }
 
-
+        if (moveInput == 0)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
 
         if (moveInput > 0 && !isFacingRight)
         {

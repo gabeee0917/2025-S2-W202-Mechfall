@@ -1377,23 +1377,23 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8faf35ffba907f741b319fd51745652e, type: 2}
     - target: {fileID: 7878350319992209165, guid: 3b91e8a1700a6fe41a77706048f34711, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.3736703
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 3b91e8a1700a6fe41a77706048f34711, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.3736703
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 3b91e8a1700a6fe41a77706048f34711, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.79122347
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 3b91e8a1700a6fe41a77706048f34711, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.535793
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 3b91e8a1700a6fe41a77706048f34711, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2062094
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 3b91e8a1700a6fe41a77706048f34711, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1583,7 +1583,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -1689,10 +1689,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   isFacingRight: 1
   glow: {fileID: 0}
-  moveSpeed: 12
+  moveSpeed: 10
   jumpForce: 5
-  acceleration: 50
-  deceleration: 50
+  acceleration: 40
+  deceleration: 200
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   moveInput: 0
