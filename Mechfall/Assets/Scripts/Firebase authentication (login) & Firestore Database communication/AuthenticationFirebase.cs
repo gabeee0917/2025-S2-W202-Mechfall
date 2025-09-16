@@ -9,7 +9,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System;
 
-// Script to attach to a firebase manager gameobject to manage login/register and getting data from Firebase and firestore 
+// Script to attach to a firebase manager gameobject in Login scene to manage login/register and getting data from Firebase and firestore 
 public class AuthenticationManager : MonoBehaviour
 {
 
@@ -254,7 +254,7 @@ public class AuthenticationManager : MonoBehaviour
                     UserSession.Instance.profilemessage = "Sup";
                     UserSession.Instance.PvPWin = 0;
                     UserSession.Instance.PvPLose = 0;
-                    
+
                     yield return StartCoroutine(UserSession.Instance.SaveDataToFireStore());
 
 

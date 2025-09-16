@@ -6,6 +6,7 @@ using TMPro;
 using System.Collections;
 
 // Profile page that reads data from UserSession (which is updated with firestore database reads) 
+// can change profile message that updates usersession and saves/writes to firebase
 public class Profilepage : MonoBehaviour
 {
     public TMP_Text username;
@@ -32,18 +33,21 @@ public class Profilepage : MonoBehaviour
         PvPLose.text = UserSession.Instance.PvPLose.ToString();
     }
 
-    public void ChangeMessage() {
+    public void ChangeMessage()
+    {
         profilemessage.text = changeprofilemessage.text;
         UserSession.Instance.profilemessage = changeprofilemessage.text;
         UserSession.Instance.saveB();
-        hideInputfield();  
+        hideInputfield();
     }
 
-    public void showInputfield() {
+    public void showInputfield()
+    {
         changeprofilemessage.gameObject.SetActive(true);
     }
 
-    public void hideInputfield() {
+    public void hideInputfield()
+    {
         changeprofilemessage.gameObject.SetActive(false);
     }
 

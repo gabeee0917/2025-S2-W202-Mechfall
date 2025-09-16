@@ -9,7 +9,8 @@ using TMPro;
 using System.Collections;
 using System.Linq; //language integrated query c# thingy to help do queries from the local system instead of having to do queries at firebase server
 
-
+// Script to query the top ten high scores from a doc called usernames (holds usernames for checking username dupe and holds scores)
+// also functions for accessing the snapshots of documents of individual users to get their scores etc.
 public class TopTenLeaderboard : MonoBehaviour
 {
     FirebaseFirestore db;
@@ -62,8 +63,8 @@ public class TopTenLeaderboard : MonoBehaviour
                 {
                     statusText.text += $"\nLevel{n + 1} score = " + data[$"level{n + 1}score"].ToString();
                 }
-                statusText.text += "\nPvP = W" + data["PvPWin"].ToString() + " - L" + data["PvPLose"].ToString();  
-                statusText.text += "\n\n-- " + data["username"] +"'s message -- \n" + data["profilemessage"];
+                statusText.text += "\nPvP = W" + data["PvPWin"].ToString() + " - L" + data["PvPLose"].ToString();
+                statusText.text += "\n\n-- " + data["username"] + "'s message -- \n" + data["profilemessage"];
             }
 
         });

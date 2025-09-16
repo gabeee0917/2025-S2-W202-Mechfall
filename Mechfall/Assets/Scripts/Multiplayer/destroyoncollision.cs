@@ -2,7 +2,8 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 
-// For attack collisions and interactions in PVP
+// For attack collisions and interactions in PVP using RPCs 
+// While it may seem to collide with Te One's development features, this script being PVP specific required seperate development
 public class DestroyOnCollision : MonoBehaviour
 {
     public GameObject effectPrefab;

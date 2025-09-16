@@ -1,7 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 
-// For displaying emotes in PVP
+// For displaying emotes in PVP using RPC 
 public class emotes : MonoBehaviourPun
 {
     public GameObject[] emotearray;

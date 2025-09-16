@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
-// Customisation panel, uses Player Prefs to store character appearance settings locally
+// Customisation panel, uses Player Prefs to store character prefab to be spawned and the glow appearance settings locally 
 public class CustomizePage : MonoBehaviour
 {
     public Toggle boyToggle;

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 // Individual UI links for each side in the PVP map
+// Not really necessary but useful for tracking and assigning to UI prefab inside unity editor 
 public class UIManagerMulti : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI healthText;

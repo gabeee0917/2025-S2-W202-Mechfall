@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 
-// For destroying the collision effect that is instantiated when sword or laser bullet hits in PVP
+// For destroying the collision effect that is instantiated when sword or laser bullet hits in PVP, had to put it on the effect itself due to bugs
 public class DestroyEffect : MonoBehaviour
 {
     void Start()

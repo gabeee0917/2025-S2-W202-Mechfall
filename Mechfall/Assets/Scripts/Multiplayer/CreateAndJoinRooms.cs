@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-// For connecting to server and creating rooms for PVP
+// For connecting to server and creating rooms for PVP in the multiplayer panel
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public TMP_InputField createInput;

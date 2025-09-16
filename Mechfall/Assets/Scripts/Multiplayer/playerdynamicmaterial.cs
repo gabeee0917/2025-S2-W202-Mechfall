@@ -3,7 +3,8 @@ using UnityEngine;
 
 
 // when the players are instantiated in PVP map, change the glow of outline, wing, sword, and muzz (only applies to girl character, is actually the light gun)
-public class PlayerAppearance :  MonoBehaviourPun
+// to the settings saved in customisation panel Player prefs
+public class PlayerAppearance : MonoBehaviourPun
 {
     public Material noGlow;
     public Material redGlow;
@@ -28,7 +29,7 @@ public class PlayerAppearance :  MonoBehaviourPun
 
     void Start()
     {
-        
+
         object[] data = photonView.InstantiationData;
 
         if (data != null && data.Length >= 2)
@@ -87,33 +88,33 @@ public class PlayerAppearance :  MonoBehaviourPun
                     //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(yellaGlow);
                 }
             }
-            
+
             if (muzz != null)
             {
                 if (glowColor == "NO GLOW")
                 {
                     muzz.material = new Material(noGlow);
-   
+
                 }
                 else if (glowColor == "RED")
                 {
                     muzz.material = new Material(redGlow);
-          
+
                 }
                 else if (glowColor == "BLUE")
                 {
                     muzz.material = new Material(blueGlow);
-           
+
                 }
                 else if (glowColor == "GREEN")
                 {
                     muzz.material = new Material(greenGlow);
-           
+
                 }
                 else if (glowColor == "YELLOW")
                 {
                     muzz.material = new Material(yellaGlow);
-           
+
                 }
             }
 
@@ -148,10 +149,10 @@ public class PlayerAppearance :  MonoBehaviourPun
                     wing.material.SetColor("_GlowColor", baseGlowColor * 1.5f);
                 }
             }
-            
+
         }
-        
-            
-        }
- 
+
+
+    }
+
 }

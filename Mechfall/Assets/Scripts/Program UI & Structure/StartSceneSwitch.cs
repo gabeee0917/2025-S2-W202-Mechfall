@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Script for the process that runs when click on the start game button. 
+// Script for the process that runs when click on the start game button at the very first scene. 
 public class StartSceneSwitcher : MonoBehaviour
 {
-  public GameObject beam; // simulate beam glow 
+  public GameObject beam; // simulate beam glow by making it appear
   public Material change;
   public GameObject enemy;
 

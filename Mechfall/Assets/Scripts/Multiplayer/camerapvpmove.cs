@@ -3,7 +3,7 @@ using Photon.Pun;
 
 // just a helper script for protecting my eyes in testing out pvp, used ai for specific details
 // trying to look at the character with no camera movement hurts my eyes and made me dizzy
-// replace with camera moving code Gabe developed 
+// might replace with camera moving code Gabe developed 
 public class camerapvpmove : MonoBehaviour
 {
 

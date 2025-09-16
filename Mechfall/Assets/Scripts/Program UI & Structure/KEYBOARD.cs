@@ -205,7 +205,7 @@ public class KeyBoard : MonoBehaviour
             gRen.color = Color.grey;
         }
 
-         if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.X))
         {
             xRen.color = Color.white;
         }
@@ -217,7 +217,7 @@ public class KeyBoard : MonoBehaviour
 
     }
 
-   
-    
+
+
 
 }

@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
-// important class for usersession prefab. 
+// important class for usersession prefab. Is a singleton.  
 //Will act as the intermediary between the game and the database, so that scores and data is stored here so that updates can occur after significant events rather than constantly.
 // also used for data to be shown in UI ingame and profiles etc
 public class UserSession : MonoBehaviour

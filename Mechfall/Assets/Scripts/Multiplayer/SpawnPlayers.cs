@@ -3,6 +3,7 @@ using Photon.Pun;
 using UnityEngine.SceneManagement;
 
 // in game player spawner for PVP, uses Player Prefs set out in customisation panel to instantiate the correct player prefab.
+// spawnpoint 1 is left side which spawns the room creator (figured out through a few tests) and 2 spawns the joiner
 public class SpawnPlayers : MonoBehaviourPunCallbacks
 {
     public GameObject boyPrefab;

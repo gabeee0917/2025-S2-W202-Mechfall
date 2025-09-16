@@ -2,23 +2,24 @@ using UnityEngine;
 using System.Collections;
 using Photon.Pun;
 
-// For managing the gun and sword functions in PVP
+// For managing the gun and sword functions of the player in PVP
+// While it may seem to collide with Te One's development features, this script being PVP specific required seperate development
 public class GunSwordManager : MonoBehaviour
 {
-    public GameObject laserPrefab;    
+    public GameObject laserPrefab;
 
-    public Transform shootingPoint;   
+    public Transform shootingPoint;
     private PlayerStatus playerStatus;
     public Material playerMaterial;
- 
-   
+
+
     public float laserSpeed = 20f;
     public float laserLifetime = 5f;
-  
+
 
     public GameObject objectToAppear;
     public GameObject swordHitBoxSprite;
-    
+
     public int bullets = 10;
     private bool isFacingRight;
 
@@ -27,7 +28,7 @@ public class GunSwordManager : MonoBehaviour
     public float swordCooldown = 0.35f;
     private float nextLaserTime = 0f;
     private float nextSwordTime = 0f;
-    
+
     private PhotonView photonView;
     void Start()
     {
@@ -37,11 +38,11 @@ public class GunSwordManager : MonoBehaviour
     void Update()
     {
         if (!photonView.IsMine) return;
-         if (playerStatus.isDead) return; 
+        if (playerStatus.isDead) return;
 
         isFacingRight = playerStatus.isFacingRight;
 
-       if (bullets > 0 && playerStatus.isDead == false && Input.GetKeyDown(KeyCode.S) && Time.time >= nextLaserTime)
+        if (bullets > 0 && playerStatus.isDead == false && Input.GetKeyDown(KeyCode.S) && Time.time >= nextLaserTime)
         {
             playerStatus.animator.SetTrigger("attack2");
             playerStatus.glow.SetTrigger("attack2");
@@ -60,34 +61,34 @@ public class GunSwordManager : MonoBehaviour
         }
     }
 
-   private IEnumerator ShowAndHideObject()
-{
-    photonView.RPC("ShowMuzzleFlashRPC", RpcTarget.All);
-
-    yield return new WaitForSeconds(0.35f);
-
-    photonView.RPC("HideMuzzleFlashRPC", RpcTarget.All);
-}
-
-[PunRPC]
-private void ShowMuzzleFlashRPC()
-{
-    SpriteRenderer sr = objectToAppear.GetComponent<SpriteRenderer>();
-    if (sr != null)
+    private IEnumerator ShowAndHideObject()
     {
-        sr.enabled = true;
-    }
-}
+        photonView.RPC("ShowMuzzleFlashRPC", RpcTarget.All);
 
-[PunRPC]
-private void HideMuzzleFlashRPC()
-{
-     SpriteRenderer sr = objectToAppear.GetComponent<SpriteRenderer>();
-    if (sr != null)
-    {
-        sr.enabled = false;
+        yield return new WaitForSeconds(0.35f);
+
+        photonView.RPC("HideMuzzleFlashRPC", RpcTarget.All);
     }
-}
+
+    [PunRPC]
+    private void ShowMuzzleFlashRPC()
+    {
+        SpriteRenderer sr = objectToAppear.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.enabled = true;
+        }
+    }
+
+    [PunRPC]
+    private void HideMuzzleFlashRPC()
+    {
+        SpriteRenderer sr = objectToAppear.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.enabled = false;
+        }
+    }
 
 
     private IEnumerator ShootLaser()
@@ -105,13 +106,14 @@ private void HideMuzzleFlashRPC()
         }
         if (laserRb != null)
         {
-                Vector2 direction = shootingPoint.right.normalized;
-                float leftright = isFacingRight ? 1f : -1f;
-                laserRb.linearVelocity = direction * leftright * laserSpeed;
+            Vector2 direction = shootingPoint.right.normalized;
+            float leftright = isFacingRight ? 1f : -1f;
+            laserRb.linearVelocity = direction * leftright * laserSpeed;
         }
 
         yield return new WaitForSeconds(laserLifetime);
-        if(laser != null){
+        if (laser != null)
+        {
             PhotonNetwork.Destroy(laser);
         }
     }
@@ -128,26 +130,26 @@ private void HideMuzzleFlashRPC()
         photonView.RPC("DeactivateSwordRPC", RpcTarget.All);
     }
 
-[PunRPC]
-private void ActivateSwordRPC()
-{
-    swordHitBoxSprite.SetActive(true);
-
-    
-    Renderer swordRenderer = swordHitBoxSprite.GetComponent<Renderer>();
-    if (swordRenderer != null && playerMaterial != null)
+    [PunRPC]
+    private void ActivateSwordRPC()
     {
-        swordRenderer.material = playerMaterial;
+        swordHitBoxSprite.SetActive(true);
+
+
+        Renderer swordRenderer = swordHitBoxSprite.GetComponent<Renderer>();
+        if (swordRenderer != null && playerMaterial != null)
+        {
+            swordRenderer.material = playerMaterial;
+        }
     }
-}
 
-[PunRPC]
-private void DeactivateSwordRPC()
-{
-    swordHitBoxSprite.SetActive(false);
-}
+    [PunRPC]
+    private void DeactivateSwordRPC()
+    {
+        swordHitBoxSprite.SetActive(false);
+    }
 
 
-  
+
 
 }

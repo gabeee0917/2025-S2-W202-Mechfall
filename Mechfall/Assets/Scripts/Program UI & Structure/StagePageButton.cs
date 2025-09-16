@@ -4,24 +4,27 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems; 
 using System.Collections.Generic;
 
-public class StageManager: MonoBehaviour
+// When the user presses single player, they will go into a short story scene and tutorial if they haven't cleared level 1 before
+// if they have, they come to stagepage where it shows the stages / levels they can enter (depending on thier maxlevel data in usersession)
+public class StageManager : MonoBehaviour
 {
     public Dictionary<string, GameObject> stageButtons = new Dictionary<string, GameObject>();
 
-    void Start(){
-         Button[] allButtons = GameObject.FindObjectsOfType<Button>();
+    void Start()
+    {
+        Button[] allButtons = GameObject.FindObjectsOfType<Button>();
 
         foreach (Button button in allButtons)
-        { 
+        {
             if (button.gameObject.name == "Lobby" || button.gameObject.name == "logout"
-            ||button.gameObject.name == "profile" || button.gameObject.name == "Settings Button"
-            || button.gameObject.name == "Save" || button.gameObject.name == "keymap" 
-            || button.gameObject.name == "sound" || button.gameObject.name == "Highscores") 
+            || button.gameObject.name == "profile" || button.gameObject.name == "Settings Button"
+            || button.gameObject.name == "Save" || button.gameObject.name == "keymap"
+            || button.gameObject.name == "sound" || button.gameObject.name == "Highscores")
             {
                 continue;
             }
 
-            
+
 
             if (!stageButtons.ContainsKey(button.gameObject.name))
             {
@@ -29,7 +32,7 @@ public class StageManager: MonoBehaviour
             }
         }
 
-         foreach (var kvp in stageButtons)
+        foreach (var kvp in stageButtons)
         {
 
             if (int.Parse(kvp.Key) <= UserSession.Instance.maxlevel)
@@ -43,22 +46,23 @@ public class StageManager: MonoBehaviour
         }
     }
 
-    void Update(){
-      
+    void Update()
+    {
+
     }
 
     public void EnterStage()
     {
-         GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
+        GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
 
         if (clickedButton != null)
         {
             string buttonName = clickedButton.name;
             SceneManager.LoadScene(buttonName);
-            
+
         }
     }
-  
-    
+
+
 }
 
