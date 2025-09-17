@@ -156,6 +156,8 @@ MonoBehaviour:
   firepoint: {fileID: 2105082268}
   bullet: {fileID: 2130947649588660561, guid: b661963c6990b7d4bad46dcd0d647eb8, type: 3}
   gunCDT: 1
+  swordHitBox: {fileID: 9151708786349257973, guid: 90182b20ce41144429e38ec86cabe347, type: 3}
+  swordPoint: {fileID: 2103352753}
 --- !u!212 &132627991
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -229,6 +231,7 @@ Transform:
   m_Children:
   - {fileID: 2105082268}
   - {fileID: 1440887588}
+  - {fileID: 2103352753}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.819}
 --- !u!114 &132627993
@@ -763,6 +766,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   hp: 5
+--- !u!1 &2103352752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2103352753}
+  m_Layer: 9
+  m_Name: SwordPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2103352753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103352752}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.7091865, w: 0.705021}
+  m_LocalPosition: {x: 0.122, y: 0.686, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 132627992}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.338}
 --- !u!1 &2105082267
 GameObject:
   m_ObjectHideFlags: 0
