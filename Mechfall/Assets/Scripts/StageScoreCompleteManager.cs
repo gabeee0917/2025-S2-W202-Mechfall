@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI; 
 using TMPro;
 using System.Collections;
-using UnityEngine.SceneManagement;
+
 public class StageScoreCompleteManager : MonoBehaviour
 {
     public string currentLevelName;
@@ -114,24 +114,6 @@ public class StageScoreCompleteManager : MonoBehaviour
             winpaneltext.text += "\nFantastic!";
         }
     }
-    public void closeLevelCompletePage()
-    {
-        if (currentScore > UserSession.Instance.levelscores[currentLevelNum - 1])
-        {
-            UserSession.Instance.levelscores[currentLevelNum - 1] = Finalscore;
-            UserSession.Instance.updateHighScore();
-        }
-        if (currentLevelNum == UserSession.Instance.maxlevel)
-        {
-            UserSession.Instance.maxlevel = currentLevelNum + 1;
-        }
-        UserSession.Instance.saveB();
-        //WinPanel.SetActive(false);
-        Time.timeScale = 1f;
-
-        StartCoroutine(delayCompleteLevel());
-        
-    }
 
      public IEnumerator delayCompleteLevel()
     {
@@ -157,18 +139,5 @@ public class StageScoreCompleteManager : MonoBehaviour
         Time.timeScale = 0f;
         losepaneltext.text = $"Better luck next time...";
         Finalscore = currentScore;
-    }
-    public void closeLevelLosePage()
-    {
-        if (currentScore > UserSession.Instance.levelscores[currentLevelNum - 1])
-        {
-            UserSession.Instance.levelscores[currentLevelNum - 1] = Finalscore;
-            UserSession.Instance.updateHighScore();
-        }
-        UserSession.Instance.saveB();
-        //LosePanel.SetActive(false);
-        Time.timeScale = 1f;
-        StartCoroutine(delayCompleteLevel());
-    
     }
 }
