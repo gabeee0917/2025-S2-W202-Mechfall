@@ -231,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if (isDashing)
+        if (isDashing || isAirDashing)
         {
             //stop dash timer
             dashTimer += Time.fixedDeltaTime;
