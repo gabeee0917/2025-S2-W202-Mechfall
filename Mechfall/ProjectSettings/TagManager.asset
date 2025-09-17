@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Coin
+  - LevelEnder
+  - Life
+  - PlayerUI
   layers:
   - Default
   - TransparentFX
@@ -11,7 +15,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Background
   - 
   - 
   - 
