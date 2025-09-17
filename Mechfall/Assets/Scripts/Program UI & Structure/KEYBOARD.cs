@@ -9,7 +9,7 @@ public class KeyBoard : MonoBehaviour
     public GameObject spacekey;
     public GameObject a;
     public GameObject s;
-    public GameObject d;
+    public GameObject e;
     public GameObject w;
     public GameObject up;
     public GameObject down;
@@ -28,7 +28,7 @@ public class KeyBoard : MonoBehaviour
     private Image spaceRen;
     private Image aRen;
     private Image sRen;
-    private Image dRen;
+    private Image eRen;
     private Image wRen;
     private Image upRen;
     private Image downRen;
@@ -46,7 +46,7 @@ public class KeyBoard : MonoBehaviour
         spaceRen = spacekey.GetComponent<Image>();
         aRen = a.GetComponent<Image>();
         sRen = s.GetComponent<Image>();
-        dRen = d.GetComponent<Image>();
+        eRen = e.GetComponent<Image>();
         wRen = w.GetComponent<Image>();
         upRen = up.GetComponent<Image>();
         downRen = down.GetComponent<Image>();
@@ -92,14 +92,14 @@ public class KeyBoard : MonoBehaviour
             sRen.color = Color.grey;
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.E))
         {
-            dRen.color = Color.white;
-            explain.text = "D: Dash";
+            eRen.color = Color.white;
+            explain.text = "E: Dash";
         }
         else
         {
-            dRen.color = Color.grey;
+            eRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -198,7 +198,7 @@ public class KeyBoard : MonoBehaviour
         if (Input.GetKey(KeyCode.G))
         {
             gRen.color = Color.white;
-            explain.text = "G: GhostStealth (PvP)";
+            explain.text = "G: Stealth (PvP)";
         }
         else
         {
