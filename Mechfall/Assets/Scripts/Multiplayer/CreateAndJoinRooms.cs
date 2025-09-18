@@ -214,14 +214,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public void StoryMode()
     {
-        if (UserSession.Instance.maxlevel == 1)
-        {
-            SceneManager.LoadScene("Storyintro");
-        }
-        else
-        {
             SceneManager.LoadScene("StagePage");
-        }
     }
 
     public void QuitGame()
