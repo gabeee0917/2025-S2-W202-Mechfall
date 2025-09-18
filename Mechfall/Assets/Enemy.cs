@@ -11,11 +11,7 @@ public class Enemy : MonoBehaviour
         // Makes the object take damage and removes it if its hp is 0
         hp -= d;
 
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-
-        Vector2 hitBack = (Vector2.up * (d * 2)) - ((Vector2)transform.right * d);
-
-        rb.AddForce(hitBack, ForceMode2D.Impulse);
+        HitBackwards(d);
 
         if (hp <= 0)
         {
@@ -27,6 +23,14 @@ public class Enemy : MonoBehaviour
     {
         // Destroys the object
         Destroy(gameObject);
+    }
+
+    void HitBackwards(int d)
+    {
+
+        Vector2 hitBack = new Vector2((1 * d), (d*2));
+
+        rb.AddForce(hitBack, ForceMode2D.Impulse);
     }
 
 }
