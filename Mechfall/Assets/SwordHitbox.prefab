@@ -195,4 +195,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   damage: 2
   rb: {fileID: -4025511912825322430}
-  swordTime: 3
+  swordTime: 0.5

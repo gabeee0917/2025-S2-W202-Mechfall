@@ -5,7 +5,7 @@ public class Sword : MonoBehaviour
 
     public int damage = 1;
     public Rigidbody2D rb;
-    public float swordTime = 3.0f;
+    public float swordTime = 0.5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
