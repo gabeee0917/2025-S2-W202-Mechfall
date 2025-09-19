@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Player Movement Stats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementStats
   MoveThreshold: 0.25
-  MaxWalkSpeed: 6.6
-  GroundAcceleration: 7.5
-  GroundDeceleration: 9.4
-  AirAcceleration: 6.1
-  AirDeceleration: 4.5
-  MaxRunSpeed: 13.1
-  jumpHeight: 4.5
+  MaxWalkSpeed: 2
+  GroundAcceleration: 5
+  GroundDeceleration: 5
+  AirAcceleration: 5
+  AirDeceleration: 5
+  MaxRunSpeed: 5
+  jumpHeight: 2
   JumpHeightCompensationFactor: 1.0118
   TimeTillJumpApex: 0.45
   GravityOnReleaseMultiplier: 1.65
-  MaxFallSpeed: 20
+  MaxFallSpeed: 10
   NumberOfJumpsAllowed: 2
-  DashTime: 0.125
-  DashSpeed: 21.7
+  DashTime: 0.08
+  DashSpeed: 10
   DashOnGroundTime: 0.125
   NumOfDashes: 2
   DiagonalDashBias: 0.4
