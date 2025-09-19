@@ -1,0 +1,15 @@
+Script Management
+
+
+Start Page
+	StartSceneSwitch.cs  
+
+Login Page
+	AuthenticationFirebase.cs 
+	SettingsAudio.cs
+	SettingsButton.cs
+	KEYBOARD.cs
+	UserSession.cs
+
+Leaderboard
+	Top10Leaders.cs
