@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a9d8033b20441d3aa35ed60e6ce82b, type: 3}
+  m_Name: Player Movement Stats
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementStats
+  MoveThreshold: 0.25
+  MaxWalkSpeed: 6.6
+  GroundAcceleration: 7.5
+  GroundDeceleration: 9.4
+  AirAcceleration: 6.1
+  AirDeceleration: 4.5
+  MaxRunSpeed: 13.1
+  jumpHeight: 4.5
+  JumpHeightCompensationFactor: 1.0118
+  TimeTillJumpApex: 0.45
+  GravityOnReleaseMultiplier: 1.65
+  MaxFallSpeed: 20
+  NumberOfJumpsAllowed: 2
+  DashTime: 0.125
+  DashSpeed: 21.7
+  DashOnGroundTime: 0.125
+  NumOfDashes: 2
+  DiagonalDashBias: 0.4
+  DashGravityOnReleaseMultiplier: 0.81
+  UpwardsCancelDashTime: 0.027
+  TimeForUpwardsCancel: 0.04
+  ApexThreshold: 0.811
+  ApexHangTime: 0.071
+  JumpBufferTime: 0.258
+  JumpCoyoteTime: 0.267
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  GroundDectectionRayLength: 0.02
+  HeadDectectionRayLength: 0.02
+  HeadWidth: 0.75
