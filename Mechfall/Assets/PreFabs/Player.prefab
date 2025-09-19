@@ -79,7 +79,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4347565442345638036}
   - component: {fileID: 898258652539749862}
-  - component: {fileID: 5960080824362711709}
   m_Layer: 0
   m_Name: Feet
   m_TagString: Untagged
@@ -112,7 +111,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 71f670ac42ffb4bdf953fa2e03262415, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -139,52 +138,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.21}
   m_Size: {x: 0.24, y: 0.01}
   m_Direction: 1
---- !u!61 &5960080824362711709
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6825499774950820037}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.21}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.28, y: 0.02}
-  m_EdgeRadius: 0
 --- !u!1 &7023121164573660339
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +169,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.33, y: -1.87, z: 0}
-  m_LocalScale: {x: 1.6283673, y: 1.7210001, z: 1}
+  m_LocalScale: {x: 0.86156917, y: 0.9105811, z: 0.5291}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6958090859211672545}
@@ -306,7 +259,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &199032925240450290
 Animator:
   serializedVersion: 7
@@ -342,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   MoveStats: {fileID: 11400000, guid: 8dbe0d0a68b994a748b9a4fe49bf34fb, type: 2}
-  feetCollider: {fileID: 5960080824362711709}
+  feetCollider: {fileID: 898258652539749862}
   bodyCollider: {fileID: 5259095236390233663}
   animator: {fileID: 199032925240450290}
   jumpSound: {fileID: 8300000, guid: 072a672ee64694a469cf2ca5e6d9729a, type: 3}
