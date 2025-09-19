@@ -98,10 +98,13 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
-#Chang files that need ignoring
+
+# Chang files that need ignoring
+
 Mechfall/Assets/google-services.json
 Mechfall/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_0_0.bundle
 Mechfall/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_0_0.so
 Mechfall/Assets/google-services.json.meta
 Mechfall/Assets/StreamingAssets/google-services-desktop.json
 Mechfall/Assets/StreamingAssets/google-services-desktop.json.meta
+
