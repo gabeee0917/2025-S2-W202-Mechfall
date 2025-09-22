@@ -33,6 +33,7 @@ public class Weapon : MonoBehaviour
         // Get when the player shoot action is released
         playerShootAction.canceled += OnPlayerShootStop;
 
+        // Subscribe to the player attack action
         playerSwordAction = playerControls.Player.Attack;
         playerSwordAction.Enable();
         playerSwordAction.performed += OnPlayerSword;
@@ -45,13 +46,14 @@ public class Weapon : MonoBehaviour
         playerShootAction.canceled -= OnPlayerShootStop;
         playerShootAction.Disable();
 
+        // Unsubscribe from the sword action
         playerSwordAction.performed -= OnPlayerSword;
         playerSwordAction.Disable();
     }
 
     private void OnPlayerSword(InputAction.CallbackContext context)
     {
-        
+        // Create sword at player
         Instantiate(swordHitBox, swordPoint.position, swordPoint.rotation);
     }
 
@@ -75,11 +77,6 @@ public class Weapon : MonoBehaviour
         // On release of the shoot key cancel the invoke of the shoot action
         isFiring = false;
         CancelInvoke(nameof(Fire));
-    }
-
-    private void OnPlayerSword()
-    {
-        
     }
 
     void Fire()
