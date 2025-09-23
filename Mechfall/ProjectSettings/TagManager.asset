@@ -11,7 +11,7 @@ TagManager:
   - LevelEnder
   - sword
   - bullet
-  - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX

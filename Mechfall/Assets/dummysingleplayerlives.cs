@@ -22,9 +22,7 @@ public class dummySinglePlayerLives : MonoBehaviour
     void Update()
     {
 
-        //DUMMY MOVEMENT FOR TESTING PURPOSES DELETE LATER AS THE PLAYER WILL ALREADY HAVE MOVEMENT CODE DONE BY TED
-        //float moveInput = Input.GetAxisRaw("Horizontal");
-        //transform.Translate(Vector3.right * moveInput * 5f * Time.deltaTime);
+        
 
         //if fall off platform and goes below too much
         if (transform.position.y < -15f)
@@ -87,7 +85,7 @@ public class dummySinglePlayerLives : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             lives--;
         }
