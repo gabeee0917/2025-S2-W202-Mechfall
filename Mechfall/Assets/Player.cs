@@ -26,10 +26,6 @@ public class Player : MonoBehaviour
             iframe = true;
             hp -= 1;
             Invoke(nameof(iFrameOver), 1f);
-            
-            Vector2 hitBack = new Vector2(2, 4);
-
-            rb.linearVelocity = hitBack;
         }
     }
 
