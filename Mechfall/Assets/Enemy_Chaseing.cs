@@ -6,7 +6,7 @@ public class Enemy_Chaseing : MonoBehaviour
 
     public float speed = 2f;
     public GameObject player;
-    public Boolean facingPlayer = false;
+    public Boolean facingLeft = false;
 
     private Rigidbody2D rb;
 
@@ -26,8 +26,19 @@ public class Enemy_Chaseing : MonoBehaviour
         {
             //Debug.Log("In Range");
 
-            rb.linearVelocity = new Vector2(-speed, 0);
-            
+            float direction = player.transform.position.x - transform.position.x;
+
+            if ((direction > 0 && transform.localScale.x < 0) || (direction < 0 && transform.localScale.x > 0))
+            {
+                flip();
+                facingLeft = !facingLeft;
+            }
+
+            if (facingLeft)
+            {
+                rb.linearVelocity = new Vector2(-speed, 0);
+            } else rb.linearVelocity = new Vector2(speed, 0);
+
         } //else Debug.Log("Not in Range");
 
     }
