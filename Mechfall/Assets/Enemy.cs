@@ -1,10 +1,16 @@
 using System.Reflection.Emit;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public int hp = 5;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     public void TakeDamage(int d)
     {
@@ -27,10 +33,27 @@ public class Enemy : MonoBehaviour
 
     void HitBackwards(int d)
     {
+        Enemy_Roaming roaming = GetComponent<Enemy_Roaming>();
 
-        Vector2 hitBack = new Vector2((1 * d), (d*2));
+        if (roaming != null)
+        {
+            roaming.PuaseMovement(.5f * d);
+        }
+        Vector2 hitBack = new Vector2((1 * d), (d * 2));
 
-        rb.AddForce(hitBack, ForceMode2D.Impulse);
+        rb.linearVelocity = hitBack;
     }
+
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Player player = hitInfo.GetComponent<Player>();
+        Debug.Log(hitInfo.name);
+
+        if (player != null)
+        {
+            player.takeDamage();
+        }
+    }
+    
 
 }
