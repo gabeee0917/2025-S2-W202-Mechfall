@@ -1,25 +1,16 @@
-using System;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Sword : MonoBehaviour
 {
 
-    // Chanagble bullet varibles
-    public float speed = 20;
     public int damage = 1;
-    public float bulletDS = 10;
-
-    // Bullet body
     public Rigidbody2D rb;
-
+    public float swordTime = 0.5f;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Move the bullet and despawn it after an allocated time of it in the air
-        rb.linearVelocity = transform.right * speed;
-
-        Invoke(nameof(DeSpawn), bulletDS);
+        Invoke(nameof(DeSpawn), swordTime);
     }
-
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
@@ -39,5 +30,4 @@ public class Bullet : MonoBehaviour
         // Removes the game object
         Destroy(gameObject);
     }
-
 }

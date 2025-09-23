@@ -9,7 +9,12 @@ public class Weapon : MonoBehaviour
     public GameObject bullet;
     public InputSystem_Actions playerControls;
     public float gunCDT = 1f;
+
+    public GameObject swordHitBox;
+    public Transform swordPoint;
+
     private InputAction playerShootAction;
+    private InputAction playerSwordAction;
     private Boolean isFiring = true;
     private Boolean gunCD = true;
 
@@ -27,6 +32,11 @@ public class Weapon : MonoBehaviour
         playerShootAction.started += OnPlayerShoot;
         // Get when the player shoot action is released
         playerShootAction.canceled += OnPlayerShootStop;
+
+        // Subscribe to the player attack action
+        playerSwordAction = playerControls.Player.Attack;
+        playerSwordAction.Enable();
+        playerSwordAction.performed += OnPlayerSword;
     }
 
     public void OnDisable()
@@ -35,6 +45,16 @@ public class Weapon : MonoBehaviour
         playerShootAction.started -= OnPlayerShoot;
         playerShootAction.canceled -= OnPlayerShootStop;
         playerShootAction.Disable();
+
+        // Unsubscribe from the sword action
+        playerSwordAction.performed -= OnPlayerSword;
+        playerSwordAction.Disable();
+    }
+
+    private void OnPlayerSword(InputAction.CallbackContext context)
+    {
+        // Create sword at player
+        Instantiate(swordHitBox, swordPoint.position, swordPoint.rotation);
     }
 
     private void OnPlayerShoot(InputAction.CallbackContext context)
