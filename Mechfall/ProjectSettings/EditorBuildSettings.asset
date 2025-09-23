@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: fe2a778c11b484448be9faacd306f2c4
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
-    guid: d0961f809fcc29a45abc94a1b51679f5
+    guid: 5b77069cade1d3545a6a2ae776dbc5d8
   - enabled: 1
     path: Assets/Scenes/PVP.unity
     guid: 44f6c762297793444a6856f70db829f4
@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StagePage.unity
     guid: 415a9d197a1f4184fa67af5f50ff65dc
+  - enabled: 1
+    path: Assets/Scenes/1.unity
+    guid: 32d11075c5d5e314fb90216896796b52
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

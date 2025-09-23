@@ -6,6 +6,12 @@ TagManager:
   tags:
   - enemy
   - PlayerUI
+  - Coin
+  - Life
+  - LevelEnder
+  - sword
+  - bullet
+  - Ground
   layers:
   - Default
   - TransparentFX

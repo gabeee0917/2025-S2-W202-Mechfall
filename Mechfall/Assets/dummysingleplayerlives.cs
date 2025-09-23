@@ -1,0 +1,98 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
+
+//Life system for singleplayer using dummy movement for testing
+public class dummySinglePlayerLives : MonoBehaviour
+{
+    public long lives = 3;
+    public bool panelstopinfinitecall = false;
+    private Vector3 startPosition;
+
+    void Start()
+    {
+
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        startPosition = transform.position;
+        lives = 3;
+    }
+
+    void Update()
+    {
+
+        //DUMMY MOVEMENT FOR TESTING PURPOSES DELETE LATER AS THE PLAYER WILL ALREADY HAVE MOVEMENT CODE DONE BY TED
+        //float moveInput = Input.GetAxisRaw("Horizontal");
+        //transform.Translate(Vector3.right * moveInput * 5f * Time.deltaTime);
+
+        //if fall off platform and goes below too much
+        if (transform.position.y < -15f)
+        {
+            lives--;
+            transform.position = startPosition;
+        }
+
+        if (lives == 0 && panelstopinfinitecall == false)
+        {
+            GameObject stagescorecompletemanager = GameObject.FindGameObjectsWithTag("PlayerUI")[0];
+            StageScoreCompleteManager sscm = stagescorecompletemanager.GetComponentInChildren<StageScoreCompleteManager>();
+            if (sscm != null)
+            {
+                sscm.openLevelLosePage();
+                panelstopinfinitecall = true;
+            }
+
+        }
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        startPosition = transform.position;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Life"))
+        {
+            Destroy(other.gameObject);
+            lives++;
+        }
+
+        //WIN CONDITION
+        if (other.CompareTag("LevelEnder"))
+        {
+
+            GameObject stagescorecompletemanager = GameObject.FindGameObjectsWithTag("PlayerUI")[0];
+            StageScoreCompleteManager sscm = stagescorecompletemanager.GetComponentInChildren<StageScoreCompleteManager>();
+            if (sscm != null)
+            {
+                sscm.openLevelCompletePage();
+                other.gameObject.SetActive(false); // prevent multiple interactions
+            }
+        }
+
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            lives--;
+        }
+    }
+
+
+
+}
