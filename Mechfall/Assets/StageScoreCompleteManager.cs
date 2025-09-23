@@ -106,7 +106,7 @@ public class StageScoreCompleteManager : MonoBehaviour
         dummySinglePlayerLives dummy = player.GetComponent<dummySinglePlayerLives>();
         Time.timeScale = 0f;
         WinPanel.SetActive(true);
-        currentScore += completionAddScore + (1000 * (dummy.lives)) - 25 * (int)timer;
+        currentScore += completionAddScore + (1000 * (dummy.lives)) - (int)(25 * timer);
         
         Finalscore = currentScore;
         winpaneltext.text = $"You Scored: \n  {Finalscore} points!\n";
