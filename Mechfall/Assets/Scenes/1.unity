@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4210773000772499332, guid: e8526b4a72fc1d549984136c3803609b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3424144
+      value: -2.37
       objectReference: {fileID: 0}
     - target: {fileID: 4210773000772499332, guid: e8526b4a72fc1d549984136c3803609b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -604,6 +604,14 @@ PrefabInstance:
     - target: {fileID: 4210773000772499332, guid: e8526b4a72fc1d549984136c3803609b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977008371119233039, guid: e8526b4a72fc1d549984136c3803609b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.0019959062
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977008371119233039, guid: e8526b4a72fc1d549984136c3803609b, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.11341139
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -735,7 +743,7 @@ GameObject:
   - component: {fileID: 2136114622}
   - component: {fileID: 2136114621}
   - component: {fileID: 2136114620}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -836,7 +844,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.79622644, g: 0.57685095, b: 0.26290488, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
