@@ -8,6 +8,7 @@ TagManager:
   - LevelEnder
   - Life
   - PlayerUI
+  - Spawn
   layers:
   - Default
   - TransparentFX

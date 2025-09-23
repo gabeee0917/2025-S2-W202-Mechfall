@@ -429,6 +429,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
+--- !u!1 &740902603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7023121164573660339, guid: a4e5925db04b644189a6b040437fb05c, type: 3}
+  m_PrefabInstance: {fileID: 1045001924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &740902610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740902603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6193d30d5769b4aca83b5d295deea28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawnManager
 --- !u!1 &765109858 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5949843868230745969, guid: c862ff777cc874ca2a71e32c0110d39a, type: 3}
@@ -572,6 +589,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 898258652539749862, guid: a4e5925db04b644189a6b040437fb05c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 898258652539749862, guid: a4e5925db04b644189a6b040437fb05c, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 71f670ac42ffb4bdf953fa2e03262415, type: 2}
@@ -646,7 +667,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7023121164573660339, guid: a4e5925db04b644189a6b040437fb05c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 740902610}
   m_SourcePrefab: {fileID: 100100000, guid: a4e5925db04b644189a6b040437fb05c, type: 3}
 --- !u!1001 &1181694615
 PrefabInstance:
