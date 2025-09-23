@@ -10,18 +10,37 @@ public class Portal : MonoBehaviour
 
 
 
-    void Start()
+    void OnEnable()
     {
-        player = GameObject.FindWithTag("Player");
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.UpArrow))
+        if (playerInRange && InputManager.PlayerInput.actions["Interact"].triggered)
         {
-                SceneManager.LoadScene(scenename); 
+            player = GameObject.FindWithTag("Player");
+            SceneManager.LoadScene(scenename); 
         }
     }
 
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (player != null)
+        {
+            GameObject spawn = GameObject.Find("PlayerSpawn");
+            if (spawn != null)
+            {
+                player.transform.position = spawn.transform.position;
+            }
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

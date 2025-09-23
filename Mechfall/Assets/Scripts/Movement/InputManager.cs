@@ -12,11 +12,15 @@ public class InputManager : MonoBehaviour
     public static bool jumpReleased;
     public static bool RunHeld;
     public static bool DashPressed;
+    public static bool pausePressed;
+    public static bool interactPressed;
 
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction runAction;
     private InputAction dashAction;
+    private InputAction pauseAction;
+    private InputAction interactAction;
 
     void Awake()
     {
@@ -26,6 +30,8 @@ public class InputManager : MonoBehaviour
         jumpAction = PlayerInput.actions["Jump"];
         runAction = PlayerInput.actions["Run"];
         dashAction = PlayerInput.actions["Dash"];
+        pauseAction = PlayerInput.actions["Pause"];
+        interactAction = PlayerInput.actions["Interact"];
     }
 
     void Update()
@@ -35,9 +41,10 @@ public class InputManager : MonoBehaviour
         jumpPressed = jumpAction.WasPressedThisFrame();
         jumpHeld = jumpAction.IsPressed();
         jumpReleased = jumpAction.WasReleasedThisFrame();
-
         DashPressed = dashAction.WasPressedThisFrame();
-
         RunHeld = runAction.IsPressed();
+
+        pausePressed = pauseAction.WasPressedThisFrame();
+        interactPressed = interactAction.WasPressedThisFrame();
     }
 }

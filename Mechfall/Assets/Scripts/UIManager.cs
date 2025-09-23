@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
             LivesText.text = $"Lives: {dummy.lives}";
         }
 
-         if (Input.GetKeyDown(KeyCode.Escape))
+         if (InputManager.pausePressed)
             {
                 if (ispaused == false)
                 {
