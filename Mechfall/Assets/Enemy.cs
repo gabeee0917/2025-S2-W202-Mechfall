@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
         if (roaming != null)
         {
-            roaming.PuaseMovement(.5f * d);
+            roaming.PuaseMovement(.4f * d);
         }
         Vector2 hitBack = new Vector2((1 * d), (d * 2));
 
