@@ -31,7 +31,6 @@ public class Enemy_Chaseing : MonoBehaviour
             if ((direction > 0 && transform.localScale.x < 0) || (direction < 0 && transform.localScale.x > 0))
             {
                 flip();
-                facingLeft = !facingLeft;
             }
 
             if (facingLeft)
@@ -45,6 +44,7 @@ public class Enemy_Chaseing : MonoBehaviour
 
     private void flip()
     {
+        facingLeft = !facingLeft;
         Vector3 lS = transform.localScale;
         lS.x *= -1;
         transform.localScale = lS;

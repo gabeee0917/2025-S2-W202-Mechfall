@@ -33,7 +33,6 @@ public class Enemy_Ranged : MonoBehaviour
         if ((direction > 0 && transform.localScale.x < 0) || (direction < 0 && transform.localScale.x > 0))
         {
             flip();
-            facingLeft = !facingLeft;
         }
 
         if (Vector2.Distance(player.transform.position, transform.position) < agroDistance &&
@@ -67,6 +66,7 @@ public class Enemy_Ranged : MonoBehaviour
 
     private void flip()
     {
+        facingLeft = !facingLeft;
         Vector3 lS = transform.localScale;
         lS.x *= -1;
         transform.localScale = lS;
