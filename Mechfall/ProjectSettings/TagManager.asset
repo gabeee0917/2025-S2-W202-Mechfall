@@ -19,7 +19,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Background
   - 
   - GroundTest
   - PlayerTest
@@ -49,8 +49,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 388241027
+    locked: 0
   - name: Ground
-    uniqueID: 1740506021
+    uniqueID: 2322041487
+    locked: 0
+  - name: Player
+    uniqueID: 2061076435
+    locked: 0
+  - name: Enemies
+    uniqueID: 1545605111
     locked: 0
   m_RenderingLayers:
   - Default
