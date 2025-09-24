@@ -33,12 +33,8 @@ public class Enemy : MonoBehaviour
 
     void HitBackwards(int d)
     {
-        Enemy_Roaming roaming = GetComponent<Enemy_Roaming>();
+        checkMoving(d);
 
-        if (roaming != null)
-        {
-            roaming.PuaseMovement(.4f * d);
-        }
         Vector2 hitBack = new Vector2((1 * d), (d * 2));
 
         rb.linearVelocity = hitBack;
@@ -54,6 +50,21 @@ public class Enemy : MonoBehaviour
             player.takeDamage();
         }
     }
-    
 
+    private void checkMoving(int d)
+    {
+        Enemy_Roaming roaming = GetComponent<Enemy_Roaming>();
+
+        if (roaming != null)
+        {
+            roaming.PuaseMovement(.4f * d);
+        }
+
+        Enemy_Chaseing chaseing = GetComponent<Enemy_Chaseing>();
+
+        if (chaseing != null)
+        {
+            chaseing.PuaseMovement(.4f * d);
+        }
+    }
 }

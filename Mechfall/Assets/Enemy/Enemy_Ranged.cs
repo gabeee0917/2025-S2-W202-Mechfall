@@ -30,7 +30,7 @@ public class Enemy_Ranged : MonoBehaviour
 
         float direction = player.transform.position.x - transform.position.x;
 
-        if ((direction > 0 && transform.localScale.x < 0) || (direction < 0 && transform.localScale.x > 0))
+        if ((direction > 0 && !facingRight) || (direction < 0 && facingRight))
         {
             flip();
         }

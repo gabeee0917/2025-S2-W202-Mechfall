@@ -7,6 +7,7 @@ public class Enemy_Chaseing : MonoBehaviour
     public float speed = 2f;
     public GameObject player;
     public Boolean facingRight = true;
+    private float knockbackTime;
 
     private Rigidbody2D rb;
 
@@ -19,6 +20,13 @@ public class Enemy_Chaseing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if (knockbackTime > 0)
+        {
+            knockbackTime -= Time.deltaTime;
+            return;
+        }
+        
         Vector3 playerDistance = player.transform.position;
         Debug.Log(Vector2.Distance(player.transform.position, transform.position));
 
@@ -36,7 +44,8 @@ public class Enemy_Chaseing : MonoBehaviour
             if (!facingRight)
             {
                 rb.linearVelocity = new Vector2(-speed, 0);
-            } else rb.linearVelocity = new Vector2(speed, 0);
+            }
+            else rb.linearVelocity = new Vector2(speed, 0);
 
         } //else Debug.Log("Not in Range");
 
@@ -48,5 +57,10 @@ public class Enemy_Chaseing : MonoBehaviour
         Vector3 lS = transform.localScale;
         lS.x *= -1;
         transform.localScale = lS;
+    }
+
+    public void PuaseMovement(float duration)
+    {
+        knockbackTime = duration;
     }
 }
