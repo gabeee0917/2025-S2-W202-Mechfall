@@ -529,21 +529,9 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 132627989}
-    - target: {fileID: 3891832584706769616, guid: de62f943b6799f946af015ad28627b26, type: 3}
-      propertyPath: facingLeft
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891832584706769616, guid: de62f943b6799f946af015ad28627b26, type: 3}
-      propertyPath: facingRight
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5316170477100630532, guid: de62f943b6799f946af015ad28627b26, type: 3}
       propertyPath: m_Name
       value: Chasing
-      objectReference: {fileID: 0}
-    - target: {fileID: 8329529804839663087, guid: de62f943b6799f946af015ad28627b26, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.655783
       objectReference: {fileID: 0}
     - target: {fileID: 8329529804839663087, guid: de62f943b6799f946af015ad28627b26, type: 3}
       propertyPath: m_LocalPosition.x
