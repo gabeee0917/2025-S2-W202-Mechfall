@@ -302,7 +302,8 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpBufferTimer = MoveStats.JumpBufferTime;
             releasedDuringBuffer = false;
-            animator.SetBool("Jump", true);
+            //animator.SetBool("Jump", true);
+            animator.SetTrigger("Joomp");
         }
 
         // When we release Jump
@@ -491,7 +492,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
         }
         else { isGrounded = false; }
-        animator.SetBool("Jump", !isGrounded);
+        //animator.SetBool("Jump", !isGrounded);
 
     }
 

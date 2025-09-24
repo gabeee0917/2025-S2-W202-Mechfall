@@ -435,11 +435,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75aef3ba2a885c548a636f504b990ed4, type: 3}
---- !u!4 &574694944 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1283044885180039298, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
-  m_PrefabInstance: {fileID: 1499023813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &829686268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -619,6 +614,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d11a34b5a4edd1944ba1e19858681f10, type: 3}
+--- !u!95 &1160352794 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6298441598077334908, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
+  m_PrefabInstance: {fileID: 1499023813}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &1287362178 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 5129581224340658987, guid: 7e5e1661f6c5e88429fce9eee092e05a, type: 3}
@@ -697,14 +697,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1072602604224543434, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
+    - target: {fileID: 1283044885180039298, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.044
       objectReference: {fileID: 0}
-    - target: {fileID: 1072602604224543434, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 8faf35ffba907f741b319fd51745652e, type: 2}
+    - target: {fileID: 1283044885180039298, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.015
+      objectReference: {fileID: 0}
     - target: {fileID: 1933372524715821915, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
       propertyPath: m_Name
       value: Level1Player
@@ -750,17 +750,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7800856685518348535, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
-      propertyPath: bullet
+      propertyPath: animator
       value: 
-      objectReference: {fileID: 2130947649588660561, guid: 197d3508196af3d4b90c962ff9f521e6, type: 3}
-    - target: {fileID: 7800856685518348535, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
-      propertyPath: swordPoint
-      value: 
-      objectReference: {fileID: 574694944}
+      objectReference: {fileID: 1160352794}
     - target: {fileID: 7800856685518348535, guid: fe23f9efc2b4b0546a21cb5715573d0f, type: 3}
       propertyPath: swordHitBox
       value: 
-      objectReference: {fileID: 9151708786349257973, guid: 1c6b8e414df325b479fc3202850614f0, type: 3}
+      objectReference: {fileID: 9151708786349257973, guid: 90182b20ce41144429e38ec86cabe347, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
