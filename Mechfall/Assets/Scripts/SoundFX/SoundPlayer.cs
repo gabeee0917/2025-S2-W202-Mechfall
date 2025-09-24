@@ -21,6 +21,11 @@ public class PlayFootstep : MonoBehaviour
         SoundManager.instance.PlayFootsteps();
     }
 
+    public void PlaySliceSound()
+    {
+        SoundManager.instance.PlaySlice();
+    }
+
     private bool IsMoving()
     {
         return Mathf.Abs(rb.linearVelocity.x) > 0.1f;
