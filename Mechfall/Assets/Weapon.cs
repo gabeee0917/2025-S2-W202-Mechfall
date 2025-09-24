@@ -18,7 +18,6 @@ public class Weapon : MonoBehaviour
     private Boolean isFiring = true;
     private Boolean gunCD = true;
 
-    public Animator animator; // add for sword animation
     private void Awake()
     {
         playerControls = new InputSystem_Actions();
@@ -56,7 +55,6 @@ public class Weapon : MonoBehaviour
     {
         // Create sword at player
         Instantiate(swordHitBox, swordPoint.position, swordPoint.rotation);
-        animator.SetTrigger("attack"); //added for sword attack
     }
 
     private void OnPlayerShoot(InputAction.CallbackContext context)
