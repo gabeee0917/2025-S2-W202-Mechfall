@@ -14,11 +14,13 @@ public class Enemy_Ranged : MonoBehaviour
     public float gunCDT = 1;
     public Transform firepoint;
     private Boolean isFiring = false;
+    private Animator animator;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,9 +52,11 @@ public class Enemy_Ranged : MonoBehaviour
 
         if (Vector2.Distance(player.transform.position, transform.position) < range)
         {
+
             if (!isFiring)
             {
                 InvokeRepeating(nameof(Fire), 0f, gunCDT);
+                animator.SetBool("Shooting", true);
             }
             isFiring = true;
         }
@@ -60,6 +64,7 @@ public class Enemy_Ranged : MonoBehaviour
         else
         {
             CancelInvoke(nameof(Fire));
+            animator.SetBool("Shooting", false);
             isFiring = false;
         }
     }

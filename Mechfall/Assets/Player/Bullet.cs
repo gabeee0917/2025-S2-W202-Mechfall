@@ -10,10 +10,12 @@ public class Bullet : MonoBehaviour
     public float bulletDS = 10;
 
     // Bullet body
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
 
     void Start()
     {
+        
+        rb = GetComponent<Rigidbody2D>();
         // Move the bullet and despawn it after an allocated time of it in the air
         rb.linearVelocity = transform.right * speed;
 
