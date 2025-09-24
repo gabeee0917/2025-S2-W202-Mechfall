@@ -52,7 +52,7 @@ public class TutorialDirector : MonoBehaviour
         yield return ShowMessage("Welcome to the tutorial", 1.25f);
 
         // 3) Move left & right
-        yield return ShowMessage("Press A to move Left and D to move Right", 0f);
+        yield return ShowMessage("Press ← to move Left and → to move Right", 0f);
         yield return WaitForMoveKeys();
         ClearMessage();
 
@@ -82,6 +82,7 @@ public class TutorialDirector : MonoBehaviour
 
         // Done – continue your flow here if you like
         Debug.Log("Tutorial complete!");
+        yield return ShowMessage("Tutorial Complete! Feel free to leave when you want", 0f);
     }
 
     // =========================
@@ -132,8 +133,11 @@ public class TutorialDirector : MonoBehaviour
         pressedA = pressedD = false;
         while (!(pressedA && pressedD))
         {
-            if (Input.GetKeyDown(KeyCode.A)) pressedA = true;
-            if (Input.GetKeyDown(KeyCode.D)) pressedD = true;
+            // Good job, just changed to arrow keys
+            //if (Input.GetKeyDown(KeyCode.A)) pressedA = true;
+            //if (Input.GetKeyDown(KeyCode.D)) pressedD = true;
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) pressedA = true;
+            if (Input.GetKeyDown(KeyCode.RightArrow)) pressedD = true;
             yield return null;
         }
     }
