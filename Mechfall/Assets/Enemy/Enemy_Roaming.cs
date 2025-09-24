@@ -10,7 +10,7 @@ public class Enemy_Roaming : MonoBehaviour
     private Rigidbody2D rb;
     private Transform currentPoint;
     private float knockbackTime;
-    public Boolean facingLeft = false;
+    public Boolean facingRight = true;
 
     void Start()
     {
@@ -49,7 +49,7 @@ public class Enemy_Roaming : MonoBehaviour
     private void flip()
     {
         
-        facingLeft = !facingLeft;
+        facingRight = !facingRight;
         Vector3 lS = transform.localScale;
         lS.x *= -1;
         transform.localScale = lS;

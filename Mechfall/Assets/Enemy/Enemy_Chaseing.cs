@@ -6,7 +6,7 @@ public class Enemy_Chaseing : MonoBehaviour
 
     public float speed = 2f;
     public GameObject player;
-    public Boolean facingLeft = false;
+    public Boolean facingRight = true;
 
     private Rigidbody2D rb;
 
@@ -28,12 +28,12 @@ public class Enemy_Chaseing : MonoBehaviour
 
             float direction = player.transform.position.x - transform.position.x;
 
-            if ((direction > 0 && transform.localScale.x < 0) || (direction < 0 && transform.localScale.x > 0))
+            if ((direction > 0 && !facingRight) || (direction < 0 && facingRight))
             {
                 flip();
             }
 
-            if (facingLeft)
+            if (!facingRight)
             {
                 rb.linearVelocity = new Vector2(-speed, 0);
             } else rb.linearVelocity = new Vector2(speed, 0);
@@ -44,7 +44,7 @@ public class Enemy_Chaseing : MonoBehaviour
 
     private void flip()
     {
-        facingLeft = !facingLeft;
+        facingRight = !facingRight;
         Vector3 lS = transform.localScale;
         lS.x *= -1;
         transform.localScale = lS;

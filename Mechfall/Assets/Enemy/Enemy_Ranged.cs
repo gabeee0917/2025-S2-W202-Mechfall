@@ -8,7 +8,7 @@ public class Enemy_Ranged : MonoBehaviour
     public float speed = 2;
 
     public GameObject player;
-    public Boolean facingLeft = false;
+    public Boolean facingRight = false;
     public float agroDistance = 10;
     public float range = 5;
     public float gunCDT = 1;
@@ -40,7 +40,7 @@ public class Enemy_Ranged : MonoBehaviour
         {
             //Debug.Log("In Range");
 
-            if (facingLeft)
+            if (!facingRight)
             {
                 rb.linearVelocity = new Vector2(-speed, 0);
             }
@@ -66,7 +66,7 @@ public class Enemy_Ranged : MonoBehaviour
 
     private void flip()
     {
-        facingLeft = !facingLeft;
+        facingRight = !facingRight;
         Vector3 lS = transform.localScale;
         lS.x *= -1;
         transform.localScale = lS;
@@ -77,7 +77,7 @@ public class Enemy_Ranged : MonoBehaviour
          GameObject b = Instantiate(bullet, firepoint.position, firepoint.rotation);
 
         // Flip bullet direction if enemy is facing left
-        if (facingLeft)
+        if (!facingRight)
         {
             b.transform.right = -transform.right;
         }
