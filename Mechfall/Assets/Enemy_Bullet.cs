@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy_Bullet : MonoBehaviour
 {
-    public float speed = 20;
+    public float speed = 5;
     private float bulletDS = 10;
 
     // Bullet body
@@ -11,6 +11,7 @@ public class Enemy_Bullet : MonoBehaviour
     void Start()
     {
         
+        rb = GetComponent<Rigidbody2D>();
         // Move the bullet and despawn it after an allocated time of it in the air
         rb.linearVelocity = transform.right * speed;
 
