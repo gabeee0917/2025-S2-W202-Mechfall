@@ -9,6 +9,7 @@ TagManager:
   - Life
   - PlayerUI
   - Spawn
+  - Sound
   layers:
   - Default
   - TransparentFX
