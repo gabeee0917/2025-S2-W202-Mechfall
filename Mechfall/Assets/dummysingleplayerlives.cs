@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class dummySinglePlayerLives : MonoBehaviour
 {
     public long lives = 3;
+    private float iframeDura = 1f;
+    private float iframeTimer = 0f;
+    private bool isInvincible = false; 
+
     public bool panelstopinfinitecall = false;
     private Vector3 startPosition;
 
@@ -21,15 +25,22 @@ public class dummySinglePlayerLives : MonoBehaviour
 
     void Update()
     {
-
-        
+        //iframe timer
+        if (iframeTimer > 0)
+        {
+            iframeTimer -= Time.deltaTime;
+            if (iframeTimer <= 0)
+            {
+                isInvincible = false;
+            }
+        }
 
         //if fall off platform and goes below too much
-        if (transform.position.y < -15f)
-        {
-            lives--;
-            transform.position = startPosition;
-        }
+            if (transform.position.y < -15f)
+            {
+                lives--;
+                transform.position = startPosition;
+            }
 
         if (lives == 0 && panelstopinfinitecall == false)
         {
@@ -67,6 +78,14 @@ public class dummySinglePlayerLives : MonoBehaviour
             lives++;
         }
 
+        if (isInvincible) return;
+        if (other.CompareTag("Enemy"))
+        {
+            lives--;
+            isInvincible = true;
+            iframeTimer = iframeDura;
+        }
+
         //WIN CONDITION
         if (other.CompareTag("LevelEnder"))
         {
@@ -85,12 +104,12 @@ public class dummySinglePlayerLives : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isInvincible) return;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             lives--;
+            isInvincible = true;
+            iframeTimer = iframeDura;
         }
     }
-
-
-
 }

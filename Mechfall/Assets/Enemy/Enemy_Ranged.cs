@@ -94,7 +94,7 @@ public class Enemy_Ranged : MonoBehaviour
     {
         // Create a bullet and fire it
         GameObject b = Instantiate(bullet, firepoint.position, firepoint.rotation);
-        
+        b.tag = "Enemy";
         // Flip bullet direction if enemy is facing left
         if (!facingRight)
         {
