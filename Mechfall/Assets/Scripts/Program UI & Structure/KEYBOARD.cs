@@ -11,7 +11,7 @@ public class KeyBoard : MonoBehaviour
     public GameObject s;
     public GameObject e;
     public GameObject w;
-    public GameObject up;
+    public GameObject f;
     public GameObject down;
     public GameObject left;
     public GameObject right;
@@ -30,7 +30,7 @@ public class KeyBoard : MonoBehaviour
     private Image sRen;
     private Image eRen;
     private Image wRen;
-    private Image upRen;
+    private Image fRen;
     private Image downRen;
     private Image leftRen;
     private Image rightRen;
@@ -48,7 +48,7 @@ public class KeyBoard : MonoBehaviour
         sRen = s.GetComponent<Image>();
         eRen = e.GetComponent<Image>();
         wRen = w.GetComponent<Image>();
-        upRen = up.GetComponent<Image>();
+        fRen = f.GetComponent<Image>();
         downRen = down.GetComponent<Image>();
         leftRen = left.GetComponent<Image>();
         rightRen = right.GetComponent<Image>();
@@ -111,14 +111,14 @@ public class KeyBoard : MonoBehaviour
             wRen.color = Color.grey;
         }
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.F))
         {
-            upRen.color = Color.white;
-            explain.text = "Up: Interact";
+            fRen.color = Color.white;
+            explain.text = "F: Interact";
         }
         else
         {
-            upRen.color = Color.grey;
+            fRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
