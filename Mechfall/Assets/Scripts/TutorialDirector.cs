@@ -5,23 +5,23 @@ using TMPro;
 public class TutorialDirector : MonoBehaviour
 {
     [Header("UI")]
-    public CanvasGroup blackPanel;            // CanvasGroup on your BlackPanel (alpha controls fade)
-    public TextMeshProUGUI tutorialText;      // TMP text object that shows prompts
-    public float fadeDuration = 1.5f;
+    public CanvasGroup blackPanel;            // CanvasGroup on BlackPanel (alpha drives fade)
+    public TextMeshProUGUI tutorialText;      // TMP text for prompts
+    public float fadeDuration = 1.5f;         // initial fade-in duration
 
     [Header("Platform Step")]
-    public GameObject platformPrefab;         // Prefab: TutorialPlatform (has PlatformGoal + Outline pulse)
-    public Transform platformSpawnPoint;      // Empty where the platform should appear
+    public GameObject platformPrefab;         // TutorialPlatform prefab (has PlatformGoal + optional outline pulse)
+    public Transform platformSpawnPoint;      // Where the platform appears
 
     [Header("Portals")]
-    public GameObject portalPrefab;           // Your animated portal prefab (has Teleport + BoxCollider2D)
-    public Transform groundPortalSpawnPoint;  // Empty at ground edge
-    public Transform platformPortalSpawnPoint;// Empty at the platform edge
+    public GameObject portalPrefab;           // Animated portal prefab (has Teleport + BoxCollider2D)
+    public Transform groundPortalSpawnPoint;  // Ground-side spawn
+    public Transform platformPortalSpawnPoint;// Platform-side spawn
 
-    [Header("Player (optional, can be found by tag)")]
-    public Transform player;                  // If left null we’ll find by tag “Player” at runtime
+    [Header("Player (optional)")]
+    public Transform player;                  // If null, found by tag "Player" at runtime
 
-    // --- runtime state ---
+    // runtime state
     bool pressedA, pressedD;
     bool goalReached;
     bool teleportedOnce;
@@ -40,16 +40,13 @@ public class TutorialDirector : MonoBehaviour
         StartCoroutine(RunTutorial());
     }
 
-    // =========================
-    // Main sequence
-    // =========================
     IEnumerator RunTutorial()
     {
         // 1) Fade from black
         yield return StartCoroutine(FadeFromBlack());
 
         // 2) Welcome
-        yield return ShowMessage("Welcome to the tutorial", 1.25f);
+        yield return ShowMessage("Welcome to the Tutorial!", 1.25f);
 
         // 3) Move left & right
         yield return ShowMessage("Press A to move Left and D to move Right", 0f);
@@ -63,50 +60,70 @@ public class TutorialDirector : MonoBehaviour
 
         // 5) Spawn practice platform & wait for landing
         SpawnPlatform();
-        yield return ShowMessage("Jump on the platform", 0f);
+        yield return ShowMessage("Try Jumping on the platform", 0f);
         yield return new WaitUntil(() => goalReached);
         ClearMessage();
 
-        // 6) Spawn portals (platform & ground), flip ground instance inward
+        // 6) Spawn & link portals (bi-directional); flip ground one inward
         if (!SpawnAndLinkPortals())
         {
             Debug.LogWarning("TutorialDirector: Portal prefab or spawn points not set.");
             yield break;
         }
 
-        // 7) Portal prompt; wait for first teleport
+        // 7) Portal instruction; wait for the first successful teleport
         teleportedOnce = false;
-        yield return ShowMessage("Enter a portal to come out of the other one", 0f);
+        yield return ShowMessage("Entering one of the portals will lead you out the other", 0f);
         yield return new WaitUntil(() => teleportedOnce);
         ClearMessage();
 
-        // Done – continue your flow here if you like
-        Debug.Log("Tutorial complete!");
+        // 8) Congratulate, then fade to black over 5 seconds (text remains while fading)
+        yield return ShowMessage("Well done!", 0f);
+        yield return StartCoroutine(FadeToBlack(5f));
+        ClearMessage();
+
+        // (Optional) load next scene or continue flow here…
+        // SceneManager.LoadScene("NextScene");
     }
 
-    // =========================
-    // Small helpers
-    // =========================
+    // -----------------------
+    // Fades
+    // -----------------------
     IEnumerator FadeFromBlack()
     {
-        if (blackPanel != null)
+        if (blackPanel == null)
+            yield break;
+
+        blackPanel.alpha = 1f;
+        float t = 0f;
+        while (t < fadeDuration)
         {
-            blackPanel.alpha = 1f;
-            float t = 0f;
-            while (t < fadeDuration)
-            {
-                t += Time.deltaTime;
-                blackPanel.alpha = Mathf.Lerp(1f, 0f, t / fadeDuration);
-                yield return null;
-            }
-            blackPanel.alpha = 0f;
-        }
-        else
-        {
+            t += Time.deltaTime;
+            blackPanel.alpha = Mathf.Lerp(1f, 0f, t / fadeDuration);
             yield return null;
         }
+        blackPanel.alpha = 0f;
     }
 
+    IEnumerator FadeToBlack(float seconds)
+    {
+        if (blackPanel == null)
+            yield break;
+
+        float start = blackPanel.alpha;
+        float t = 0f;
+        while (t < seconds)
+        {
+            t += Time.deltaTime;
+            blackPanel.alpha = Mathf.Lerp(start, 1f, t / seconds);
+            yield return null;
+        }
+        blackPanel.alpha = 1f;
+    }
+
+    // -----------------------
+    // UI helpers
+    // -----------------------
     IEnumerator ShowMessage(string msg, float holdSeconds)
     {
         if (tutorialText != null)
@@ -114,6 +131,7 @@ public class TutorialDirector : MonoBehaviour
             tutorialText.gameObject.SetActive(true);
             tutorialText.text = msg;
         }
+
         if (holdSeconds > 0f)
             yield return new WaitForSeconds(holdSeconds);
     }
@@ -127,6 +145,9 @@ public class TutorialDirector : MonoBehaviour
         }
     }
 
+    // -----------------------
+    // Input gates
+    // -----------------------
     IEnumerator WaitForMoveKeys()
     {
         pressedA = pressedD = false;
@@ -144,9 +165,9 @@ public class TutorialDirector : MonoBehaviour
             yield return null;
     }
 
-    // =========================
+    // -----------------------
     // Platform
-    // =========================
+    // -----------------------
     void SpawnPlatform()
     {
         if (platformPrefab == null || platformSpawnPoint == null)
@@ -157,7 +178,7 @@ public class TutorialDirector : MonoBehaviour
 
         var plat = Instantiate(platformPrefab, platformSpawnPoint.position, Quaternion.identity);
 
-        // Wire PlatformGoal -> director so we know when player landed
+        // Notify when player lands
         var goal = plat.GetComponentInChildren<PlatformGoal>();
         if (goal != null) goal.director = this;
     }
@@ -168,26 +189,23 @@ public class TutorialDirector : MonoBehaviour
         goalReached = true;
     }
 
-    // =========================
+    // -----------------------
     // Portals
-    // =========================
+    // -----------------------
     bool SpawnAndLinkPortals()
     {
         if (portalPrefab == null || groundPortalSpawnPoint == null || platformPortalSpawnPoint == null)
             return false;
 
-        // Spawn both
         var groundPortalGO   = Instantiate(portalPrefab,   groundPortalSpawnPoint.position,   Quaternion.identity);
         var platformPortalGO = Instantiate(portalPrefab, platformPortalSpawnPoint.position, Quaternion.identity);
 
-        // Flip ONLY the ground portal horizontally so it faces inward (Option B)
+        // Flip ONLY the ground portal horizontally so it faces inward
         var s = groundPortalGO.transform.localScale;
         groundPortalGO.transform.localScale = new Vector3(-Mathf.Abs(s.x), s.y, s.z);
 
-        // Link teleporters both ways
         var groundTP   = groundPortalGO.GetComponent<Teleport>();
         var platformTP = platformPortalGO.GetComponent<Teleport>();
-
         if (groundTP == null || platformTP == null)
         {
             Debug.LogWarning("TutorialDirector: Portal prefab is missing Teleport component.");
@@ -204,15 +222,15 @@ public class TutorialDirector : MonoBehaviour
         groundTP.playerTarget   = player;
         platformTP.playerTarget = player;
 
-        // Make them partners (bi-directional)
+        // partner linkage (bi-directional)
         groundTP.partner   = platformTP.transform;
         platformTP.partner = groundTP.transform;
 
-        // Let Teleport know how to notify us on first success
+        // allow Teleport.cs to notify us once the player teleports
         groundTP.director   = this;
         platformTP.director = this;
 
-        // Optional: ensure both BoxCollider2D are triggers and roughly centered
+        // Make sure the trigger areas are centered & are triggers
         var gc = groundPortalGO.GetComponent<BoxCollider2D>();
         var pc = platformPortalGO.GetComponent<BoxCollider2D>();
         if (gc != null) { gc.isTrigger = true; gc.offset = Vector2.zero; }
@@ -227,6 +245,6 @@ public class TutorialDirector : MonoBehaviour
         teleportedOnce = true;
     }
 
-    // Convenience: public getters for Teleport to read if you want the script to be more generic
+    // Optional getter if other scripts need access
     public Transform GetPlayer() => player;
 }
