@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
 
     private void checkMoving(int d)
     {
+        // Check what kind of enemy it is than make it not move while being knocked back
         Enemy_Roaming roaming = GetComponent<Enemy_Roaming>();
 
         if (roaming != null)
@@ -65,6 +66,13 @@ public class Enemy : MonoBehaviour
         if (chaseing != null)
         {
             chaseing.PuaseMovement(.4f * d);
+        }
+
+        Enemy_Ranged ranged = GetComponent<Enemy_Ranged>();
+
+        if (ranged != null)
+        {
+            ranged.PuaseMovement(.4f * d);
         }
     }
 }

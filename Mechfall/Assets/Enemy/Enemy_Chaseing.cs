@@ -20,27 +20,29 @@ public class Enemy_Chaseing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Stop the enemy from moving during knockback
         if (knockbackTime > 0)
         {
             knockbackTime -= Time.deltaTime;
             return;
         }
-        
-        Vector3 playerDistance = player.transform.position;
-        Debug.Log(Vector2.Distance(player.transform.position, transform.position));
+
+        // Testing
+        //Vector3 playerDistance = player.transform.position;
+        //Debug.Log(Vector2.Distance(player.transform.position, transform.position));
 
         if (Vector2.Distance(player.transform.position, transform.position) < 10)
         {
             //Debug.Log("In Range");
 
+            // Get the enemys location relitive to the player and flip enemy if needed
             float direction = player.transform.position.x - transform.position.x;
-
             if ((direction > 0 && !facingRight) || (direction < 0 && facingRight))
             {
                 flip();
             }
 
+            // Make the enmy move the direction its facing
             if (!facingRight)
             {
                 rb.linearVelocity = new Vector2(-speed, 0);
@@ -53,6 +55,7 @@ public class Enemy_Chaseing : MonoBehaviour
 
     private void flip()
     {
+        // Flip the enemy
         facingRight = !facingRight;
         Vector3 lS = transform.localScale;
         lS.x *= -1;
@@ -61,6 +64,7 @@ public class Enemy_Chaseing : MonoBehaviour
 
     public void PuaseMovement(float duration)
     {
+        // Pause the movement for knockback
         knockbackTime = duration;
     }
 }

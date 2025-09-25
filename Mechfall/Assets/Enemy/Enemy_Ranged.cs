@@ -15,6 +15,7 @@ public class Enemy_Ranged : MonoBehaviour
     public Transform firepoint;
     private Boolean isFiring = false;
     private Animator animator;
+    private float knockbackTime;
 
 
     void Start()
@@ -26,17 +27,25 @@ public class Enemy_Ranged : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 playerDistance = player.transform.position;
-        Debug.Log(Vector2.Distance(player.transform.position, transform.position));
+        // Stop the enemy from moving during knockback
+        if (knockbackTime > 0)
+        {
+            knockbackTime -= Time.deltaTime;
+            return;
+        }
 
+        // Testing 
+        //Vector3 playerDistance = player.transform.position;
+        //Debug.Log(Vector2.Distance(player.transform.position, transform.position));
 
+        // Check where the player is relitive to the enemy and flip the enemy if needed
         float direction = player.transform.position.x - transform.position.x;
-
         if ((direction > 0 && !facingRight) || (direction < 0 && facingRight))
         {
             flip();
         }
 
+        // Check if the player is within agro range and walk up to them just within shooting range
         if (Vector2.Distance(player.transform.position, transform.position) < agroDistance &&
         Vector2.Distance(player.transform.position, transform.position) > range - .5)
         {
@@ -50,9 +59,10 @@ public class Enemy_Ranged : MonoBehaviour
 
         }
 
+        // Check if the player is within shooting range 
         if (Vector2.Distance(player.transform.position, transform.position) < range)
         {
-
+            // If the enemy is not already firing start firing and change animation
             if (!isFiring)
             {
                 InvokeRepeating(nameof(Fire), 0f, gunCDT);
@@ -63,6 +73,7 @@ public class Enemy_Ranged : MonoBehaviour
 
         else
         {
+            // Stop the invoke for firing and change animation
             CancelInvoke(nameof(Fire));
             animator.SetBool("Shooting", false);
             isFiring = false;
@@ -71,6 +82,7 @@ public class Enemy_Ranged : MonoBehaviour
 
     private void flip()
     {
+        // Flip the enemy gameobject
         facingRight = !facingRight;
         Vector3 lS = transform.localScale;
         lS.x *= -1;
@@ -79,12 +91,19 @@ public class Enemy_Ranged : MonoBehaviour
 
     public void Fire()
     {
-         GameObject b = Instantiate(bullet, firepoint.position, firepoint.rotation);
+        // Create a bullet and fire it
+        GameObject b = Instantiate(bullet, firepoint.position, firepoint.rotation);
 
         // Flip bullet direction if enemy is facing left
         if (!facingRight)
         {
             b.transform.right = -transform.right;
         }
+    }
+    
+    public void PuaseMovement(float duration)
+    {
+        // Pause the movement for knockback
+        knockbackTime = duration;
     }
 }
