@@ -106,7 +106,7 @@ public class StageScoreCompleteManager : MonoBehaviour
         dummySinglePlayerLives dummy = player.GetComponent<dummySinglePlayerLives>();
         Time.timeScale = 0f;
         WinPanel.SetActive(true);
-        currentScore += completionAddScore + (1000 * (dummy.lives)) - (int)(25 * timer);
+        currentScore += completionAddScore + (1000 * (dummy.lives)) - (int)(2* timer);
         
         Finalscore = currentScore;
         winpaneltext.text = $"You Scored: \n  {Finalscore} points!\n";
@@ -147,12 +147,16 @@ public class StageScoreCompleteManager : MonoBehaviour
                     {
                         Destroy(player);
                     }
-        GameObject sound = GameObject.FindWithTag("Sound");
+       GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
+        foreach (GameObject sound in sounds)
+        {
+            if (sound != null)
+            {
+                Destroy(sound);
+            }
+        }
         GameObject soundmanager = GameObject.FindWithTag("Spawn");
-                    if (sound != null)
-                    {
-                        Destroy(sound);
-                    }
+                    
                     if (soundmanager != null)
                     {
                         Destroy(soundmanager);

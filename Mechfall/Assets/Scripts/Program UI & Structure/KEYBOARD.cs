@@ -12,7 +12,7 @@ public class KeyBoard : MonoBehaviour
     public GameObject e;
     public GameObject w;
     public GameObject f;
-    public GameObject down;
+    public GameObject shift;
     public GameObject left;
     public GameObject right;
 
@@ -31,7 +31,7 @@ public class KeyBoard : MonoBehaviour
     private Image eRen;
     private Image wRen;
     private Image fRen;
-    private Image downRen;
+    private Image shiftRen;
     private Image leftRen;
     private Image rightRen;
     private Image f1Ren;
@@ -49,7 +49,7 @@ public class KeyBoard : MonoBehaviour
         eRen = e.GetComponent<Image>();
         wRen = w.GetComponent<Image>();
         fRen = f.GetComponent<Image>();
-        downRen = down.GetComponent<Image>();
+        shiftRen = shift.GetComponent<Image>();
         leftRen = left.GetComponent<Image>();
         rightRen = right.GetComponent<Image>();
         escRen = esc.GetComponent<Image>();
@@ -121,13 +121,14 @@ public class KeyBoard : MonoBehaviour
             fRen.color = Color.grey;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            downRen.color = Color.white;
+            shiftRen.color = Color.white;
+            explain.text = "Left Shift: Speed Up";
         }
         else
         {
-            downRen.color = Color.grey;
+            shiftRen.color = Color.grey;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))

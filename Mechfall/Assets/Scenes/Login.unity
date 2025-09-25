@@ -3988,7 +3988,7 @@ MonoBehaviour:
   e: {fileID: 217331882}
   w: {fileID: 1393862268}
   f: {fileID: 351205428}
-  down: {fileID: 2059416780}
+  shift: {fileID: 2059416780}
   left: {fileID: 1765777823}
   right: {fileID: 788648482}
   esc: {fileID: 1216257921}
@@ -10157,12 +10157,12 @@ GameObject:
   - component: {fileID: 2059416783}
   - component: {fileID: 2059416782}
   m_Layer: 5
-  m_Name: down
+  m_Name: shift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2059416781
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10179,8 +10179,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 399.00003, y: -185}
-  m_SizeDelta: {x: 62.522, y: 57.8373}
+  m_AnchoredPosition: {x: -848.41113, y: -106.7}
+  m_SizeDelta: {x: 162.0997, y: 57.8373}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2059416782
 MonoBehaviour:
