@@ -12,6 +12,12 @@ TagManager:
   - sword
   - bullet
   - Enemy
+  - Coin
+  - LevelEnder
+  - Life
+  - PlayerUI
+  - Spawn
+  - Sound
   layers:
   - Default
   - TransparentFX
@@ -24,6 +30,9 @@ TagManager:
   - GroundTest
   - PlayerTest
   - Enemy
+  - 
+  - 
+  - 
   - 
   - 
   - 

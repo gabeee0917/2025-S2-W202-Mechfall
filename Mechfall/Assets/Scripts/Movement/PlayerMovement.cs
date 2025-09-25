@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         isFacingRight = true;
         rb = GetComponent<Rigidbody2D>();
         AudioSource = GetComponent<AudioSource>();
@@ -231,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if (isDashing)
+        if (isDashing || isAirDashing)
         {
             //stop dash timer
             dashTimer += Time.fixedDeltaTime;

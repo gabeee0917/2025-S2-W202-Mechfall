@@ -4,6 +4,7 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance { get; private set; }
     [SerializeField] private AudioClip[] footsteps;
+    [SerializeField] private AudioClip slice;
     private AudioSource source;
 
     private void Awake()
@@ -18,7 +19,7 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         source = GetComponent<AudioSource>();
     }
 
@@ -30,6 +31,12 @@ public class SoundManager : MonoBehaviour
     public void PlayFootsteps()
     {
         AudioClip clip = footsteps[Random.Range(0, footsteps.Length)];
+        source.PlayOneShot(clip);
+    }
+
+    public void PlaySlice()
+    {
+        AudioClip clip = slice;
         source.PlayOneShot(clip);
     }
 }
