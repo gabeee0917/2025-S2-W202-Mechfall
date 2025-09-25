@@ -22,7 +22,7 @@ public class TutorialDirector : MonoBehaviour
     public Transform player;                  // If null, found by tag "Player" at runtime
 
     // runtime state
-    bool pressedA, pressedD;
+    bool pressedLeft, pressedRight;
     bool goalReached;
     bool teleportedOnce;
 
@@ -49,7 +49,7 @@ public class TutorialDirector : MonoBehaviour
         yield return ShowMessage("Welcome to the Tutorial!", 1.25f);
 
         // 3) Move left & right
-        yield return ShowMessage("Press A to move Left and D to move Right", 0f);
+        yield return ShowMessage("Press ← to move Left and → to move Right", 0f);
         yield return WaitForMoveKeys();
         ClearMessage();
 
@@ -150,11 +150,11 @@ public class TutorialDirector : MonoBehaviour
     // -----------------------
     IEnumerator WaitForMoveKeys()
     {
-        pressedA = pressedD = false;
-        while (!(pressedA && pressedD))
+        pressedLeft = pressedRight = false;
+        while (!(pressedLeft && pressedRight))
         {
-            if (Input.GetKeyDown(KeyCode.A)) pressedA = true;
-            if (Input.GetKeyDown(KeyCode.D)) pressedD = true;
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) pressedLeft = true;
+            if (Input.GetKeyDown(KeyCode.RightArrow)) pressedRight = true;
             yield return null;
         }
     }
