@@ -61,7 +61,6 @@ public class UIManager : MonoBehaviour
     {
         popupPanel.SetActive(true);
         Time.timeScale = 0f;
-        AudioListener.pause = true;
         ispaused = true;
     }
 
@@ -69,7 +68,6 @@ public class UIManager : MonoBehaviour
     {
         popupPanel.SetActive(false);
         Time.timeScale = 1f;
-        AudioListener.pause = false;
         ispaused = false;
     }
 
@@ -81,6 +79,20 @@ public class UIManager : MonoBehaviour
         {
             Destroy(player);
         }
+        GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
+        foreach (GameObject sound in sounds)
+        {
+            if (sound != null)
+            {
+                Destroy(sound);
+            }
+        }
+        GameObject soundmanager = GameObject.FindWithTag("Spawn");
+                    
+                    if (soundmanager != null)
+                    {
+                        Destroy(soundmanager);
+                    }
 
         Destroy(gameObject);
     }
@@ -93,6 +105,20 @@ public class UIManager : MonoBehaviour
         {
             Destroy(player);
         }
+        GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
+        foreach (GameObject sound in sounds)
+        {
+            if (sound != null)
+            {
+                Destroy(sound);
+            }
+        }
+        GameObject soundmanager = GameObject.FindWithTag("Spawn");
+                    
+                    if (soundmanager != null)
+                    {
+                        Destroy(soundmanager);
+                    }
         
         Destroy(gameObject);
     }
