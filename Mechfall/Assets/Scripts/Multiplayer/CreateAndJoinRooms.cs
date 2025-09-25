@@ -149,7 +149,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
+    public void OnPlayerEnteredRoom(Player newPlayer)
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
