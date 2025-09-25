@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8627107321570521746}
   m_Layer: 0
   m_Name: Roaming
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   speed: 2
-  facingLeft: 0
+  facingRight: 1
 --- !u!61 &49331066239214835
 BoxCollider2D:
   m_ObjectHideFlags: 0
