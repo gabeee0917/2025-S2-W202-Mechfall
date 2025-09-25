@@ -147,6 +147,16 @@ public class StageScoreCompleteManager : MonoBehaviour
                     {
                         Destroy(player);
                     }
+        GameObject sound = GameObject.FindWithTag("Sound");
+        GameObject soundmanager = GameObject.FindWithTag("Spawn");
+                    if (sound != null)
+                    {
+                        Destroy(sound);
+                    }
+                    if (soundmanager != null)
+                    {
+                        Destroy(soundmanager);
+                    }
                 SceneManager.LoadScene("StagePage");
 
     }

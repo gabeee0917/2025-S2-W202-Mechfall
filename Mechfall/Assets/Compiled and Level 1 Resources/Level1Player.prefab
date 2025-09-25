@@ -69,96 +69,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.06}
   m_Size: {x: 0.2, y: 0.47}
   m_Direction: 0
---- !u!1 &1388898125620919962
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6840549002453091678}
-  - component: {fileID: 1072602604224543434}
-  m_Layer: 0
-  m_Name: chibi-robot_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6840549002453091678
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1388898125620919962}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.33266154, w: 0.94304633}
-  m_LocalPosition: {x: -0.327, y: -0.064, z: 0}
-  m_LocalScale: {x: 1.6056, y: 1.6056, z: 0.8028}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5527163867153700923}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.861}
---- !u!212 &1072602604224543434
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1388898125620919962}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 8faf35ffba907f741b319fd51745652e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: d2bf2a9a11b1240839379ea9927371d0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.24, y: 0.28}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &1933372524715821915
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,3 +505,65 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.28, y: 0.02}
   m_EdgeRadius: 0
+--- !u!1001 &5917026972026898700
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5527163867153700923}
+    m_Modifications:
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.327
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.064
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.94304633
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.33266154
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 38.861
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709599534173829014, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_Name
+      value: chibi-robot_0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+--- !u!4 &6840549002453091678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+  m_PrefabInstance: {fileID: 5917026972026898700}
+  m_PrefabAsset: {fileID: 0}

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -6270953770400647376, guid: 2fd5f2239d3d82f4282182b43850a394, type: 3}
   m_Color: {r: 0, g: 1, b: 0.37826777, a: 1}
   m_FlipX: 0
@@ -171,4 +171,3 @@ MonoBehaviour:
   speed: 20
   damage: 1
   bulletDS: 10
-  rb: {fileID: 8734369505400271074}
