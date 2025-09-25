@@ -22,6 +22,7 @@ public class Enemy_Ranged : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -93,7 +94,7 @@ public class Enemy_Ranged : MonoBehaviour
     {
         // Create a bullet and fire it
         GameObject b = Instantiate(bullet, firepoint.position, firepoint.rotation);
-
+        
         // Flip bullet direction if enemy is facing left
         if (!facingRight)
         {
