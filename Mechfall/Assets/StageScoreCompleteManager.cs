@@ -32,6 +32,7 @@ public class StageScoreCompleteManager : MonoBehaviour
 
     public bool questcomplete = false;
 
+    public GameObject player;
 
     void Awake()
     {
@@ -102,7 +103,7 @@ public class StageScoreCompleteManager : MonoBehaviour
   
     public void openLevelCompletePage()
     {
-        GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
+        
         dummySinglePlayerLives dummy = player.GetComponent<dummySinglePlayerLives>();
         Time.timeScale = 0f;
         WinPanel.SetActive(true);
@@ -137,16 +138,15 @@ public class StageScoreCompleteManager : MonoBehaviour
      public IEnumerator delayCompleteLevel()
     {
         yield return new WaitForSeconds(0.5f);
-        GameObject player = GameObject.FindWithTag("Player");
+        Destroy(player);
         GameObject ingameui = GameObject.FindWithTag("PlayerUI");
-                    if (ingameui != null)
+                     if (ingameui != null)
                     {
                         Destroy(ingameui);
                     }
-                    if (player != null)
-                    {
-                        Destroy(player);
-                    }
+                    
+
+                
        GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
         foreach (GameObject sound in sounds)
         {
@@ -161,7 +161,9 @@ public class StageScoreCompleteManager : MonoBehaviour
                     {
                         Destroy(soundmanager);
                     }
-                SceneManager.LoadScene("StagePage");
+       
+
+        SceneManager.LoadScene("StagePage");
 
     }
 

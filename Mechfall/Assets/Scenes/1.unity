@@ -624,6 +624,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4460306328255605197, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1045001927}
     - target: {fileID: 5943519033188787567, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5819.705
@@ -664,6 +668,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8230054034676920512, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1045001927}
     - target: {fileID: 8230054034676920512, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
       propertyPath: currentLevelName
       value: 1
@@ -1049,6 +1057,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1045001927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7023121164573660339, guid: a4e5925db04b644189a6b040437fb05c, type: 3}
+  m_PrefabInstance: {fileID: 1045001924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1181694615
 PrefabInstance:
   m_ObjectHideFlags: 0

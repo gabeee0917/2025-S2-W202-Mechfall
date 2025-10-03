@@ -12,10 +12,6 @@ TagManager:
   - sword
   - bullet
   - Enemy
-  - Coin
-  - LevelEnder
-  - Life
-  - PlayerUI
   - Spawn
   - Sound
   layers:
@@ -30,9 +26,6 @@ TagManager:
   - GroundTest
   - PlayerTest
   - Enemy
-  - 
-  - 
-  - 
   - 
   - 
   - 

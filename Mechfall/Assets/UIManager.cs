@@ -15,11 +15,21 @@ public class UIManager : MonoBehaviour
     public GameObject popupPanel;
     public GameObject player;
 
-    public bool ispaused = false; 
+    public bool ispaused = false;
 
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+         if (player != null)
+            {
+                dummy = player.GetComponent<dummySinglePlayerLives>();
+
+                SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
+                if (sr != null && playerImage != null)
+                {
+                    playerImage.sprite = sr.sprite;
+                }
+            }
     }
 
     void Update()
