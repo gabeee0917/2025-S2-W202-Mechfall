@@ -266,7 +266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverStageInfo
   stageinfo: {fileID: 1805652020}
-  onhover: Under Development. Thank you for your patience...
+  onhover: You have reached the outer rim. Now you need to find your way into the
+    core but will you be able to find the way?
   onleavehover: 
 --- !u!1 &202921624
 GameObject:
@@ -598,7 +599,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 4
+  m_text: '[Level 4]
+
+    Destroy the core to achieve mechfall'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
   m_sharedMaterial: {fileID: 1754589396565612516, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
@@ -734,7 +737,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 2
+  m_text: '[Level 2]
+
+    Infiltrate Mechtropolis!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
   m_sharedMaterial: {fileID: 1754589396565612516, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
@@ -1004,7 +1009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverStageInfo
   stageinfo: {fileID: 1805652020}
-  onhover: Under Development. Thank you for your patience...
+  onhover: Coming Soon...
   onleavehover: 
 --- !u!1 &527414584
 GameObject:
@@ -1248,7 +1253,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: '[Level 1]
+
+    Get the Chosen One to safety!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
   m_sharedMaterial: {fileID: 1754589396565612516, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
@@ -1513,7 +1520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverStageInfo
   stageinfo: {fileID: 1805652020}
-  onhover: Under Development. Thank you for your patience...
+  onhover: Coming Soon...
   onleavehover: 
 --- !u!114 &794979899
 MonoBehaviour:
@@ -2524,7 +2531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverStageInfo
   stageinfo: {fileID: 1805652020}
-  onhover: Under Development. Thank you for your patience...
+  onhover: Chosen one, you must infiltrate mechtropolis and overcome all obstacles
+    along the way so that you can reach the core
   onleavehover: 
 --- !u!224 &1262916750 stripped
 RectTransform:
@@ -2678,7 +2686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverStageInfo
   stageinfo: {fileID: 1805652020}
-  onhover: Under Development. Thank you for your patience...
+  onhover: Coming Soon...
   onleavehover: 
 --- !u!1001 &1397753106
 PrefabInstance:
@@ -2794,7 +2802,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Intro Tutorial
+  m_text: '[Tutorial]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
   m_sharedMaterial: {fileID: 1754589396565612516, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
@@ -3306,7 +3314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverStageInfo
   stageinfo: {fileID: 1805652020}
-  onhover: Under Development. Thank you for your patience...
+  onhover: Defeat the defense system and free all who are enslaved by the core. The
+    first of many cores, when all are gone everyone will proclaim in joy "Mechfall!"
   onleavehover: 
 --- !u!1 &2102290540
 GameObject:
@@ -3365,7 +3374,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 3
+  m_text: '[Level 3]
+
+    Navigate your way up to the core'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
   m_sharedMaterial: {fileID: 1754589396565612516, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}

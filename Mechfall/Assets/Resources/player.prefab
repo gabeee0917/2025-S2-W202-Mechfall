@@ -1606,9 +1606,9 @@ MonoBehaviour:
   laserLifetime: 5
   objectToAppear: {fileID: 2531428435227271480}
   swordHitBoxSprite: {fileID: 3259535052906943957}
-  bullets: 200
+  bullets: 500
   laserCooldown: 0
-  swordCooldown: 1
+  swordCooldown: 0
 --- !u!114 &-7373474748805836900
 MonoBehaviour:
   m_ObjectHideFlags: 0

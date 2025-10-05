@@ -6,8 +6,6 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 // Player status manager for PVP
-// Note: for the details of movement, jump and dash, AI was used extensively (the code block of fixed update) as 
-// they are dummy/placeholder code that is to be replaced by the codes ted is developing (not my development feature) 
 
 public class PlayerStatus : MonoBehaviourPunCallbacks
 {
