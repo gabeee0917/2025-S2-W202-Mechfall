@@ -26,6 +26,7 @@ public class HealthBarMulti : MonoBehaviour
         UpdateHealthBarColor();
     }
 
+    // updates the player health displayed in pvp health bar using slider, depending on the thresholds in updatehealthbarcolor() the color changes 
     void Update()
     {
         if (uIManager.playerStatus != null)

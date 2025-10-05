@@ -35,6 +35,8 @@ public class GunSwordManager : MonoBehaviour
         photonView = GetComponent<PhotonView>();
         playerStatus = GetComponent<PlayerStatus>();
     }
+
+    // for player attacks, makes sure that inputs only work on my view player and if the player isnt dead
     void Update()
     {
         if (!photonView.IsMine) return;
@@ -61,6 +63,7 @@ public class GunSwordManager : MonoBehaviour
         }
     }
 
+    // rpc for muzz flash functions, original idea was to have a muzzle flash on shoot but changed to a gun of light showing for girl pvp character, nothing for boy
     private IEnumerator ShowAndHideObject()
     {
         photonView.RPC("ShowMuzzleFlashRPC", RpcTarget.All);
@@ -90,7 +93,7 @@ public class GunSwordManager : MonoBehaviour
         }
     }
 
-
+    // inumerator for shooting laser, makes sure it shoots in right direction by synching with the player's shootingpoint
     private IEnumerator ShootLaser()
     {
 
@@ -119,7 +122,7 @@ public class GunSwordManager : MonoBehaviour
     }
 
 
-
+    // rpc for sword attack, sword is a child object unlike te one's implementation that instantiates the prefab
     private IEnumerator SwingSword()
     {
         yield return new WaitForSeconds(0.15f);

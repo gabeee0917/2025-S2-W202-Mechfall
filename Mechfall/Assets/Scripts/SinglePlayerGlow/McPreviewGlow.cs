@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// In profile page, make it so you can change mc's glow and show it in the image (just color change due to UI limitations)
+// In profile page, make it so you can change mc's aura/glow and show it in the image (just color change due to UI limitations)
 public class McPreviewGlow : MonoBehaviour
 {
     public Image glowImage;                 

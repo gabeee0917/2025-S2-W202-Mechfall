@@ -14,15 +14,16 @@ public class CustomizePage : MonoBehaviour
 
     public TMP_Text descrip;
 
+    // updates the description text of the character chosen (toggled)
     void Update()
     {
         if (boyToggle.isOn)
         {
-            descrip.text = "[Master Hunter]\nHe will not rest until he has hunted down all his enemies...";
+            descrip.text = "[Chosen Light Demon]\nChosen by the light in the 18th century, he hunted down all the demons and saved humanity...";
         }
         else if (girlToggle.isOn)
         {
-            descrip.text = "[Master Warrior]\nAll she wants is to duel, with whomever it may be...";
+            descrip.text = "[Chosen Light Dragon]\nChosen by the light in the 14th century, she slayed all the dragons and saved humanity ...";
         }
         else
         {
@@ -30,6 +31,7 @@ public class CustomizePage : MonoBehaviour
         }
     }
 
+    // Done button, saves the character choice and the glow color in pvp
     public void SaveCharacterChoice()
     {
         string Character;

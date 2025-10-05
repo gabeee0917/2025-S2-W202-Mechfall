@@ -40,6 +40,7 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
         StartCoroutine(AssignUI2Players());
     }
 
+    // assigns players to the correct ui positions, room maker spawns on the left and gets left ui, room joiner gets the right, link all componenets of player to the UI
     IEnumerator AssignUI2Players()
     {
 
@@ -94,6 +95,9 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
 
     }
 
+    // update the multiplayer UI, for health and bullets left, countdown from 300, also checks if game is over (players have a bool called gameover that becomes true when they die twice)
+    // if left player wins, show left player win screen and right player lose screen and vice versa. 
+    // implementation was tricky due to setting the right conditionals regarding which player (which view) causes the gameover event to occur 
     void Update()
     {
         if (leftPlayer != null)
@@ -156,12 +160,14 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
 
     }
 
+    // for leave room button in playroom
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
 
     }
 
+    // for the situation where one player force closes game or dcs and leaves room, makes remaining player win
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         if (playersallspawned == true)

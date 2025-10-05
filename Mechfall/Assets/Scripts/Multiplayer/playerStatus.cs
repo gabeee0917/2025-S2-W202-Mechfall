@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-// Player status manager for PVP
+// Player status manager for PVP, manages the player movement, animations, health, win and lose panels, gameover, stealth etc
+// heavily usess rpcs to synch the status of each player in both users' devices
 
 public class PlayerStatus : MonoBehaviourPunCallbacks
 {
@@ -50,6 +51,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     public GameObject losepanel;
     public GameObject winpanel;
 
+    //initialise player status on start, adds a light prefab to the player, makes the local camera follow player
     void Start()
     {
         //DontDestroyOnLoad(gameObject);
@@ -68,7 +70,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
                 lightInstance.transform.localPosition = new Vector3(0f, 0f, 0);
             }
         }
-        
+
         camerapvpmove cameraFollow = Camera.main.GetComponent<camerapvpmove>();
         if (cameraFollow != null)
         {
@@ -88,6 +90,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
     }
 
+    // makes sure inputs only work on own player, not the other player that has the same scripts on it, also inputs dont work if player is dead.
     void Update()
     {
         if (!photonView.IsMine) return;
@@ -141,6 +144,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             //glow.SetTrigger("jump");
         }
 
+        // stealth only works in pvp
         if (SceneManager.GetActiveScene().name == "PVP" && Input.GetKeyDown(KeyCode.G))
         {
             if (inStealth == false)
@@ -171,6 +175,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             }
         }
 
+        //pseudodash, not really a dash
         if (Input.GetKeyDown(KeyCode.E) && !isDashing)
         {
             isDashing = true;
@@ -240,6 +245,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         JumpAnim();
     }
 
+    // for smoother movement and jump, Mostly AI tuned
     void FixedUpdate()
     {
 
@@ -357,6 +363,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
     }
 
+    // when die and revive, show a shining prefab that is a particle system
     [PunRPC]
     void RPC_BeamLight()
     {
@@ -374,6 +381,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         beamalight.SetActive(false);
     }
 
+    // for revive visual sequence
     private IEnumerator Cooldown()
     {
 
@@ -397,6 +405,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     }
 
 
+    // for turning wing off, wing is on when the status is not jumpable, pseudo state for in air
     [PunRPC]
     public void RPC_wingonoff()
     {
@@ -477,7 +486,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
 
 
-
+    // flips the transform positions
     public void Flip()
     {
         isFacingRight = !isFacingRight;

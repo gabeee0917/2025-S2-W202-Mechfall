@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 
-// replace popuppanel with pause menu when vidu uploads,  
+// single player In-game UI manager, links multiple aspects together
 public class UIManager : MonoBehaviour
 {
      public TextMeshProUGUI LivesText;
@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 
     public bool ispaused = false;
 
+    // on start, make this dontdestroyonload so that it persists across sublevels 1-1, 1-2 etc, initialise UI elements
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
             }
     }
 
+    // if uninitialised at start, attempt to find player, update lives, check for ESC input for pause menu
     void Update()
     {
         if (dummy == null)
@@ -67,6 +69,7 @@ public class UIManager : MonoBehaviour
             }
     }
 
+    //pause menu popup, freeze game
     public void ShowPopup()
     {
         popupPanel.SetActive(true);
@@ -74,6 +77,7 @@ public class UIManager : MonoBehaviour
         ispaused = true;
     }
 
+    //pause menu hide, unfreeze game, resume button in pause menu
     public void HidePopup()
     {
         popupPanel.SetActive(false);
@@ -81,7 +85,9 @@ public class UIManager : MonoBehaviour
         ispaused = false;
     }
 
-    public void ToLobby(){
+    // to lobby button in pause menu
+    public void ToLobby()
+    {
         SceneManager.LoadScene("Lobby");
         Time.timeScale = 1f;
 
@@ -98,16 +104,18 @@ public class UIManager : MonoBehaviour
             }
         }
         GameObject soundmanager = GameObject.FindWithTag("Spawn");
-                    
-                    if (soundmanager != null)
-                    {
-                        Destroy(soundmanager);
-                    }
+
+        if (soundmanager != null)
+        {
+            Destroy(soundmanager);
+        }
 
         Destroy(gameObject);
     }
 
-    public void ToStage(){
+    // to stagepage button in pause menu
+    public void ToStage()
+    {
         SceneManager.LoadScene("StagePage");
         Time.timeScale = 1f;
 
@@ -124,12 +132,12 @@ public class UIManager : MonoBehaviour
             }
         }
         GameObject soundmanager = GameObject.FindWithTag("Spawn");
-                    
-                    if (soundmanager != null)
-                    {
-                        Destroy(soundmanager);
-                    }
-        
+
+        if (soundmanager != null)
+        {
+            Destroy(soundmanager);
+        }
+
         Destroy(gameObject);
     }
 }

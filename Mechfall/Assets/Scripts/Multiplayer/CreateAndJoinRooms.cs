@@ -29,6 +29,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
+    // makes it so that when a player plays pvp and leaves room, the panel isnt shut (default for the scene) but open if they are still connected to the network server
     void Start()
     {
         PhotonNetwork.OfflineMode = false;
@@ -47,6 +48,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         connectionStatusText.gameObject.SetActive(false);
     }
 
+    // obsolete method, originally attempted implementing single player using photon offline mode but team decided against it
     public void PlaySinglePlayer()
     {
 
@@ -61,6 +63,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         }
     }
 
+    // connect to multiplayer network by pressing PVP button in lobby
     public void ConnectMultiplayer()
     {
         if (!PhotonNetwork.IsConnected && !PhotonNetwork.OfflineMode)
@@ -70,6 +73,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         }
     }
 
+    //Create a room with the title input, if none input a string of stuff is the room name
     public void CreateRoom()
     {
         if (PhotonNetwork.IsConnected || PhotonNetwork.OfflineMode)
@@ -85,12 +89,15 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         }
     }
 
+    // when room is created, changes the status text
     public override void OnCreatedRoom()
     {
         string roomName = PhotonNetwork.CurrentRoom.Name;
         connectionStatusText.text = $"Successfully created {roomName} \n Waiting for Opponent";
         connectionStatusText.gameObject.SetActive(true);
     }
+
+    // on room join, change the status text, not really needed as join causes scene change immediately
     public void JoinRoom()
     {
         if (PhotonNetwork.IsConnected || PhotonNetwork.OfflineMode)
@@ -99,6 +106,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         }
     }
 
+    // exiting multiplayer server through the button Leave server
     public void ExitMultiplayer()
     {
         isMultiplayerMode = false;
@@ -113,13 +121,13 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     }
 
 
-
+    // if pvp dc occurs, incur a loss
     private IEnumerator SaveDataOnPvPDC()
     {
         yield return StartCoroutine(UserSession.Instance.SaveDataToFireStore());
     }
 
-
+    // obsolete function, for photon offline mode as mentioned before is no longer used
     private void StartOfflineMode()
     {
         enterOfflineAfterDisconnect = false;
@@ -127,6 +135,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom("OfflineRoom");
     }
 
+    // when connect to server, change status text and joins lobby
     public override void OnConnectedToMaster()
     {
         connectionStatusText.text = "Connected to server";
@@ -139,6 +148,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         }
     }
 
+    // obsolete function related to offline mode
     public override void OnJoinedRoom()
     {
         if (PhotonNetwork.OfflineMode)
@@ -149,6 +159,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     }
 
+    // this is for when a pvp room starts, make the room closed and invisible so that it is no longer on the list, load pvp map
     public void OnPlayerEnteredRoom(Player newPlayer)
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
@@ -180,6 +191,8 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         SetCustomiseUIActive(false);
     }
+
+    // used when leaving room in pvp lobby ui or when pvp match is done
     public void LeaveRoom()
     {
         if (PhotonNetwork.InRoom)
@@ -197,6 +210,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         connectionStatusText.gameObject.SetActive(true);
     }
 
+    // update the room list with all the visible and open rooms in the photon lobby
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         roomListText.text = "";
@@ -211,10 +225,11 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             roomListText.text += $"{room.Name}\n";
         }
     }
-
+    
+    // for the button single player    
     public void StoryMode()
     {
-            SceneManager.LoadScene("StagePage");
+        SceneManager.LoadScene("StagePage");
     }
 
     public void QuitGame()
@@ -222,6 +237,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         Application.Quit();
     }
 
+    // a one player room, more for development purposes to test pvp room but kept so users can play around
     public void TrainingMap()
     {
 
@@ -231,6 +247,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     }
 
+    //make sure scene load doesn't happen too quickly causing bugs
     private IEnumerator WaitForJoinAndLoadScene()
     {
         while (!PhotonNetwork.InRoom)

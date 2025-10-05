@@ -18,7 +18,8 @@ public class emotes : MonoBehaviourPun
 
     }
 
-
+    // depending on the input key, f1 or f2 or f3, show correct emote by sending rpc. The number indicates element index. 
+    // Shows for 2secs and then empties. Had to add 777 for emptying out the emote box due to bugs.
     void Update()
     {
         if (!photonView.IsMine) return;

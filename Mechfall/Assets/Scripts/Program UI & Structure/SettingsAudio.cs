@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 
 // Behavior script on pressing the sound button at the top right (appears when pressing the gear button). 
-//AS OF 02.09.25 HAVE NOT YET ADDED ACTUAL CHANGES TO SOUND, ONLY THE APPEARANCE OF THE AUDIO BUTTON. DONT FORGET TO ADD AND NEED TO DYNAMICALLY GET IF SOUND ON OR NOT!
-//dONT JUST SET TO TRUE AT THE BEGINNING!   
+ 
 public class SettingsAudioButton : MonoBehaviour
 {
     private bool Sound = true;
     public GameObject audioOn;
     public GameObject audioOff;
 
+    // if audio is on, turn off audio and change icon to off icon. if audio is off, turn on audio and change icon to on icon
     public void clickAudio()
     {
         if (Sound == true)
@@ -29,6 +29,7 @@ public class SettingsAudioButton : MonoBehaviour
         }
     }
 
+    // synchs the button display with correct sound state (has become obsolete as the idea of a sound button in pause menu was scrapped)
     public void Update()
     {
         if (AudioListener.volume > 0f)
@@ -42,7 +43,7 @@ public class SettingsAudioButton : MonoBehaviour
         }
         else
         {
-             if (Sound == true)
+            if (Sound == true)
             {
                 audioOn.SetActive(false);
                 audioOff.SetActive(true);

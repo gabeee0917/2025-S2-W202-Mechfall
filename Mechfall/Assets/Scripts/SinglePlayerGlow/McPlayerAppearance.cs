@@ -2,7 +2,8 @@
 using UnityEngine;
 
 
-// attach to each player from level 2 onwards 
+// attach to each player from level 2 onwards
+// Changes the main character player's (for singleplayer) in game aura to the color selected in profile page  
 public class McPlayerAppearance : MonoBehaviour
 {
     public Material noGlow;

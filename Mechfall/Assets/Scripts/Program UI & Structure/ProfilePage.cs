@@ -23,6 +23,7 @@ public class Profilepage : MonoBehaviour
     public TMP_Text PvPWin;
     public TMP_Text PvPLose;
 
+    // on awake, synch profile page display data with usersession data
     void Awake()
     {
         username.text = UserSession.Instance.username;
@@ -33,6 +34,7 @@ public class Profilepage : MonoBehaviour
         PvPLose.text = UserSession.Instance.PvPLose.ToString();
     }
 
+    // change profile message for edit button
     public void ChangeMessage()
     {
         profilemessage.text = changeprofilemessage.text;
@@ -51,6 +53,7 @@ public class Profilepage : MonoBehaviour
         changeprofilemessage.gameObject.SetActive(false);
     }
 
+    // if changes occur in content of ui elements, change the displayed content to changed 
     void Update()
     {
         if (profilemessage.text != UserSession.Instance.profilemessage)
