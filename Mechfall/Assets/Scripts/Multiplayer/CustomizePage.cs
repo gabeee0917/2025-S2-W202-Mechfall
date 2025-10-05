@@ -23,7 +23,7 @@ public class CustomizePage : MonoBehaviour
         }
         else if (girlToggle.isOn)
         {
-            descrip.text = "[Chosen Light Dragon]\nChosen by the light in the 14th century, she slayed all the dragons and saved humanity ...";
+            descrip.text = "[Chosen Light Dragon]\nChosen by the light in the 14th century, she slayed all the dragons and saved humanity...";
         }
         else
         {
