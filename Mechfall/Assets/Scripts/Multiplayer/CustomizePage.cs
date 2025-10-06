@@ -19,11 +19,11 @@ public class CustomizePage : MonoBehaviour
     {
         if (boyToggle.isOn)
         {
-            descrip.text = "[Chosen Light Demon]\nChosen by the light in the 18th century, he hunted down all the demons and saved humanity...";
+            descrip.text = "[DemonFall]\nChosen by the light in the 18th century, he hunted down every last demon and saved humanity from the darkness...";
         }
         else if (girlToggle.isOn)
         {
-            descrip.text = "[Chosen Light Dragon]\nChosen by the light in the 14th century, she slayed all the dragons and saved humanity...";
+            descrip.text = "[DragonFall]\nChosen by the light in the 14th century, she slayed every last dragon and saved humanity from the fire...";
         }
         else
         {

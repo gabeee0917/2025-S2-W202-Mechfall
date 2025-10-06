@@ -601,7 +601,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '[Level 4]
 
-    Destroy the core to achieve mechfall'
+    Destroy the core '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
   m_sharedMaterial: {fileID: 1754589396565612516, guid: f08a59c900815af40b7cab8ede4301b8, type: 2}
@@ -3315,7 +3315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverStageInfo
   stageinfo: {fileID: 1805652020}
   onhover: Defeat the defense system and free all who are enslaved by the core. The
-    first of many cores, when all are gone everyone will proclaim in joy "Mechfall!"
+    first of many cores, when all are gone all of humanity will sing your name "Mechfall!"
   onleavehover: 
 --- !u!1 &2102290540
 GameObject:
