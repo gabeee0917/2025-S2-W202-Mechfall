@@ -78,7 +78,7 @@ public class TutorialDirector : MonoBehaviour
         ClearMessage();
 
         // 8) Congratulate, then fade to black over 5 seconds (text remains while fading)
-        yield return ShowMessage("Well done!", 0f);
+        yield return ShowMessage("Well done!\nPress the button to leave", 0f);
         yield return StartCoroutine(FadeToBlack(5f));
         ClearMessage();
 

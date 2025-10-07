@@ -20,7 +20,8 @@ public class StageManager : MonoBehaviour
             if (button.gameObject.name == "Lobby" || button.gameObject.name == "logout"
             || button.gameObject.name == "profile" || button.gameObject.name == "Settings Button"
             || button.gameObject.name == "Save" || button.gameObject.name == "keymap"
-            || button.gameObject.name == "sound" || button.gameObject.name == "Highscores")
+            || button.gameObject.name == "sound" || button.gameObject.name == "Highscores"
+            || button.gameObject.name == "Story"|| button.gameObject.name == "Image")
             {
                 continue;
             }
