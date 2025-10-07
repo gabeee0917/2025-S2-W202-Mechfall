@@ -1608,7 +1608,7 @@ MonoBehaviour:
   swordHitBoxSprite: {fileID: 3259535052906943957}
   bullets: 500
   laserCooldown: 0
-  swordCooldown: 0
+  swordCooldown: 0.5
 --- !u!114 &-7373474748805836900
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1338,11 +1338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5833986906877431154, guid: 6e2e88f09d4c1e14a93efbd16978a4d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.32
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5833986906877431154, guid: 6e2e88f09d4c1e14a93efbd16978a4d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 5833986906877431154, guid: 6e2e88f09d4c1e14a93efbd16978a4d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1696,7 +1696,7 @@ MonoBehaviour:
   swordHitBoxSprite: {fileID: 3302775154652319112}
   bullets: 500
   laserCooldown: 0
-  swordCooldown: 0
+  swordCooldown: 0.5
 --- !u!114 &6514885646820293135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1784,7 +1784,7 @@ MonoBehaviour:
   isFacingRight: 1
   glow: {fileID: 0}
   moveSpeed: 10
-  jumpForce: 5
+  jumpForce: 5.5
   acceleration: 40
   deceleration: 200
   fallMultiplier: 2.5
