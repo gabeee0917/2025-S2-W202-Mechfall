@@ -7,11 +7,13 @@ using UnityEngine.UI;
 // Script for the process that runs when click on the start game button at the very first scene. 
 public class StartSceneSwitcher : MonoBehaviour
 {
-  public GameObject beam; // simulate beam glow by making it appear
+  public GameObject beam; 
   public Material change;
   public GameObject enemy;
 
   public AudioSource beamsound;
+
+  // simulate beam glow by making it appear, make a sound effect sound, change scene to login scene 2 secs later
   public void LoadLogin()
   {
     beam.SetActive(true);

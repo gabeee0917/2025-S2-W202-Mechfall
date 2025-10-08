@@ -18,7 +18,7 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.InRoom)
         {
-            string selectedCharacter = PlayerPrefs.GetString("Character", "Girl");
+            string selectedCharacter = PlayerPrefs.GetString("Character", "Girl");  // default character is girl prefab
             GameObject playerPrefab;
             if (selectedCharacter == "Boy")
             {
@@ -33,7 +33,7 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
                 playerPrefab = girlPrefab;
             }
 
-            string selectedGlowColor = PlayerPrefs.GetString("GlowColor", "NO GLOW");
+            string selectedGlowColor = PlayerPrefs.GetString("GlowColor", "NO GLOW");   // default glow is no glow
 
 
 

@@ -2,8 +2,8 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 
-// For attack collisions and interactions in PVP using RPCs 
-// While it may seem to collide with Te One's development features, this script being PVP specific required seperate development
+// For attack collisions and interactions of bullets and sword in PVP using RPCs 
+// Similar to Te One's development features but his was for single player, this script being PVP specific required seperate development
 public class DestroyOnCollision : MonoBehaviour
 {
     public GameObject effectPrefab;
@@ -19,7 +19,7 @@ public class DestroyOnCollision : MonoBehaviour
     {
         if (!photonView.IsMine) return;
 
-
+        // if sword collides with sword, disable first one, which one it will be though depends
         if (gameObject.CompareTag("sword") && other.CompareTag("sword"))
         {
 
@@ -33,6 +33,7 @@ public class DestroyOnCollision : MonoBehaviour
             }
 
         }
+        // if bullet is collided with, the bullet gets destroyed
         else if (other.CompareTag("bullet"))
         {
             if (other.gameObject != null)
@@ -47,6 +48,7 @@ public class DestroyOnCollision : MonoBehaviour
             }
 
         }
+        // if player is hit by bullet or sword, rpc take damage so that player losing hp is synched accross all views
         else if (other.CompareTag("Player") && other.transform != transform.parent)
         {
             Vector2 contactPoint = other.ClosestPoint(transform.position);

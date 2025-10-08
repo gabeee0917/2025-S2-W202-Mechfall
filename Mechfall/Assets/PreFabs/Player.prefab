@@ -394,6 +394,7 @@ MonoBehaviour:
   gunCDT: 1
   swordHitBox: {fileID: 9151708786349257973, guid: 1c6b8e414df325b479fc3202850614f0, type: 3}
   swordPoint: {fileID: 3317240534157686633}
+  animator: {fileID: 0}
 --- !u!114 &5008750640300680997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 7439319066845341676}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.226, y: -0.013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -524,13 +525,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: chibi-robot_0
       objectReference: {fileID: 0}
+    - target: {fileID: 6701117431720965062, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4709599534173829014, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 993432763040102294}
   m_SourcePrefab: {fileID: 100100000, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
 --- !u!4 &1193287006904662475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 933093659250723922, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
   m_PrefabInstance: {fileID: 2052633764792317337}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6712527671297671695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4709599534173829014, guid: 24042df475ee1424ba6e86bd009d3bcb, type: 3}
+  m_PrefabInstance: {fileID: 2052633764792317337}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &993432763040102294
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712527671297671695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb860d90b79a47a4d84da3629cba66ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

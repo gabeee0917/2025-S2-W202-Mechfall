@@ -17,10 +17,14 @@ public class Weapon : MonoBehaviour
     private InputAction playerSwordAction;
     private Boolean isFiring = true;
     private Boolean gunCD = true;
-
+    public Animator animator;
     private void Awake()
     {
         playerControls = new InputSystem_Actions();
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
     }
 
     public void OnEnable()
@@ -81,6 +85,7 @@ public class Weapon : MonoBehaviour
 
     void Fire()
     {
+        animator.SetTrigger("Shoot");
         // Create a bullet firing from the firepoint;
         Instantiate(bullet, firepoint.position, firepoint.rotation);
 

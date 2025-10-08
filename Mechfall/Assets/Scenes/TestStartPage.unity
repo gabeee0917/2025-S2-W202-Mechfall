@@ -860,7 +860,7 @@ PrefabInstance:
     - target: {fileID: 6309115258012093000, guid: 36fe965c3fc551544b2947f5b89d4a16, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: 8faf35ffba907f741b319fd51745652e, type: 2}
+      objectReference: {fileID: 2100000, guid: 8ba0e0a453f11744ebfa3d9d93fb025a, type: 2}
     - target: {fileID: 7111823855672941401, guid: 36fe965c3fc551544b2947f5b89d4a16, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b
       value: 1
