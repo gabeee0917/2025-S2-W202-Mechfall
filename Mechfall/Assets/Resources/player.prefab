@@ -1700,7 +1700,7 @@ MonoBehaviour:
   inStealth: 0
   stealthPanel: {fileID: 6617595166296601281}
   beamalight: {fileID: 5399135074345345843}
-  dashSpeed: 10
+  dashSpeed: 20
   dashTime: 0.5
   muzz: {fileID: 0}
   gameover: 0

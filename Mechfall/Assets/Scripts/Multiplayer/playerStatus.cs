@@ -96,7 +96,12 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         if (!photonView.IsMine) return;
         if (isDead) return;
 
-
+        //if fall off map, take 25 damage and return to middle
+        if (transform.position.y < -15f)
+        {
+            transform.position = new Vector3(0f, 1f, 0f);
+            RPC_TakeDamage(25);
+        }
 
         moveInput = 0f;
 
