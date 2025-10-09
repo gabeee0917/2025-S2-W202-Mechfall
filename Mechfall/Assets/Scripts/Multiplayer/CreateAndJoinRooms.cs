@@ -160,7 +160,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     }
 
     // this is for when a pvp room starts, make the room closed and invisible so that it is no longer on the list, load pvp map
-    public void OnPlayerEnteredRoom(Player newPlayer)
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
