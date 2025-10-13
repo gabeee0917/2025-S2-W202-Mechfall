@@ -15,15 +15,12 @@ public class KeyBoard : MonoBehaviour
     public GameObject shift;
     public GameObject left;
     public GameObject right;
-
     public GameObject esc;
-
     public GameObject f1;
     public GameObject f2;
     public GameObject f3;
     public GameObject g;
     public GameObject x;
-
     private Image escRen;
     private Image spaceRen;
     private Image aRen;
@@ -161,9 +158,6 @@ public class KeyBoard : MonoBehaviour
             escRen.color = Color.grey;
         }
 
-
-
-
         if (Input.GetKey(KeyCode.F1))
         {
             f1Ren.color = Color.white;
@@ -174,7 +168,6 @@ public class KeyBoard : MonoBehaviour
             f1Ren.color = Color.grey;
         }
 
-
         if (Input.GetKey(KeyCode.F2))
         {
             f2Ren.color = Color.white;
@@ -184,7 +177,6 @@ public class KeyBoard : MonoBehaviour
         {
             f2Ren.color = Color.grey;
         }
-
 
         if (Input.GetKey(KeyCode.F3))
         {
@@ -214,11 +206,5 @@ public class KeyBoard : MonoBehaviour
         {
             xRen.color = Color.grey;
         }
-
-
     }
-
-
-
-
 }

@@ -10,7 +10,6 @@ public class StartSceneSwitcher : MonoBehaviour
   public GameObject beam; 
   public Material change;
   public GameObject enemy;
-
   public AudioSource beamsound;
 
   // simulate beam glow by making it appear, make a sound effect sound, change scene to login scene 2 secs later
@@ -21,7 +20,6 @@ public class StartSceneSwitcher : MonoBehaviour
     Image image = gameObject.GetComponent<Image>();
     image.material = change;
     StartCoroutine(Delay(2));
-
   }
 
   IEnumerator Delay(float n)
@@ -34,6 +32,5 @@ public class StartSceneSwitcher : MonoBehaviour
   {
     beamsound.Play();
   }
-
 }
 

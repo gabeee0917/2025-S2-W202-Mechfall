@@ -8,10 +8,7 @@ public class CustomizePage : MonoBehaviour
 {
     public Toggle boyToggle;
     public Toggle girlToggle;
-
-
     public TMP_Dropdown glowDropdown;
-
     public TMP_Text descrip;
 
     // updates the description text of the character chosen (toggled)
@@ -47,12 +44,10 @@ public class CustomizePage : MonoBehaviour
         {
             Character = "Girl";
         }
-
         PlayerPrefs.SetString("Character", Character);
 
         string GlowColor = glowDropdown.options[glowDropdown.value].text;
         PlayerPrefs.SetString("GlowColor", GlowColor);
-
 
         PlayerPrefs.Save();
     }

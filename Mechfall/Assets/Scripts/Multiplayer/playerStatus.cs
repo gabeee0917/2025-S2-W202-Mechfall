@@ -30,23 +30,16 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public float moveInput = 0f;
-
     public Transform wing;
-
     public bool inStealth;
     public GameObject stealthPanel;
-
     public GameObject beamalight;
     private Coroutine stealthCoroutine;
-
     public float dashSpeed = 10f;
     public float dashTime = 0.5f;
-
     private bool isDashing = false;
     private float dashTimer;
-
     public SpriteRenderer muzz;
-
     public bool gameover;
     public GameObject losepanel;
     public GameObject winpanel;
@@ -54,13 +47,13 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     //initialise player status on start, adds a light prefab to the player, makes the local camera follow player
     void Start()
     {
-        //DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         glow = transform.Find("glow")?.GetComponent<Animator>();
         wing = transform.Find("wing");
         muzz = transform.Find("muzzflash")?.GetComponent<SpriteRenderer>();
         inStealth = false;
+        
         if (photonView.IsMine)
         {
             GameObject light = Resources.Load<GameObject>("OnlySelfSeeLight");
@@ -87,7 +80,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
                 baseGlowColor = targetMaterial.GetColor("_GlowColor");
             }
         }
-
     }
 
     // makes sure inputs only work on own player, not the other player that has the same scripts on it, also inputs dont work if player is dead.
@@ -108,21 +100,15 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         if (Input.GetKey(KeyCode.RightArrow))
         {
             moveInput = 1f;
-            //animator.SetBool("isRunning", true);
-            //glow.SetBool("isRunning", true);
             photonView.RPC("RPC_RunYesAnim", RpcTarget.AllBuffered);
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             moveInput = -1f;
-            //animator.SetBool("isRunning", true);
-            //glow.SetBool("isRunning", true);
             photonView.RPC("RPC_RunYesAnim", RpcTarget.AllBuffered);
         }
         else
         {
-            //animator.SetBool("isRunning", false);
-            //glow.SetBool("isRunning", false);
             photonView.RPC("RPC_RunNoAnim", RpcTarget.AllBuffered);
         }
 
@@ -145,8 +131,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             jump = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             photonView.RPC("RPC_JumpAnim", RpcTarget.AllBuffered);
-            //animator.SetTrigger("jump");
-            //glow.SetTrigger("jump");
         }
 
         // stealth only works in pvp
@@ -188,17 +172,12 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             photonView.RPC("RPC_wingonoff", RpcTarget.AllBuffered);
             photonView.RPC("RPC_DashAnim", RpcTarget.AllBuffered);
         }
-
-
-
     }
 
     public void RunNoAnim()
     {
         animator.SetBool("isRunning", false);
         glow.SetBool("isRunning", false);
-
-
     }
 
     [PunRPC]
@@ -207,27 +186,22 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         RunNoAnim();
     }
 
-
     public void DashAnim()
     {
         animator.SetTrigger("dash");
         glow.SetTrigger("dash");
-
     }
+
     [PunRPC]
     void RPC_DashAnim()
     {
         DashAnim();
     }
 
-
     public void RunYesAnim()
     {
         animator.SetBool("isRunning", true);
         glow.SetBool("isRunning", true);
-
-
-
     }
 
     [PunRPC]
@@ -236,12 +210,10 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         RunYesAnim();
     }
 
-
     public void JumpAnim()
     {
         animator.SetTrigger("jump");
         glow.SetTrigger("jump");
-
     }
 
     [PunRPC]
@@ -253,16 +225,13 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     // for smoother movement and jump, Mostly AI tuned
     void FixedUpdate()
     {
-
         Vector2 force = new Vector2(moveInput * acceleration, 0f);
         rb.AddForce(force);
-
 
         if (Mathf.Abs(rb.linearVelocity.x) > moveSpeed)
         {
             rb.linearVelocity = new Vector2(Mathf.Sign(rb.linearVelocity.x) * moveSpeed, rb.linearVelocity.y);
         }
-
 
         if (jump)
         {
@@ -279,7 +248,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
 
-
         if (isDashing)
         {
             float direction = transform.localScale.x > 0 ? 1 : -1;
@@ -291,24 +259,21 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
                 isDashing = false;
             }
         }
-
-
     }
+
     public void TakeDamage(int damage)
     {
-
         if (damageImmune == true) return;
         health -= damage;
+
         if (health <= 0)
         {
             health = 0;
             Die();
         }
-
-
+        
         photonView.RPC("UpdateHealthRPC", RpcTarget.AllBuffered, health);
     }
-
 
     [PunRPC]
     void UpdateHealthRPC(int newHealth)
@@ -324,8 +289,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
     void Die()
     {
-
-
         photonView.RPC("RPC_Die", RpcTarget.AllBuffered);
 
         Stealth(false);
@@ -337,14 +300,12 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         inStealth = false;
         StopCoroutine(StealthTakeDamage());
 
-
         if (lives <= 0)
         {
             gameover = true;
             isDead = true;
             lives = 0;
             health = 0;
-
         }
         else if (lives > 0)
         {
@@ -354,18 +315,14 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         }
     }
 
-
     [PunRPC]
     void RPC_Die()
     {
-
         muzz.enabled = false;
-
         photonView.RPC("RPC_SetGlowOff", RpcTarget.AllBuffered);
         isDead = true;
         animator.SetTrigger("death");
         glow.SetTrigger("death");
-
     }
 
     // when die and revive, show a shining prefab that is a particle system
@@ -389,14 +346,10 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     // for revive visual sequence
     private IEnumerator Cooldown()
     {
-
         yield return new WaitForSeconds(1.5f);
         photonView.RPC("RPC_BeamLight", RpcTarget.AllBuffered);
         yield return new WaitForSeconds(3f);
         photonView.RPC("RPC_SetGlowOn", RpcTarget.AllBuffered);
-
-
-
 
         isDead = false;
         health = 100;
@@ -409,16 +362,12 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         StartCoroutine(Cooldown());
     }
 
-
     // for turning wing off, wing is on when the status is not jumpable, pseudo state for in air
     [PunRPC]
     public void RPC_wingonoff()
     {
-
         StartCoroutine(DelayWingOff(2f));
-
     }
-
 
     private IEnumerator DelayWingOff(float delay)
     {
@@ -426,8 +375,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(delay);
         wing.gameObject.SetActive(false);
     }
-
-
 
     public void WallslideOn()
     {
@@ -472,24 +419,17 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         targetMaterial.SetColor("_GlowColor", baseGlowColor * 1f);
     }
 
-
-
     [PunRPC]
     public void RPC_SetGlowOn()
     {
         SetGlowOn();
     }
 
-
     [PunRPC]
     public void RPC_SetGlowOff()
     {
         SetGlowOff();
     }
-
-
-
-
 
     // flips the transform positions
     public void Flip()
@@ -507,7 +447,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         Flip();
     }
 
-
     void Stealth(bool isInvisible)
     {
         foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
@@ -518,8 +457,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             }
             renderer.enabled = !isInvisible;
         }
-
-
     }
 
     [PunRPC]
@@ -533,7 +470,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
     IEnumerator StealthTakeDamage()
     {
-
         while (inStealth == true)
         {
             photonView.RPC("RPC_TakeDamage", RpcTarget.AllBuffered, 3);
@@ -545,14 +481,12 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     {
         Time.timeScale = 0f;
         losepanel.SetActive(true);
-
     }
 
     public void ShowWin()
     {
         Time.timeScale = 0f;
         winpanel.SetActive(true);
-
     }
 
     public void HideLose()
@@ -567,19 +501,16 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         Time.timeScale = 1f;
         winpanel.SetActive(false);
         UserSession.Instance.PvPWin++;
-
     }
 
     public void LeaveRoom()
     {
         StartCoroutine(LeaveRoutine());
-
     }
 
     private IEnumerator LeaveRoutine()
     {
         yield return UserSession.Instance.SaveDataToFireStore();
-
         SceneManager.LoadScene("Lobby");
     }
 }

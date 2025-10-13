@@ -10,30 +10,22 @@ using UnityEngine.SceneManagement;
 public class StageScoreCompleteManager : MonoBehaviour
 {
     public string currentLevelName;
-
     public long currentScore;
     public long Finalscore;
     public GameObject WinPanel;
     public GameObject LosePanel;
     public int currentLevelNum;
-
-
     public int completionAddScore = 1000;
-
     public float startTime;
     public float timer;
     public TMP_Text timeUI;
     public TMP_Text winpaneltext;
     public TMP_Text losepaneltext;
-
-
     public bool questyes;
     public TMP_Text collectcoinquesttext;
     float coinCheckTimer = 0f;
     public long coincount;
-
     public bool questcomplete = false;
-
     public GameObject player;
 
     // on awake when scene loads, initialise the time, score, scenename, quest text, and corresponding UI elements
@@ -66,12 +58,9 @@ public class StageScoreCompleteManager : MonoBehaviour
         questcomplete = false;
     }
     
-
     // updating the in game UI for time, number of crystals in the map 
     void Update()
     {
-
-
         timer = Time.time - startTime;
         int seconds = (int)timer;
         timeUI.text = seconds.ToString();
@@ -93,7 +82,6 @@ public class StageScoreCompleteManager : MonoBehaviour
                 coinCheckTimer = 0f;
             }
         }
-
     }
 
     public void AddScore(int n)
@@ -106,11 +94,9 @@ public class StageScoreCompleteManager : MonoBehaviour
         currentScore -= n;
     }
 
-
     // open level complete panel when player reaches the level ender portal
     public void openLevelCompletePage()
     {
-
         dummySinglePlayerLives dummy = player.GetComponent<dummySinglePlayerLives>();
         Time.timeScale = 0f;
         WinPanel.SetActive(true);
@@ -141,7 +127,6 @@ public class StageScoreCompleteManager : MonoBehaviour
         Time.timeScale = 1f;
 
         StartCoroutine(delayCompleteLevel());
-
     }
 
     //delayed completion to ensure proper destruction of dontdestroyonload objects
@@ -155,8 +140,6 @@ public class StageScoreCompleteManager : MonoBehaviour
             Destroy(ingameui);
         }
 
-
-
         GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
         foreach (GameObject sound in sounds)
         {
@@ -165,6 +148,7 @@ public class StageScoreCompleteManager : MonoBehaviour
                 Destroy(sound);
             }
         }
+
         GameObject soundmanager = GameObject.FindWithTag("Spawn");
 
         if (soundmanager != null)
@@ -172,15 +156,12 @@ public class StageScoreCompleteManager : MonoBehaviour
             Destroy(soundmanager);
         }
 
-
         SceneManager.LoadScene("StagePage");
-
     }
 
     // open lose panel when player lives reaches 0
     public void openLevelLosePage()
     {
-
         LosePanel.SetActive(true);
         Time.timeScale = 0f;
         losepaneltext.text = $"Better luck next time...";
@@ -196,9 +177,7 @@ public class StageScoreCompleteManager : MonoBehaviour
             UserSession.Instance.updateHighScore();
         }
         UserSession.Instance.saveB();
-        //LosePanel.SetActive(false);
         Time.timeScale = 1f;
         StartCoroutine(delayCompleteLevel());
-
     }
 }

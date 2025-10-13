@@ -11,15 +11,10 @@ public class Profilepage : MonoBehaviour
 {
     public TMP_Text username;
     public TMP_Text maxlevel;
-
     public TMP_Text highscore;
-
     public TMP_Text profilemessage;
-
     public TMP_InputField changeprofilemessage;
-
     private string previousmessage;
-
     public TMP_Text PvPWin;
     public TMP_Text PvPLose;
 
@@ -77,5 +72,4 @@ public class Profilepage : MonoBehaviour
             PvPLose.text = UserSession.Instance.PvPLose.ToString();
         }
     }
-
 }

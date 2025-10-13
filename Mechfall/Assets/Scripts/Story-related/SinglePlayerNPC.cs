@@ -5,11 +5,6 @@ public class SinglePlayerNPC : MonoBehaviour
     public GameObject textboximage;
     private bool overlap = false;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (overlap && Input.GetKeyDown(KeyCode.F))

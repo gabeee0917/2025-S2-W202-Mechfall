@@ -7,29 +7,21 @@ using Photon.Pun;
 public class GunSwordManager : MonoBehaviour
 {
     public GameObject laserPrefab;
-
     public Transform shootingPoint;
     private PlayerStatus playerStatus;
     public Material playerMaterial;
-
-
     public float laserSpeed = 20f;
     public float laserLifetime = 5f;
-
-
     public GameObject objectToAppear;
     public GameObject swordHitBoxSprite;
-
     public int bullets = 10;
     private bool isFacingRight;
-
-
     public float laserCooldown = 1f;
     public float swordCooldown = 0.35f;
     private float nextLaserTime = 0f;
     private float nextSwordTime = 0f;
-
     private PhotonView photonView;
+
     void Start()
     {
         photonView = GetComponent<PhotonView>();
@@ -53,7 +45,6 @@ public class GunSwordManager : MonoBehaviour
             bullets--;
         }
 
-
         if (playerStatus.isDead == false && Input.GetKeyDown(KeyCode.A) && Time.time >= nextSwordTime)
         {
             playerStatus.animator.SetTrigger("attack");
@@ -67,9 +58,7 @@ public class GunSwordManager : MonoBehaviour
     private IEnumerator ShowAndHideObject()
     {
         photonView.RPC("ShowMuzzleFlashRPC", RpcTarget.All);
-
         yield return new WaitForSeconds(0.35f);
-
         photonView.RPC("HideMuzzleFlashRPC", RpcTarget.All);
     }
 
@@ -96,8 +85,6 @@ public class GunSwordManager : MonoBehaviour
     // inumerator for shooting laser, makes sure it shoots in right direction by synching with the player's shootingpoint
     private IEnumerator ShootLaser()
     {
-
-
         StartCoroutine(ShowAndHideObject());
 
         GameObject laser = PhotonNetwork.Instantiate(laserPrefab.name, shootingPoint.position, shootingPoint.rotation);
@@ -127,9 +114,7 @@ public class GunSwordManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.15f);
         photonView.RPC("ActivateSwordRPC", RpcTarget.All);
-
         yield return new WaitForSeconds(0.35f);
-
         photonView.RPC("DeactivateSwordRPC", RpcTarget.All);
     }
 
@@ -137,7 +122,6 @@ public class GunSwordManager : MonoBehaviour
     private void ActivateSwordRPC()
     {
         swordHitBoxSprite.SetActive(true);
-
 
         Renderer swordRenderer = swordHitBoxSprite.GetComponent<Renderer>();
         if (swordRenderer != null && playerMaterial != null)
@@ -151,8 +135,4 @@ public class GunSwordManager : MonoBehaviour
     {
         swordHitBoxSprite.SetActive(false);
     }
-
-
-
-
 }
