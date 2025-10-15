@@ -2,11 +2,10 @@ using UnityEngine;
 using Photon.Pun;
 
 // just a helper script for protecting my eyes in testing out pvp, used ai for specific details
-// trying to look at the character with no camera movement hurts my eyes and made me dizzy
-// might replace with camera moving code Gabe developed 
+// trying to look at the glowing character with no camera movement hurts my eyes and made me dizzy
+// leave in project but not included in final game compile
 public class camerapvpmove : MonoBehaviour
 {
-
     public Transform target;
     public Vector3 offset = new Vector3(0, 2, -10);
     public float smoothSpeed = 0.125f;
@@ -19,5 +18,4 @@ public class camerapvpmove : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
     }
-
 }

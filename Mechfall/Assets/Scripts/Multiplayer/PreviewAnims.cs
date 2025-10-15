@@ -9,8 +9,7 @@ public class PreviewAnimation : MonoBehaviour
     public Animator animator;
     public Animator glowa;
     public Renderer glowr;
-
-      public Material noGlow;
+    public Material noGlow;
     public Material redGlow;
     public Material blueGlow;
     public Material greenGlow;
@@ -62,10 +61,5 @@ public class PreviewAnimation : MonoBehaviour
             animator.SetBool("selected", false);
             glowa.SetBool("selected", false);
         }
-
-        
-
-
-
     }
 }

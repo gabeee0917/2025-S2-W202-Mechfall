@@ -8,8 +8,6 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
 {
     public GameObject boyPrefab;
     public GameObject girlPrefab;
- 
-
     public GameObject spawnPoint1;
     public GameObject spawnPoint2;
     private Vector3 spawnPosition;
@@ -32,13 +30,9 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
             {
                 playerPrefab = girlPrefab;
             }
-
             string selectedGlowColor = PlayerPrefs.GetString("GlowColor", "NO GLOW");   // default glow is no glow
 
-
-
             int spawnIndex = PhotonNetwork.LocalPlayer.ActorNumber;
-
 
             if (spawnIndex == 1)
             {
@@ -50,16 +44,12 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
             }
 
             object[] instantiationData = new object[] { selectedCharacter, selectedGlowColor };
-
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, Quaternion.identity, 0, instantiationData);
-
-
         }
-        
     }
 
 
-   public void LeaveButton()
+    public void LeaveButton()
     {
         PhotonNetwork.LeaveRoom();
     }

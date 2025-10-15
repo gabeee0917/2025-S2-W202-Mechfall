@@ -51,4 +51,4 @@ public class SettingsAudioButton : MonoBehaviour
             }
         }
     }
-    }
+}

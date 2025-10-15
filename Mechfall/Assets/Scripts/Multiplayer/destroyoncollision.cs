@@ -9,8 +9,6 @@ public class DestroyOnCollision : MonoBehaviour
     public GameObject effectPrefab;
     private PhotonView photonView;
 
-
-
     void Start()
     {
         photonView = GetComponent<PhotonView>();
@@ -22,7 +20,6 @@ public class DestroyOnCollision : MonoBehaviour
         // if sword collides with sword, disable first one, which one it will be though depends
         if (gameObject.CompareTag("sword") && other.CompareTag("sword"))
         {
-
             Vector2 contactPoint = other.ClosestPoint(transform.position);
             GameObject effect = PhotonNetwork.Instantiate(effectPrefab.name, contactPoint, Quaternion.identity);
 
@@ -31,7 +28,6 @@ public class DestroyOnCollision : MonoBehaviour
             {
                 otherPV.RPC("RPC_DisableSword", RpcTarget.AllBuffered);
             }
-
         }
         // if bullet is collided with, the bullet gets destroyed
         else if (other.CompareTag("bullet"))
@@ -46,7 +42,6 @@ public class DestroyOnCollision : MonoBehaviour
             {
                 PhotonNetwork.Destroy(gameObject);
             }
-
         }
         // if player is hit by bullet or sword, rpc take damage so that player losing hp is synched accross all views
         else if (other.CompareTag("Player") && other.transform != transform.parent)
@@ -54,20 +49,16 @@ public class DestroyOnCollision : MonoBehaviour
             Vector2 contactPoint = other.ClosestPoint(transform.position);
             GameObject effect = PhotonNetwork.Instantiate(effectPrefab.name, contactPoint, Quaternion.identity);
 
-
             PlayerStatus ps = other.GetComponent<PlayerStatus>();
             if (ps != null)
             {
                 ps.photonView.RPC("RPC_TakeDamage", RpcTarget.AllBuffered, 5);
-
             }
             if (gameObject.CompareTag("bullet"))
             {
                 PhotonNetwork.Destroy(gameObject);
             }
         }
-
-
     }
 
     [PunRPC]

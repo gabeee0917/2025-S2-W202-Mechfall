@@ -7,30 +7,27 @@ using UnityEngine.SceneManagement;
 // single player In-game UI manager, links multiple aspects together
 public class UIManager : MonoBehaviour
 {
-     public TextMeshProUGUI LivesText;
+    public TextMeshProUGUI LivesText;
     public Image playerImage;
-
-   
     public dummySinglePlayerLives dummy;
     public GameObject popupPanel;
     public GameObject player;
-
     public bool ispaused = false;
 
     // on start, make this dontdestroyonload so that it persists across sublevels 1-1, 1-2 etc, initialise UI elements
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-         if (player != null)
-            {
-                dummy = player.GetComponent<dummySinglePlayerLives>();
+        if (player != null)
+        {
+            dummy = player.GetComponent<dummySinglePlayerLives>();
 
-                SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
-                if (sr != null && playerImage != null)
-                {
-                    playerImage.sprite = sr.sprite;
-                }
+            SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
+            if (sr != null && playerImage != null)
+            {
+                playerImage.sprite = sr.sprite;
             }
+        }
     }
 
     // if uninitialised at start, attempt to find player, update lives, check for ESC input for pause menu
@@ -56,17 +53,17 @@ public class UIManager : MonoBehaviour
             LivesText.text = $"Lives: {dummy.lives}";
         }
 
-         if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (ispaused == false)
             {
-                if (ispaused == false)
-                {
-                    ShowPopup();
-                }
-                else
-                {
-                    HidePopup();
-                }
+                ShowPopup();
             }
+            else
+            {
+                HidePopup();
+            }
+        }
     }
 
     //pause menu popup, freeze game
@@ -95,6 +92,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(player);
         }
+
         GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
         foreach (GameObject sound in sounds)
         {
@@ -103,8 +101,8 @@ public class UIManager : MonoBehaviour
                 Destroy(sound);
             }
         }
-        GameObject soundmanager = GameObject.FindWithTag("Spawn");
 
+        GameObject soundmanager = GameObject.FindWithTag("Spawn");
         if (soundmanager != null)
         {
             Destroy(soundmanager);
@@ -123,6 +121,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(player);
         }
+
         GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
         foreach (GameObject sound in sounds)
         {
@@ -131,8 +130,8 @@ public class UIManager : MonoBehaviour
                 Destroy(sound);
             }
         }
-        GameObject soundmanager = GameObject.FindWithTag("Spawn");
 
+        GameObject soundmanager = GameObject.FindWithTag("Spawn");
         if (soundmanager != null)
         {
             Destroy(soundmanager);

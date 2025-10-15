@@ -11,14 +11,12 @@ public class PlayerAppearance : MonoBehaviourPun
     public Material blueGlow;
     public Material greenGlow;
     public Material yellaGlow;
-
     public Renderer glowr;
     public Renderer sword;
-
     public Renderer wing;
     public Renderer muzz;
-
     private Color baseGlowColor;
+
     void Awake()
     {
         glowr = transform.Find("glow")?.GetComponent<Renderer>();
@@ -29,8 +27,7 @@ public class PlayerAppearance : MonoBehaviourPun
 
     void Start()
     {
-
-        object[] data = photonView.InstantiationData;   // index 0 is character prefab choice, index 1 is glow color choice, done through prefabs 
+        object[] data = photonView.InstantiationData;   // index 0 is character prefab choice, index 1 is glow color choice, done through Player prefs 
 
         if (data != null && data.Length >= 2)
         {
@@ -65,27 +62,22 @@ public class PlayerAppearance : MonoBehaviourPun
                 if (glowColor == "NO GLOW")
                 {
                     sword.material = new Material(noGlow);
-                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(noGlow);
                 }
                 else if (glowColor == "RED")
                 {
                     sword.material = new Material(redGlow);
-                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(redGlow);
                 }
                 else if (glowColor == "BLUE")
                 {
                     sword.material = new Material(blueGlow);
-                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(blueGlow);
                 }
                 else if (glowColor == "GREEN")
                 {
                     sword.material = new Material(greenGlow);
-                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(greenGlow);
                 }
                 else if (glowColor == "YELLOW")
                 {
                     sword.material = new Material(yellaGlow);
-                    //transform.Find("bladehitbox").GetChild(0).GetComponent<Renderer>().material = new Material(yellaGlow);
                 }
             }
 
@@ -94,27 +86,22 @@ public class PlayerAppearance : MonoBehaviourPun
                 if (glowColor == "NO GLOW")
                 {
                     muzz.material = new Material(noGlow);
-
                 }
                 else if (glowColor == "RED")
                 {
                     muzz.material = new Material(redGlow);
-
                 }
                 else if (glowColor == "BLUE")
                 {
                     muzz.material = new Material(blueGlow);
-
                 }
                 else if (glowColor == "GREEN")
                 {
                     muzz.material = new Material(greenGlow);
-
                 }
                 else if (glowColor == "YELLOW")
                 {
                     muzz.material = new Material(yellaGlow);
-
                 }
             }
 
@@ -149,10 +136,6 @@ public class PlayerAppearance : MonoBehaviourPun
                     wing.material.SetColor("_GlowColor", baseGlowColor * 1.5f);
                 }
             }
-
         }
-
-
     }
-
 }

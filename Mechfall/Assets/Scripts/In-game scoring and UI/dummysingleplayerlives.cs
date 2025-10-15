@@ -3,20 +3,18 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-//Life system for singleplayer using dummy movement for testing
+//Life system for singleplayer mode player
 public class dummySinglePlayerLives : MonoBehaviour
 {
     public long lives = 3;
     private float iframeDura = 1f;
     private float iframeTimer = 0f;
     private bool isInvincible = false; 
-
     public bool panelstopinfinitecall = false;
     private Vector3 startPosition;
 
     void Start()
     {
-
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
         startPosition = transform.position;
@@ -36,11 +34,11 @@ public class dummySinglePlayerLives : MonoBehaviour
         }
 
         //if fall off platform and goes below too much
-            if (transform.position.y < -15f)
-            {
-                lives--;
-                transform.position = startPosition;
-            }
+        if (transform.position.y < -15f)
+        {
+            lives--;
+            transform.position = startPosition;
+        }
 
         if (lives == 0 && panelstopinfinitecall == false)
         {
@@ -51,7 +49,6 @@ public class dummySinglePlayerLives : MonoBehaviour
                 sscm.openLevelLosePage();
                 panelstopinfinitecall = true;
             }
-
         }
     }
 
@@ -89,7 +86,6 @@ public class dummySinglePlayerLives : MonoBehaviour
         //WIN CONDITION
         if (other.CompareTag("LevelEnder"))
         {
-
             GameObject stagescorecompletemanager = GameObject.FindGameObjectsWithTag("PlayerUI")[0];
             StageScoreCompleteManager sscm = stagescorecompletemanager.GetComponentInChildren<StageScoreCompleteManager>();
             if (sscm != null)
@@ -98,8 +94,6 @@ public class dummySinglePlayerLives : MonoBehaviour
                 other.gameObject.SetActive(false); // prevent multiple interactions
             }
         }
-
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
