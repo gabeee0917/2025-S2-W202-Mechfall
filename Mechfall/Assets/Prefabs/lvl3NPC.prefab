@@ -174,8 +174,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 261747136318530062, guid: 25dd09f880543054ca1063e41a19a7ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2706578780467338972}
   m_SourcePrefab: {fileID: 100100000, guid: 25dd09f880543054ca1063e41a19a7ed, type: 3}
+--- !u!1 &123616188921874891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 261747136318530062, guid: 25dd09f880543054ca1063e41a19a7ed, type: 3}
+  m_PrefabInstance: {fileID: 150525233157172165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2706578780467338972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123616188921874891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25862277ec12bb342aa9312712a52ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PrintNpcDialogOneLetterAtATime
+  npcDialog: {fileID: 5131174144650571863}
+  printSpeed: 0.05
+--- !u!114 &5131174144650571863 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4981916134077897618, guid: 25dd09f880543054ca1063e41a19a7ed, type: 3}
+  m_PrefabInstance: {fileID: 150525233157172165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123616188921874891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &5728999390801283314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5591143557671101239, guid: 25dd09f880543054ca1063e41a19a7ed, type: 3}

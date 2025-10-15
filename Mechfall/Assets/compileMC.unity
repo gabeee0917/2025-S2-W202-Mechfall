@@ -583,10 +583,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5728999390801283314, guid: 34878287a15f5ba4682e9df78c1cb7e3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.006
-      objectReference: {fileID: 0}
     - target: {fileID: 6991368643950394064, guid: 34878287a15f5ba4682e9df78c1cb7e3, type: 3}
       propertyPath: m_Name
       value: lvl3NPC
@@ -647,22 +643,6 @@ PrefabInstance:
     - target: {fileID: 5066637417994378589, guid: 0cc8c7d5ed4b754439c4d3f926dd497e, type: 3}
       propertyPath: m_Name
       value: Lvl2NPC
-      objectReference: {fileID: 0}
-    - target: {fileID: 5577985520910048595, guid: 0cc8c7d5ed4b754439c4d3f926dd497e, type: 3}
-      propertyPath: m_Size.x
-      value: 0.20094669
-      objectReference: {fileID: 0}
-    - target: {fileID: 5577985520910048595, guid: 0cc8c7d5ed4b754439c4d3f926dd497e, type: 3}
-      propertyPath: m_Size.y
-      value: 0.33547333
-      objectReference: {fileID: 0}
-    - target: {fileID: 5577985520910048595, guid: 0cc8c7d5ed4b754439c4d3f926dd497e, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.016105294
-      objectReference: {fileID: 0}
-    - target: {fileID: 5577985520910048595, guid: 0cc8c7d5ed4b754439c4d3f926dd497e, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.16331573
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
