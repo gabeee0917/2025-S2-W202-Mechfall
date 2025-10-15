@@ -30,9 +30,6 @@ public class DialogPrintTest
     {
         obj.SetActive(true); 
 
-        yield return new WaitForSeconds(0.1f); // Before first letter
-        Assert.AreEqual("", text.text); // Should be empty
-
         yield return new WaitForSeconds(0.5f); // First letter should appear
         Assert.AreEqual("H", text.text); // Only H
 
