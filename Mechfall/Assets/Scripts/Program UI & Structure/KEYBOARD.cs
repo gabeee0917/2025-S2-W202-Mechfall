@@ -21,6 +21,7 @@ public class KeyBoard : MonoBehaviour
     public GameObject f3;
     public GameObject g;
     public GameObject x;
+    public GameObject f9;
     private Image escRen;
     private Image spaceRen;
     private Image aRen;
@@ -36,6 +37,7 @@ public class KeyBoard : MonoBehaviour
     private Image f3Ren;
     private Image gRen;
     private Image xRen;
+    private Image f9Ren;
     public TMP_Text explain;
 
     private void Start()
@@ -55,6 +57,7 @@ public class KeyBoard : MonoBehaviour
         f3Ren = f3.GetComponent<Image>();
         gRen = g.GetComponent<Image>();
         xRen = x.GetComponent<Image>();
+        f9Ren = f9.GetComponent<Image>();
     }
 
     private void Update()
@@ -205,6 +208,16 @@ public class KeyBoard : MonoBehaviour
         else
         {
             xRen.color = Color.grey;
+        }
+
+        if (Input.GetKey(KeyCode.F9))
+        {
+            f9Ren.color = Color.white;
+            explain.text = "F9: Screenshot";
+        }
+        else
+        {
+            f9Ren.color = Color.grey;
         }
     }
 }
