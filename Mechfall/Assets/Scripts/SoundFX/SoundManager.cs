@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip slice;
     [SerializeField] private AudioClip capture;
     [SerializeField] private AudioClip collect;
+    [SerializeField] private AudioClip gunshot;
     private AudioSource source;
 
     private void Awake()
@@ -52,6 +53,12 @@ public class SoundManager : MonoBehaviour
     public void PlayCollect()
     {
         AudioClip clip = collect;
+        source.PlayOneShot(clip);
+    }
+
+    public void PlayShoot()
+    {
+        AudioClip clip = gunshot;
         source.PlayOneShot(clip);
     }
 }

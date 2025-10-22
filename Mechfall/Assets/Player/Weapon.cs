@@ -88,7 +88,7 @@ public class Weapon : MonoBehaviour
         animator.SetTrigger("Shoot");
         // Create a bullet firing from the firepoint;
         Instantiate(bullet, firepoint.position, firepoint.rotation);
-
+        SoundManager.instance.PlayShoot();
     }
 
     void CanShoot()

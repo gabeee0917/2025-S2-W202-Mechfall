@@ -15,6 +15,7 @@ public class SwitchManager : MonoBehaviour
     public void SwitchActivated()
     {
         activatedCount++;
+        SoundManager.instance.PlayCapture();
         if (activatedCount >= totalSwitches)
         {
             UnlockExit();

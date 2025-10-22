@@ -43,5 +43,6 @@ public class Attacks : MonoBehaviour
         // Trigger the attack animation
         animator.SetTrigger("Attack");
         animator.SetFloat("AttackBlend", Mathf.Max(0.2f, Random.value));
+        SoundManager.instance.PlaySlice();
     }
 }

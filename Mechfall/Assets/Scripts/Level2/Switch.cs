@@ -6,15 +6,22 @@ public class Switch : MonoBehaviour
 
     public bool isActivated = false;
     public SwitchManager manager;
-    [SerializeField] private AudioClip capture;
+    private SpriteRenderer spriteRenderer;
+    public Color activeColor = Color.green;
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (!isActivated && other.CompareTag("Player"))
         {
+            spriteRenderer.color = activeColor;
             isActivated = true;
             manager.SwitchActivated();
-            SoundManager.instance.PlayCapture();
         }
     }
 }
