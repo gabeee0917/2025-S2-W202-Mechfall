@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -5,6 +6,8 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance { get; private set; }
     [SerializeField] private AudioClip[] footsteps;
     [SerializeField] private AudioClip slice;
+    [SerializeField] private AudioClip capture;
+    [SerializeField] private AudioClip collect;
     private AudioSource source;
 
     private void Awake()
@@ -37,6 +40,18 @@ public class SoundManager : MonoBehaviour
     public void PlaySlice()
     {
         AudioClip clip = slice;
+        source.PlayOneShot(clip);
+    }
+
+    public void PlayCapture()
+    {
+        AudioClip clip = capture;
+        source.PlayOneShot(clip);
+    }
+
+    public void PlayCollect()
+    {
+        AudioClip clip = collect;
         source.PlayOneShot(clip);
     }
 }
