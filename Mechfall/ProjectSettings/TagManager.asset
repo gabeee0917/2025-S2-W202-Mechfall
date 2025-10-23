@@ -48,6 +48,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundSky
+    uniqueID: 2699179363
+    locked: 0
+  - name: Far
+    uniqueID: 3538470875
+    locked: 0
+  - name: Mid
+    uniqueID: 3049706845
+    locked: 0
+  - name: Near
+    uniqueID: 2716066373
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
