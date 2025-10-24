@@ -39,7 +39,10 @@ public class StageScoreCompleteManager : MonoBehaviour
     // on awake when scene loads, initialise the time, score, scenename, quest text, and corresponding UI elements
     void Awake()
     {
-        LevelEnder.SetActive(false); 
+        if(LevelEnder != null)
+        {
+            LevelEnder.SetActive(false);
+        }
         currentLevelName = SceneManager.GetActiveScene().name;
         currentScore = 0;
         currentLevelNum = int.Parse(currentLevelName);
