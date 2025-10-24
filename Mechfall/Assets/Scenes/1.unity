@@ -1032,6 +1032,18 @@ PrefabInstance:
       propertyPath: slice
       value: 
       objectReference: {fileID: 8300000, guid: cacc073e40346448dacf3f588836607f, type: 3}
+    - target: {fileID: 940370180100119935, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
+      propertyPath: capture
+      value: 
+      objectReference: {fileID: 8300000, guid: 7452a2647c64d4655aaadf229cddc838, type: 3}
+    - target: {fileID: 940370180100119935, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
+      propertyPath: collect
+      value: 
+      objectReference: {fileID: 8300000, guid: f5b283dde6f6f4205bfee6ffc1ccd0b5, type: 3}
+    - target: {fileID: 940370180100119935, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
+      propertyPath: gunshot
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fceaff9fccbf4942ad2ad30e91b5bbb, type: 3}
     - target: {fileID: 1957397799828132713, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
       propertyPath: m_Name
       value: SoundManager
