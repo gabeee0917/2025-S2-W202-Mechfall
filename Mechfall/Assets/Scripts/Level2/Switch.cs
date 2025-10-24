@@ -5,7 +5,7 @@ public class Switch : MonoBehaviour
 {
 
     public bool isActivated = false;
-    public SwitchManager manager;
+    public StageScoreCompleteManager manager;
     private SpriteRenderer spriteRenderer;
     public Color activeColor = Color.green;
 
