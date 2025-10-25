@@ -36,6 +36,7 @@ public class Boss : MonoBehaviour
         //StartCoroutine(spawnEnemyRight());
 
         hitable = false;
+        phase = 2;
         phaseLogic();
     }
 
@@ -56,11 +57,12 @@ public class Boss : MonoBehaviour
 
     void PhaseCheck()
     {
+        hitable = false;
         if (phase == 3)
         {
             Die();
         }
-
+        hp = 5;
         phase += 1;
 
         phaseLogic();
@@ -79,6 +81,13 @@ public class Boss : MonoBehaviour
             Invoke(nameof(phaseOne), 0);
             Invoke(nameof(phaseOne), 8);
             Invoke(nameof(phaseOne), 16);
+        }
+
+        if (phase == 2)
+        {
+            Invoke(nameof(phaseTwo), 0);
+            Invoke(nameof(phaseTwo), 15);
+            Invoke(nameof(phaseTwo), 30);
         }
     }
 
@@ -170,11 +179,11 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(1);
         enemySpawned.GetComponent<Rigidbody2D>().gravityScale = 1;
     }
-    
+
     void phaseOne()
     {
         int current = Random.Range(1, 5);
-        for (int i = 0; i <=4; i+=4)
+        for (int i = 0; i <= 4; i += 4)
         {
             switch (current)
             {
@@ -197,9 +206,44 @@ public class Boss : MonoBehaviour
             if (current <= 2)
             {
                 current = Random.Range(3, 5);
-            } else current = Random.Range(1, 3);
+            }
+            else current = Random.Range(1, 3);
         }
-        
+
+        hitable = true;
+    }
+
+    void phaseTwo()
+    {
+        int current = Random.Range(1, 3);
+        {
+            for (int i = 0; i <= 4; i += 2)
+            {
+                switch (current)
+                {
+                    case 1:
+                        Invoke(nameof(spawnLeft), i);
+                        break;
+                    case 2:
+                        Invoke(nameof(spawnRight), i);
+                        break;
+                    default:
+                        Debug.Log("out of range");
+                        break;
+                }
+                current = Random.Range(1, 3);
+            }
+        }
+    }
+
+    void spawnLeft()
+    {
+        StartCoroutine(spawnEnemyLeft());
+    }
+    
+    void spawnRight()
+    {
+        StartCoroutine(spawnEnemyRight());
     }
 
 }
