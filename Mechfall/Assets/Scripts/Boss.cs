@@ -19,6 +19,7 @@ public class Boss : MonoBehaviour
     public GameObject fallingObject;
     public GameObject sideObject;
     public GameObject warning;
+    private int last;
     Boolean hitable;
 
     void Start()
@@ -79,15 +80,15 @@ public class Boss : MonoBehaviour
         if (phase == 1)
         {
             Invoke(nameof(phaseOne), 0);
-            Invoke(nameof(phaseOne), 8);
-            Invoke(nameof(phaseOne), 16);
+            Invoke(nameof(phaseOne), 7);
+            Invoke(nameof(phaseOne), 14);
         }
 
         if (phase == 2)
         {
             Invoke(nameof(phaseTwo), 0);
-            Invoke(nameof(phaseTwo), 15);
-            Invoke(nameof(phaseTwo), 30);
+            Invoke(nameof(phaseTwo), 5);
+            Invoke(nameof(phaseTwo), 10);
         }
     }
 
@@ -97,7 +98,7 @@ public class Boss : MonoBehaviour
         for (float i = 2.5f; i <= 8.5f; i++)
         {
             position = new Vector2(-i, -3.6f);
-            Instantiate(warning, position, rightC.rotation);
+            Instantiate(warning, position, leftC.rotation);
         }
         Invoke(nameof(summonLeftFall), 1f);
     }
@@ -161,7 +162,7 @@ public class Boss : MonoBehaviour
     {
         GameObject enemySpawned = Instantiate(enemy, eLeft.position, eLeft.rotation);
         enemySpawned.GetComponent<Enemy_Chaseing>().range = 100;
-        enemySpawned.GetComponent<Enemy_Chaseing>().speed = 1;
+        enemySpawned.GetComponent<Enemy_Chaseing>().speed = 2;
         enemySpawned.GetComponent<Rigidbody2D>().gravityScale = 50;
 
         yield return new WaitForSeconds(1);
@@ -173,7 +174,7 @@ public class Boss : MonoBehaviour
     {
         GameObject enemySpawned = Instantiate(enemy, eRight.position, eRight.rotation);
         enemySpawned.GetComponent<Enemy_Chaseing>().range = 100;
-        enemySpawned.GetComponent<Enemy_Chaseing>().speed = 1;
+        enemySpawned.GetComponent<Enemy_Chaseing>().speed = 2;
         enemySpawned.GetComponent<Rigidbody2D>().gravityScale = 50;
 
         yield return new WaitForSeconds(1);
@@ -182,9 +183,10 @@ public class Boss : MonoBehaviour
 
     void phaseOne()
     {
-        int last = 0, current = Random.Range(1, 5);
+        int current = Random.Range(1, 5);
         for (int i = 0; i <= 4; i += 4)
         {
+            Debug.Log(current);
             switch (current)
             {
                 case 1:
@@ -204,11 +206,24 @@ public class Boss : MonoBehaviour
                     break;
             }
             last = current;
-            if (last <= 2)
+            switch (last)
             {
-                current = Random.Range(3, 5);
+                case 1:
+                    current = 4;
+                    break;
+                case 2:
+                    current = Random.Range(3, 5);
+                    break;
+                case 3:
+                    current = 2;
+                    break;
+                case 4:
+                    current = Random.Range(1, 3);
+                    break;
+                default:
+                    Debug.Log("out of range");
+                    break;
             }
-            else current = Random.Range(1, 3);
         }
 
         hitable = true;
@@ -218,7 +233,7 @@ public class Boss : MonoBehaviour
     {
         int current = Random.Range(1, 3);
         {
-            for (int i = 0; i <= 4; i += 2)
+            for (int i = 0; i <= 3; i += 1)
             {
                 switch (current)
                 {
