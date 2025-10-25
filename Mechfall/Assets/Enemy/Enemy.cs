@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public int hp = 5;
     private Rigidbody2D rb;
+    private Boss boss;
 
     void Start()
     {
@@ -14,6 +15,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int d)
     {
+        Boss b = GetComponent<Boss>();
+        if (b != null)
+        {
+            b.TakeDamage(d);
+            return;
+        }
         // Makes the object take damage and removes it if its hp is 0
         hp -= d;
 
