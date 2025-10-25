@@ -23,8 +23,9 @@ public class Boss : MonoBehaviour
     {
         //Instantiate(fallingObject, leftP.position, leftP.rotation);
         //Instantiate(fallingObject, rightp.position, rightp.rotation);
-        Instantiate(sideObject, rightC.position, rightC.rotation).GetComponent<ClosingBox>().right = false;
-        Instantiate(sideObject, leftC.position, leftC.rotation);
+        //Instantiate(sideObject, rightC.position, rightC.rotation).GetComponent<ClosingBox>().right = false;
+        //Instantiate(sideObject, leftC.position, leftC.rotation);
+        rightFall();
         
         hitable = false;
         phaseLogic();
@@ -67,9 +68,19 @@ public class Boss : MonoBehaviour
     {
 
     }
-    
+
     void rightFall()
     {
-        
+        Vector2 position = new Vector2();
+        for (float i = 2.5f; i <= 8.5f; i++)
+        {
+            position = new Vector2(i, -3.6f);
+            Instantiate(warning, position, rightC.rotation);
+        }
+        Invoke(nameof(summonRightFall), 1f);
+    }
+    void summonRightFall()
+    {
+        Instantiate(fallingObject, rightp.position, rightp.rotation);
     }
 }

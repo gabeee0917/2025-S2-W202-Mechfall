@@ -697,7 +697,7 @@ MonoBehaviour:
   enemy: {fileID: 5316170477100630532, guid: de62f943b6799f946af015ad28627b26, type: 3}
   fallingObject: {fileID: 7541843788639593338, guid: cef2bdacf31cdbe48b104246ba7438da, type: 3}
   sideObject: {fileID: 1606409606103239992, guid: bee09fd1ddd9d8f499c60fa9887432a4, type: 3}
-  warning: {fileID: 0}
+  warning: {fileID: 5782963817171158718, guid: 21ed59bd0e721fb46bb44101404e4de8, type: 3}
 --- !u!114 &1003043906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1352,7 +1352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190425078844616296, guid: 1b10039d3628cab4bb8be4a88abfd72b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.35
+      value: -8.367
       objectReference: {fileID: 0}
     - target: {fileID: 5190425078844616296, guid: 1b10039d3628cab4bb8be4a88abfd72b, type: 3}
       propertyPath: m_LocalPosition.y
