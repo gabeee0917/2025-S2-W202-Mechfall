@@ -34,9 +34,9 @@ public class Boss : MonoBehaviour
         //rightClose();
         //StartCoroutine(spawnEnemyLeft());
         //StartCoroutine(spawnEnemyRight());
+        //phase = 2;
 
         hitable = false;
-        phase = 2;
         phaseLogic();
     }
 
@@ -57,13 +57,13 @@ public class Boss : MonoBehaviour
 
     void PhaseCheck()
     {
+        phase += 1;
         hitable = false;
         if (phase == 3)
         {
             Die();
         }
         hp = 5;
-        phase += 1;
 
         phaseLogic();
     }
@@ -182,7 +182,7 @@ public class Boss : MonoBehaviour
 
     void phaseOne()
     {
-        int current = Random.Range(1, 5);
+        int last = 0, current = Random.Range(1, 5);
         for (int i = 0; i <= 4; i += 4)
         {
             switch (current)
@@ -203,7 +203,8 @@ public class Boss : MonoBehaviour
                     Debug.Log("out of range");
                     break;
             }
-            if (current <= 2)
+            last = current;
+            if (last <= 2)
             {
                 current = Random.Range(3, 5);
             }
@@ -233,6 +234,7 @@ public class Boss : MonoBehaviour
                 }
                 current = Random.Range(1, 3);
             }
+            hitable = true;
         }
     }
 

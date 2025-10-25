@@ -41,8 +41,18 @@ public class Enemy : MonoBehaviour
     void HitBackwards(int d)
     {
         checkMoving(d);
+        float direction = 1;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        Vector2 hitBack = new Vector2((1 * d), (d * 2));
+        if (player != null)
+        {
+            if (transform.position.x < player.transform.position.x)
+            {
+                direction = -1;
+            }
+        }
+
+        Vector2 hitBack = new Vector2((direction * d), (d * 2));
 
         rb.linearVelocity = hitBack;
     }
