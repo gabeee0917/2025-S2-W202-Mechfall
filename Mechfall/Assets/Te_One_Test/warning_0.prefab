@@ -100,6 +100,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5782963817171158718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eed78fbc2502d640896426522842b23, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b9060609f69bd84895be4f4546f4b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Warning_Script
