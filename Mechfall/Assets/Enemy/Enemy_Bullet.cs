@@ -23,10 +23,14 @@ public class Enemy_Bullet : MonoBehaviour
     {
         Player player = hitInfo.GetComponent<Player>();
         Debug.Log(hitInfo.name);
+        Bullet bullet = hitInfo.GetComponent<Bullet>();
 
         if (player != null)
         {
             player.takeDamage();
+        }
+        if (bullet != null)
+        {
             Destroy(gameObject);
         }
     }
