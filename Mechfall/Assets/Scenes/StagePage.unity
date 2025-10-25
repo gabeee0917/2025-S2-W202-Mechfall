@@ -359,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5947792495163281108, guid: e589028a4c844794eb3e671fed21e99c, type: 3}
       propertyPath: holdDuration
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5947792495163281108, guid: e589028a4c844794eb3e671fed21e99c, type: 3}
       propertyPath: fadeInDuration
@@ -367,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5947792495163281108, guid: e589028a4c844794eb3e671fed21e99c, type: 3}
       propertyPath: fadeOutDuration
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5947792495163281108, guid: e589028a4c844794eb3e671fed21e99c, type: 3}
       propertyPath: delayBeforeStart
