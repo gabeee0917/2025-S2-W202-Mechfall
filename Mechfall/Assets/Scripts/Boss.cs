@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour
     public GameObject enemy;
     public GameObject fallingObject;
     public GameObject sideObject;
+    public GameObject warning;
     Boolean hitable;
 
     void Start()
@@ -63,6 +64,11 @@ public class Boss : MonoBehaviour
     }
 
     void phaseLogic()
+    {
+
+    }
+    
+    void rightFall()
     {
         
     }
