@@ -82,6 +82,7 @@ public class Boss : MonoBehaviour
             Invoke(nameof(phaseOne), 0);
             Invoke(nameof(phaseOne), 7);
             Invoke(nameof(phaseOne), 14);
+            Invoke(nameof(hitTrue), 21);
         }
 
         if (phase == 2)
@@ -89,7 +90,13 @@ public class Boss : MonoBehaviour
             Invoke(nameof(phaseTwo), 0);
             Invoke(nameof(phaseTwo), 5);
             Invoke(nameof(phaseTwo), 10);
+            Invoke(nameof(hitTrue), 21);
         }
+    }
+
+    void hitTrue()
+    {
+        hitable = true;
     }
 
     void leftFall()
@@ -225,8 +232,6 @@ public class Boss : MonoBehaviour
                     break;
             }
         }
-
-        hitable = true;
     }
 
     void phaseTwo()
@@ -249,7 +254,6 @@ public class Boss : MonoBehaviour
                 }
                 current = Random.Range(1, 3);
             }
-            hitable = true;
         }
     }
 
