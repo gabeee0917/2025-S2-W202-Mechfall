@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 394635694}
   - component: {fileID: 394635693}
   m_Layer: 3
-  m_Name: Square (1)
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,12 +306,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394635692}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.8472, y: -1.92, z: 0}
-  m_LocalScale: {x: 25.720037, y: 4.7061, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.33768, y: 2.6100001, z: 0}
+  m_LocalScale: {x: 0.31979486, y: 4.7061, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1300326916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1106306214
 GameObject:
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 1106306215}
   m_Layer: 0
   m_Name: SpeedItem
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 1300326915}
   - component: {fileID: 1300326914}
   m_Layer: 3
-  m_Name: Square
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,10 +668,11 @@ Transform:
   m_GameObject: {fileID: 1300326913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.7915, y: -4.53, z: 0}
-  m_LocalScale: {x: 37.83897, y: 1, z: 1}
+  m_LocalPosition: {x: -0.1324, y: -4.53, z: 0}
+  m_LocalScale: {x: 17.99243, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 394635695}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1434936890
@@ -1120,7 +1121,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1608007058}
   - {fileID: 1300326916}
-  - {fileID: 394635695}
   - {fileID: 1599582112}
   - {fileID: 1987429759}
   - {fileID: 99794442}
