@@ -26,8 +26,6 @@ public class StageManager : MonoBehaviour
                 continue;
             }
 
-
-
             if (!stageButtons.ContainsKey(button.gameObject.name))
             {
                 stageButtons.Add(button.gameObject.name, button.gameObject);
@@ -37,7 +35,6 @@ public class StageManager : MonoBehaviour
         // parse key to int so that it can be compared to max level reached by player to show only levels equal to or below that
         foreach (var kvp in stageButtons)
         {
-
             if (int.Parse(kvp.Key) <= UserSession.Instance.maxlevel)
             {
                 kvp.Value.gameObject.SetActive(true);
@@ -49,11 +46,6 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
-
     // on clicking a stage button, enter that scene. The scene itself is named the level number, as is the buttonname, allowing this to be used as is for each level.
     public void EnterStage()
     {
@@ -63,10 +55,7 @@ public class StageManager : MonoBehaviour
         {
             string buttonName = clickedButton.name;
             SceneManager.LoadScene(buttonName);
-
         }
     }
-
-
 }
 

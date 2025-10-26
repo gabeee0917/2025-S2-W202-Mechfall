@@ -15,7 +15,6 @@ using System;
 public class UserSession : MonoBehaviour
 {
     public static UserSession Instance;
-
     public string userId;
     public string username;
     public long score;
@@ -26,11 +25,8 @@ public class UserSession : MonoBehaviour
     private float spawnTime;
     private string previousUsername = "";
     public Button profile;
-
     public string profilemessage;
-
     public long[] levelscores;
-
     public long PvPWin;
     public long PvPLose;
 
@@ -38,7 +34,6 @@ public class UserSession : MonoBehaviour
     void Start()
     {
         levelscores = new long[10];
-
     }
 
     //make sure the gameobject holding this script persists until program terminates
@@ -48,37 +43,35 @@ public class UserSession : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
         }
         else
         {
             Destroy(gameObject);
         }
-
     }
 
     // save the data being updated in the usersession to firebase
     public IEnumerator SaveDataToFireStore()
     {
         Dictionary<string, object> updatedData = new Dictionary<string, object>
-    {
-        { "username", this.username },
-        { "maxlevel", (long)this.maxlevel },
-        { "score", (long)this.score },
-        { "level1score", (long)this.levelscores[0]},
-        { "level2score", (long)this.levelscores[1]},
-        { "level3score", (long)this.levelscores[2]},
-        { "level4score", (long)this.levelscores[3]},
-        { "level5score", (long)this.levelscores[4]},
-        { "level6score", (long)this.levelscores[5]},
-        { "level7score", (long)this.levelscores[6]},
-        { "level8score", (long)this.levelscores[7]},
-        { "level9score", (long)this.levelscores[8]},
-        { "level10score", (long)this.levelscores[9]},
-        { "profilemessage", this.profilemessage},
-        { "PvPWin", (long)this.PvPWin},
-        { "PvPLose", (long)this.PvPLose},
-    };
+        {
+            { "username", this.username },
+            { "maxlevel", (long)this.maxlevel },
+            { "score", (long)this.score },
+            { "level1score", (long)this.levelscores[0]},
+            { "level2score", (long)this.levelscores[1]},
+            { "level3score", (long)this.levelscores[2]},
+            { "level4score", (long)this.levelscores[3]},
+            { "level5score", (long)this.levelscores[4]},
+            { "level6score", (long)this.levelscores[5]},
+            { "level7score", (long)this.levelscores[6]},
+            { "level8score", (long)this.levelscores[7]},
+            { "level9score", (long)this.levelscores[8]},
+            { "level10score", (long)this.levelscores[9]},
+            { "profilemessage", this.profilemessage},
+            { "PvPWin", (long)this.PvPWin},
+            { "PvPLose", (long)this.PvPLose},
+        };
 
         var task = db.Collection("users").Document(userId).SetAsync(updatedData, SetOptions.MergeAll);
         yield return new WaitUntil(() => task.IsCompleted);
@@ -103,7 +96,6 @@ public class UserSession : MonoBehaviour
         };
 
         db.Collection("users").Document("usernames").SetAsync(updateUsernameList, SetOptions.MergeAll);
-
     }
 
     //similar to load in firebase authentication but more tuned to the usersession 
@@ -116,7 +108,6 @@ public class UserSession : MonoBehaviour
         if (getTask.Exception == null && getTask.Result.Exists)
         {
             DocumentSnapshot snapshot = getTask.Result;
-
 
             this.username = snapshot.GetValue<string>("username");
             this.score = snapshot.GetValue<long>("score");
@@ -135,12 +126,8 @@ public class UserSession : MonoBehaviour
             this.PvPWin = snapshot.GetValue<long>("PvPWin");
             this.PvPLose = snapshot.GetValue<long>("PvPLose");
 
-
             Instance.displayUser.text = Instance.username;
-
-
         }
-
     }
 
     //update the username in a UI text at the top left
@@ -151,9 +138,6 @@ public class UserSession : MonoBehaviour
             Instance.displayUser.text = Instance.username;
             previousUsername = Instance.username;
         }
-
-
-
     }
 
     public void updateHighScore()
@@ -195,7 +179,6 @@ public class UserSession : MonoBehaviour
             levelscores[n] = 0;
         }
 
-
         Instance.profile.gameObject.SetActive(false);
 
         GameObject player = GameObject.FindWithTag("Player");
@@ -212,7 +195,6 @@ public class UserSession : MonoBehaviour
         Time.timeScale = 1f; //without changing scale back to 1, if i logout while paused, the scene wont load properly and it is paused infinitely!!!
         StartCoroutine(LoadLoginScene());
     }
-
 
     private IEnumerator LoadLoginScene()
     {
@@ -236,6 +218,7 @@ public class UserSession : MonoBehaviour
         saveDataStatus.gameObject.SetActive(false);
     }
 
+    // nothing required as of yet, but may include in future if adding more features. As such, keep in code.
     void OnApplicationQuit()
     {
 
@@ -267,7 +250,6 @@ public class UserSession : MonoBehaviour
     {
         if (scene.name == "PVP")
         {
-
             foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(false);
@@ -281,6 +263,4 @@ public class UserSession : MonoBehaviour
             }
         }
     }
-
-
 }

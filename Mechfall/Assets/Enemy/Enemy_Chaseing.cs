@@ -10,6 +10,7 @@ public class Enemy_Chaseing : MonoBehaviour
     private float knockbackTime;
 
     private Rigidbody2D rb;
+    public int range = 10;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,7 +33,7 @@ public class Enemy_Chaseing : MonoBehaviour
         //Vector3 playerDistance = player.transform.position;
         //Debug.Log(Vector2.Distance(player.transform.position, transform.position));
 
-        if (Vector2.Distance(player.transform.position, transform.position) < 10)
+        if (Vector2.Distance(player.transform.position, transform.position) < range)
         {
             //Debug.Log("In Range");
 
@@ -67,5 +68,10 @@ public class Enemy_Chaseing : MonoBehaviour
     {
         // Pause the movement for knockback
         knockbackTime = duration;
+    }
+
+    public void setRange(int r)
+    {
+        range = r;
     }
 }

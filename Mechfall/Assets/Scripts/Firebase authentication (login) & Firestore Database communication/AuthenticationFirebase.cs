@@ -12,24 +12,19 @@ using System;
 // Script to attach to a firebase manager gameobject in Login scene to manage login/register and getting data from Firebase and firestore 
 public class AuthenticationManager : MonoBehaviour
 {
-
     public DependencyStatus dependencyStatus;
     public FirebaseAuth auth;
     public FirebaseUser User;
-
     public TMP_InputField loginEmail;
     public TMP_InputField loginPW;
     public TMP_Text loginWarning;
     public TMP_Text loginConfirmt;
-
     public TMP_InputField registerUsername;
     public TMP_InputField registerEmail;
     public TMP_InputField registerPW;
     public TMP_InputField verifyPW;
     public TMP_Text registerText;
-
     public GameObject registerScreen;
-
     public FirebaseFirestore db;
 
     // On awake of the gameobject holding this script, check dependencies and initialise firebase make sure it stays active the entire time till program shuts down.
@@ -53,7 +48,6 @@ public class AuthenticationManager : MonoBehaviour
 
     private void InitializeFirebase()
     {
-
         auth = FirebaseAuth.DefaultInstance;
         db = FirebaseFirestore.DefaultInstance;
         auth.StateChanged += AuthStateChanged;
@@ -65,7 +59,6 @@ public class AuthenticationManager : MonoBehaviour
         }
 
         UserSession.Instance.db = db;
-
     }
 
     //This ienumerator will be used in the login ienumerator, to load the lobby when login is successful
@@ -143,15 +136,10 @@ public class AuthenticationManager : MonoBehaviour
 
             if (User != null)
             {
-
                 UserSession.Instance.userId = User.UserId;
-
             }
 
-
             StartCoroutine(LoadLobbyAfterLoadData());
-
-
         }
     }
 
@@ -159,7 +147,6 @@ public class AuthenticationManager : MonoBehaviour
     private IEnumerator Register(string email, string password, string username)
     {
         registerText.text = "";
-
 
         if (string.IsNullOrWhiteSpace(username))
         {
@@ -190,14 +177,8 @@ public class AuthenticationManager : MonoBehaviour
                 yield break;
             }
 
-
-
-
-
-
             var registerTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
             yield return new WaitUntil(() => registerTask.IsCompleted);
-
 
             if (registerTask.Exception != null)
             {
@@ -241,7 +222,6 @@ public class AuthenticationManager : MonoBehaviour
                     }
 
                     UserSession.Instance.userId = User.UserId;
-
                     UserSession.Instance.username = username;
                     UserSession.Instance.score = 0;
                     UserSession.Instance.maxlevel = 1;
@@ -256,9 +236,6 @@ public class AuthenticationManager : MonoBehaviour
                     UserSession.Instance.PvPLose = 0;
 
                     yield return StartCoroutine(UserSession.Instance.SaveDataToFireStore());
-
-
-
                 }
             }
         }
@@ -306,7 +283,6 @@ public class AuthenticationManager : MonoBehaviour
             }
         }
     }
-
 
     public void Cleanup()
     {

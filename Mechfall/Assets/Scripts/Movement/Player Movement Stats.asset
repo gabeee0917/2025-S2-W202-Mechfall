@@ -19,7 +19,7 @@ MonoBehaviour:
   AirAcceleration: 5
   AirDeceleration: 5
   MaxRunSpeed: 5
-  jumpHeight: 2
+  jumpHeight: 3
   JumpHeightCompensationFactor: 1.0118
   TimeTillJumpApex: 0.45
   GravityOnReleaseMultiplier: 1.65

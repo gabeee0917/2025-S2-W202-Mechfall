@@ -7,7 +7,6 @@ public class emotes : MonoBehaviourPun
     public GameObject[] emotearray;
     public GameObject emoteBox;
     private SpriteRenderer emoter;
-
     public float startTime;
     public float timer;
 
@@ -15,7 +14,6 @@ public class emotes : MonoBehaviourPun
     {
         emoter = emoteBox.GetComponent<SpriteRenderer>();
         startTime = Time.time;
-
     }
 
     // depending on the input key, f1 or f2 or f3, show correct emote by sending rpc. The number indicates element index. 
@@ -47,9 +45,6 @@ public class emotes : MonoBehaviourPun
                 photonView.RPC("RPC_ShowEmote", RpcTarget.All, 777);
             }
         }
-
-
-
     }
     
     [PunRPC]
@@ -62,8 +57,6 @@ public class emotes : MonoBehaviourPun
         else
         {
             emoter.sprite = emotearray[index].GetComponent<SpriteRenderer>().sprite;
-        }
-            
+        }   
     }
-
 }

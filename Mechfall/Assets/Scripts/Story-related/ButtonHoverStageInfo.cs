@@ -13,13 +13,17 @@ public class ButtonHoverStageInfo : MonoBehaviour, IPointerEnterHandler, IPointe
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (stageinfo != null)
+        {
             stageinfo.text = onhover;
+        }
     }
 
     // empty string for unhovering
     public void OnPointerExit(PointerEventData eventData)
     {
         if (stageinfo != null)
+        {
             stageinfo.text = onleavehover;
+        }
     }
 }

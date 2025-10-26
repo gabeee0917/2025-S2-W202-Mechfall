@@ -8,30 +8,20 @@ using Photon.Pun;
 // Manages both left and right UI (of class UIManagerMulti) in PVP
 public class MultiplayerUIManager : MonoBehaviourPunCallbacks
 {
-
     private GameObject[] players;
-
     public GameObject leftPlayer;
     public PlayerStatus left;
     public GameObject rightPlayer;
     public PlayerStatus right;
-
-   
     public UIManagerMulti UIL;
     public UIManagerMulti UIR;
-
     public TMP_Text timer;
-
-
     public float startTime;
     public float timeGone;
-
     public TMP_Text bulletcountL;
     public TMP_Text bulletcountR;
-
     public GunSwordManager leftGS;
     public GunSwordManager rightGS;
-
     public bool playersallspawned;
 
     void Start()
@@ -43,7 +33,6 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
     // assigns players to the correct ui positions, room maker spawns on the left and gets left ui, room joiner gets the right, link all componenets of player to the UI
     IEnumerator AssignUI2Players()
     {
-
         while (players == null || players.Length < 2)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
@@ -85,14 +74,8 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
             UIL.playerImage.material = srR.material;
         }
 
-
         startTime = Time.time;
         playersallspawned = true;
-    }
-
-    void Awake()
-    {
-
     }
 
     // update the multiplayer UI, for health and bullets left, countdown from 300, also checks if game is over (players have a bool called gameover that becomes true when they die twice)
@@ -102,14 +85,12 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
     {
         if (leftPlayer != null)
         {
-
-
             if (left != null)
             {
                 UIL.healthText.text = $"Health: {left.health}";
             }
 
-             if (leftPlayer.GetComponent<PhotonView>().IsMine)
+            if (leftPlayer.GetComponent<PhotonView>().IsMine)
             {
                 bulletcountL.text = "Bullets Left: " + leftGS.bullets;
                 if (left.gameover)
@@ -124,12 +105,10 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
                     left.gameover = false;
                 }
             }
-
         }
 
         if (rightPlayer != null)
         {
-
             if (right != null)
             {
                 UIR.healthText.text = $"Health: {right.health}";
@@ -150,21 +129,16 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
                     right.gameover = false;
                 }
             }
-
         }
 
-       
-        
         timeGone = Time.time - startTime;
         timer.text = ((int)(300 - timeGone)).ToString();
-
     }
 
     // for leave room button in playroom
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
-
     }
 
     // for the situation where one player force closes game or dcs and leaves room, makes remaining player win
@@ -185,7 +159,4 @@ public class MultiplayerUIManager : MonoBehaviourPunCallbacks
             }
         }
     }
-
-    
-  
 }

@@ -12,6 +12,8 @@ public class Sword : MonoBehaviour
         Invoke(nameof(DeSpawn), swordTime);
     }
 
+
+
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         // Check for hitting something and remove itself when it dose

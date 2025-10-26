@@ -12,16 +12,11 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public TMP_InputField createInput;
     public TMP_InputField joinInput;
-
     public GameObject multiplayerPanel;
     public GameObject customiseplayerPanel;
     public TMP_Text connectionStatusText;
-
-
     private bool enterOfflineAfterDisconnect = false;
     private bool isMultiplayerMode = false;
-
-
     public TMP_Text roomListText;
 
     void Awake()
@@ -37,7 +32,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         {
             SetMultiplayerUIActive(true);
             LeaveRoom();
-
         }
         else
         {
@@ -51,7 +45,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     // obsolete method, originally attempted implementing single player using photon offline mode but team decided against it
     public void PlaySinglePlayer()
     {
-
         if (PhotonNetwork.IsConnected)
         {
             enterOfflineAfterDisconnect = true;
@@ -78,14 +71,12 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected || PhotonNetwork.OfflineMode)
         {
-
             string roomName = createInput.text;
             RoomOptions roomOptions = new RoomOptions { MaxPlayers = 2 };
             roomOptions.IsVisible = true;
             roomOptions.IsOpen = true;
 
             PhotonNetwork.CreateRoom(roomName, roomOptions);
-
         }
     }
 
@@ -153,28 +144,24 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.OfflineMode)
         {
-
             PhotonNetwork.LoadLevel("StagePage");
         }
-
     }
 
     // this is for when a pvp room starts, make the room closed and invisible so that it is no longer on the list, load pvp map
-    public void OnPlayerEnteredRoom(Player newPlayer)
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel("PVP");
-
         }
     }
 
     private void SetMultiplayerUIActive(bool active)
     {
         multiplayerPanel.SetActive(active);
-
     }
 
     private void SetCustomiseUIActive(bool active)
@@ -201,8 +188,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             connectionStatusText.text = "Left the room";
         }
     }
-
-
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
@@ -240,11 +225,9 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     // a one player room, more for development purposes to test pvp room but kept so users can play around
     public void TrainingMap()
     {
-
         RoomOptions roomOptions = new RoomOptions { MaxPlayers = 1 };
         PhotonNetwork.CreateRoom("TrainingRoom", roomOptions);
         StartCoroutine(WaitForJoinAndLoadScene());
-
     }
 
     //make sure scene load doesn't happen too quickly causing bugs

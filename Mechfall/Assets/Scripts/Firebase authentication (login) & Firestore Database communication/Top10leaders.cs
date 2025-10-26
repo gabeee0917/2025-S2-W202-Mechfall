@@ -14,11 +14,8 @@ using System.Linq; //language integrated query c# thingy to help do queries from
 public class TopTenLeaderboard : MonoBehaviour
 {
     FirebaseFirestore db;
-
     public TMP_Text scoreText;
-
     public GameObject scorePage;
-
     public TMP_InputField userSearch;
     public TMP_Text statusText;
 
@@ -37,7 +34,6 @@ public class TopTenLeaderboard : MonoBehaviour
     {
         string username = userSearch.text;
         statusText.text = "";
-
         Query userQuery = db.Collection("users").WhereEqualTo("username", username);
 
         userQuery.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -66,9 +62,7 @@ public class TopTenLeaderboard : MonoBehaviour
                 statusText.text += "\nPvP = W" + data["PvPWin"].ToString() + " - L" + data["PvPLose"].ToString();
                 statusText.text += "\n\n-- " + data["username"] + "'s message -- \n" + data["profilemessage"];
             }
-
         });
-
     }
 
 
@@ -102,15 +96,11 @@ public class TopTenLeaderboard : MonoBehaviour
             scoreText.text += $"[Rank {rank}]  {pair.Key} ({pair.Value})\r\n"; //\n should work alone but i guess it's a unity thing. have to return carriage. 
             rank++;
         }
-
-
-
     }
 
     public void openScores()
     {
         scorePage.SetActive(true);
-
     }
 
     public void closeScores()

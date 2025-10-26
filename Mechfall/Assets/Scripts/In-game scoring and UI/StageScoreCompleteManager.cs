@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 public class StageScoreCompleteManager : MonoBehaviour
 {
     public string currentLevelName;
-
     public long currentScore;
     public long Finalscore;
     public GameObject WinPanel;
@@ -33,7 +32,6 @@ public class StageScoreCompleteManager : MonoBehaviour
     public GameObject LevelEnder; 
     
     public bool questcomplete = false;
-
     public GameObject player;
 
     // on awake when scene loads, initialise the time, score, scenename, quest text, and corresponding UI elements
@@ -148,7 +146,6 @@ public class StageScoreCompleteManager : MonoBehaviour
     // open level complete panel when player reaches the level ender portal
     public void openLevelCompletePage()
     {
-
         dummySinglePlayerLives dummy = player.GetComponent<dummySinglePlayerLives>();
         Time.timeScale = 0f;
         WinPanel.SetActive(true);
@@ -179,7 +176,6 @@ public class StageScoreCompleteManager : MonoBehaviour
         Time.timeScale = 1f;
 
         StartCoroutine(delayCompleteLevel());
-
     }
 
     //delayed completion to ensure proper destruction of dontdestroyonload objects
@@ -193,8 +189,6 @@ public class StageScoreCompleteManager : MonoBehaviour
             Destroy(ingameui);
         }
 
-
-
         GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
         foreach (GameObject sound in sounds)
         {
@@ -203,6 +197,7 @@ public class StageScoreCompleteManager : MonoBehaviour
                 Destroy(sound);
             }
         }
+
         GameObject soundmanager = GameObject.FindWithTag("Spawn");
 
         if (soundmanager != null)
@@ -210,15 +205,12 @@ public class StageScoreCompleteManager : MonoBehaviour
             Destroy(soundmanager);
         }
 
-
         SceneManager.LoadScene("StagePage");
-
     }
 
     // open lose panel when player lives reaches 0
     public void openLevelLosePage()
     {
-
         LosePanel.SetActive(true);
         Time.timeScale = 0f;
         losepaneltext.text = $"Better luck next time...";
@@ -234,9 +226,7 @@ public class StageScoreCompleteManager : MonoBehaviour
             UserSession.Instance.updateHighScore();
         }
         UserSession.Instance.saveB();
-        //LosePanel.SetActive(false);
         Time.timeScale = 1f;
         StartCoroutine(delayCompleteLevel());
-
     }
 }

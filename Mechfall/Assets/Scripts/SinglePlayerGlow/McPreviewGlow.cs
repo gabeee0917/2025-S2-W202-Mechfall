@@ -11,13 +11,11 @@ public class McPreviewGlow : MonoBehaviour
 
     void Start()
     {
-        glowImage = GetComponent<Image>();
-       
+        glowImage = GetComponent<Image>();       
     }
 
     void Update()
     {
-        
         glowColor = glowDropdown.options[glowDropdown.value].text;
 
         if (glowImage != null)
@@ -42,9 +40,4 @@ public class McPreviewGlow : MonoBehaviour
             }
         }
     }
-       
-        
-
-
-
 }
