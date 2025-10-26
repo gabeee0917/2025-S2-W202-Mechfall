@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public int hp = 5;
     private Rigidbody2D rb;
+    private Boss boss;
 
     void Start()
     {
@@ -14,6 +15,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int d)
     {
+        Boss b = GetComponent<Boss>();
+        if (b != null)
+        {
+            b.TakeDamage(d);
+            return;
+        }
         // Makes the object take damage and removes it if its hp is 0
         hp -= d;
 
@@ -34,8 +41,18 @@ public class Enemy : MonoBehaviour
     void HitBackwards(int d)
     {
         checkMoving(d);
+        float direction = 1;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        Vector2 hitBack = new Vector2((1 * d), (d * 2));
+        if (player != null)
+        {
+            if (transform.position.x < player.transform.position.x)
+            {
+                direction = -1;
+            }
+        }
+
+        Vector2 hitBack = new Vector2((direction * d), (d * 2));
 
         rb.linearVelocity = hitBack;
     }
