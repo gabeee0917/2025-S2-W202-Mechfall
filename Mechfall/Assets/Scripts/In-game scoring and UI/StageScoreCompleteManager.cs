@@ -48,7 +48,7 @@ public class StageScoreCompleteManager : MonoBehaviour
         timeUI.text = startTime.ToString();
 
         // Level Specific Adjustments to UI
-        if (currentLevelNum == 1)
+        if (currentLevelNum == 1 || currentLevelNum == 3)
         {
             collectcoinquesttext.text = "Collect all the crystals!";
             completionAddScore = 1000;
@@ -64,6 +64,7 @@ public class StageScoreCompleteManager : MonoBehaviour
             totalSwitches = GameObject.FindGameObjectsWithTag("Switch").Length;
             activatedSwitches = 0;
         }
+        
     }
     void OnEnable()
     {
