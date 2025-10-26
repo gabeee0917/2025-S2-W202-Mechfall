@@ -812,9 +812,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4981916134077897618, guid: f4339ab6741a55d4fb38fa13a8533f30, type: 3}
       propertyPath: m_text
-      value: I bet you are wondering why you cannot use your sword attack. It is
-        because we are in the core, so you can only use your laser attacks. The portal
-        ahead will take you to the CPU. You must destroy it. Good luck...
+      value: The portal ahead will take you to the CPU. It will be invulnerable when
+        it initiates some defense mechanisms but when its done, you can damage it.
+        Good luck...
       objectReference: {fileID: 0}
     - target: {fileID: 5591143557671101239, guid: f4339ab6741a55d4fb38fa13a8533f30, type: 3}
       propertyPath: m_LocalScale.x
@@ -1664,7 +1664,7 @@ PrefabInstance:
     - target: {fileID: 7551334730528128434, guid: 1b10039d3628cab4bb8be4a88abfd72b, type: 3}
       propertyPath: swordHitBox
       value: 
-      objectReference: {fileID: 2946845194384886160, guid: 9efa16a8019ab354e93f24bb624afb03, type: 3}
+      objectReference: {fileID: 9151708786349257973, guid: 66af3866a96f54e4caf56d4204f6392e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
