@@ -14,6 +14,7 @@ TagManager:
   - Enemy
   - Spawn
   - Sound
+  - Switch
   layers:
   - Default
   - TransparentFX

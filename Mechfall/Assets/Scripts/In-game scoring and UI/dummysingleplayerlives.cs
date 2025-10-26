@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.ComponentModel;
 
 //Life system for singleplayer mode player
 public class dummySinglePlayerLives : MonoBehaviour
@@ -66,6 +67,7 @@ public class dummySinglePlayerLives : MonoBehaviour
     {
         if (other.CompareTag("Coin"))
         {
+            SoundManager.instance.PlayCollect();
             Destroy(other.gameObject);
         }
 
