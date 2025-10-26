@@ -519,6 +519,11 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    public void SetVerticalVelocity(float newVel)
+    {
+        VerticalVelo = newVel;
+    }
+
     #region Timers
     private void CountTimers()
     {
