@@ -82,6 +82,7 @@ public class Boss : MonoBehaviour
             Invoke(nameof(phaseOne), 0);
             Invoke(nameof(phaseOne), 7);
             Invoke(nameof(phaseOne), 14);
+            hitable = true;
         }
 
         if (phase == 2)
@@ -89,6 +90,7 @@ public class Boss : MonoBehaviour
             Invoke(nameof(phaseTwo), 0);
             Invoke(nameof(phaseTwo), 5);
             Invoke(nameof(phaseTwo), 10);
+            hitable = true;
         }
     }
 
@@ -226,7 +228,7 @@ public class Boss : MonoBehaviour
             }
         }
 
-        hitable = true;
+        
     }
 
     void phaseTwo()
@@ -249,7 +251,7 @@ public class Boss : MonoBehaviour
                 }
                 current = Random.Range(1, 3);
             }
-            hitable = true;
+           
         }
     }
 
