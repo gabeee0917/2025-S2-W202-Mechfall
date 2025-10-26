@@ -1592,6 +1592,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1515399410}
+    - target: {fileID: 8230054034676920512, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
+      propertyPath: questText
+      value: 
+      objectReference: {fileID: 1445647756}
+    - target: {fileID: 8230054034676920512, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
+      propertyPath: questType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8555539292151632522, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
       propertyPath: m_Name
       value: UI Manager
@@ -1958,6 +1966,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1445647756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5149874284372664246, guid: b751e7fb70b5c3944bc5e427fa9c53dc, type: 3}
+  m_PrefabInstance: {fileID: 1084654092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1462129093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2438,6 +2457,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 940370180100119935, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
+      propertyPath: slice
+      value: 
+      objectReference: {fileID: 8300000, guid: cacc073e40346448dacf3f588836607f, type: 3}
+    - target: {fileID: 940370180100119935, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
+      propertyPath: capture
+      value: 
+      objectReference: {fileID: 8300000, guid: 7452a2647c64d4655aaadf229cddc838, type: 3}
+    - target: {fileID: 940370180100119935, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
+      propertyPath: collect
+      value: 
+      objectReference: {fileID: 8300000, guid: f5b283dde6f6f4205bfee6ffc1ccd0b5, type: 3}
+    - target: {fileID: 940370180100119935, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
+      propertyPath: gunshot
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fceaff9fccbf4942ad2ad30e91b5bbb, type: 3}
     - target: {fileID: 1957397799828132713, guid: e28fce6a838d041c880b9b46d8c0a8f9, type: 3}
       propertyPath: m_Name
       value: SoundManager

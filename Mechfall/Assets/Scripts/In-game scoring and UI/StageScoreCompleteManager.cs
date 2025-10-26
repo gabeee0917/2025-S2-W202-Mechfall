@@ -9,62 +9,69 @@ using UnityEngine.SceneManagement;
 // Script is in UIManager prefab that is in every single player level 
 public class StageScoreCompleteManager : MonoBehaviour
 {
-    public string currentLevelName;
-    public long currentScore;
-    public long Finalscore;
-    public GameObject WinPanel;
-    public GameObject LosePanel;
-    public int currentLevelNum;
-    public int completionAddScore = 1000;
-    public float startTime;
-    public float timer;
-    public TMP_Text timeUI;
-    public TMP_Text winpaneltext;
-    public TMP_Text losepaneltext;
+    public enum QuestType { CollectCoins, ActivateSwitches, DefeatBoss }
 
-    public bool questyes;
-    public TMP_Text collectcoinquesttext;
-    float coinCheckTimer = 0f;
-    public long coincount;
-
-    private int totalSwitches = 3;
-    private int activatedSwitches = 0;
-    public GameObject LevelEnder; 
-    
-    public bool questcomplete = false;
+    [Header("References")]
+    public GameObject LevelEnder;
     public GameObject player;
 
+    [Header("UI References")]
+    public TMP_Text timeUI;
+    public TMP_Text questText;
+    public TMP_Text winpaneltext;
+    public TMP_Text losepaneltext;
+    public GameObject WinPanel;
+    public GameObject LosePanel;
+
+    [Header("Quest Settings")]
+    public QuestType questType;
+    public int completionScore = 1000;
+    public int totalSwitches = 3;
+
+    private int activatedSwitches = 0;
+    private int remainingCoins;
+    private bool questComplete = false;
+    private float coinCheckTimer = 0f;
+
+    [Header("Scoring & Timing")]
+    public long currentScore;
+    public long Finalscore;
+    private float startTime;
+    private float timer;
+    public int currentLevelNum;
+    public string currentLevelName;
+
     // on awake when scene loads, initialise the time, score, scenename, quest text, and corresponding UI elements
+    public void initializeLevel()
+    {
+        startTime = Time.time;
+        currentScore = 0;
+        questComplete = false;
+        if (LevelEnder) LevelEnder.SetActive(false);
+
+        switch(questType)
+        {
+            case QuestType.CollectCoins:
+                remainingCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
+                UpdateQuestText($"Collect all crystals!\nRemaining: {remainingCoins}");
+                break;
+
+            case QuestType.ActivateSwitches:
+                totalSwitches = GameObject.FindGameObjectsWithTag("Switch").Length;
+                activatedSwitches = 0;
+                UpdateQuestText($"Activate {totalSwitches} switches!");
+                break;
+
+            case QuestType.DefeatBoss:
+                UpdateQuestText("Defeat the boss!");
+                break;
+        }
+    }
     void Awake()
     {
-        if(LevelEnder != null)
-        {
-            LevelEnder.SetActive(false);
-        }
         currentLevelName = SceneManager.GetActiveScene().name;
-        currentScore = 0;
-        currentLevelNum = int.Parse(currentLevelName);
-        startTime = Time.time;
-        timeUI.text = startTime.ToString();
-
-        // Level Specific Adjustments to UI
-        if (currentLevelNum == 1 || currentLevelNum == 3)
-        {
-            collectcoinquesttext.text = "Collect all the crystals!";
-            completionAddScore = 1000;
-
-            coincount = GameObject.FindGameObjectsWithTag("Coin").Length;
-            collectcoinquesttext.text = "Collect all the crystals!\nRemaining crystals in map: " + coincount.ToString();
-        }
-        else if (currentLevelNum == 2)
-        {
-            collectcoinquesttext.text = "Activate 3 Switches!\nSwitches remaining: " + totalSwitches;
-            completionAddScore = 1500;
-
-            totalSwitches = GameObject.FindGameObjectsWithTag("Switch").Length;
-            activatedSwitches = 0;
-        }
-        
+        int.TryParse(currentLevelName, out currentLevelNum);
+        initializeLevel();
     }
     void OnEnable()
     {
@@ -79,69 +86,58 @@ public class StageScoreCompleteManager : MonoBehaviour
     // had to do this so that each partial level 1-1. 1-2 etc can have seperate crystal collection quests, all of them adding on to the final score
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        questcomplete = false;
+        questComplete = false;
     }
     
     // Level 2 Switch Quest 
     public void SwitchActivated()
     {
+        if (questType != QuestType.ActivateSwitches) return;
+
         activatedSwitches++;
-
-        int remaining = Mathf.Max(totalSwitches - activatedSwitches, 0);
-        collectcoinquesttext.text = "Activate 3 Switches!\nSwitches remaining: " + remaining;
         SoundManager.instance.PlayCapture();
+        int remaining = Mathf.Max(totalSwitches - activatedSwitches, 0);
+        UpdateQuestText($"Switches remaining: {remaining}");
 
-        if (activatedSwitches >= totalSwitches)
-        {
-            collectcoinquesttext.text = "All switches activated!";
-            AddScore(completionAddScore);
-            UnlockExit();
-        }
+        if (activatedSwitches >= totalSwitches) CompleteQuest();
     }
 
     // updating the in game UI for time, number of crystals in the map 
-    void Update()
+    public void Update()
     {
-        timer = Time.time - startTime;
-        int seconds = (int)timer;
-        timeUI.text = seconds.ToString();
+        UpdateTimerUI();
 
-        if(currentLevelNum == 1 && questyes && !questcomplete)
+        if (questType == QuestType.CollectCoins && !questComplete)
         {
             coinCheckTimer += Time.deltaTime;
             if (coinCheckTimer >= 0.3f)
             {
-                coincount = GameObject.FindGameObjectsWithTag("Coin").Length;
-                collectcoinquesttext.text = "Remaining crystals in map: " + coincount.ToString();
-                if (coincount == 0)
-                {
-                    collectcoinquesttext.text = "Found all crystals!";
-
-                    questcomplete = true;
-                    currentScore += 1000;
-                    UnlockExit();
-                }
+                remainingCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
+                UpdateQuestText($"Remaining crystals: {remainingCoins}");
+                if (remainingCoins <= 0) CompleteQuest();
                 coinCheckTimer = 0f;
             }
         }
     }
 
-    public void AddScore(int n)
+    public void UpdateTimerUI()
     {
-        currentScore += n;
+        timer = Time.time - startTime;
+        int seconds = Mathf.FloorToInt(timer);
+        timeUI.text = seconds.ToString();
     }
 
-    public void SubScore(int n)
+    public void UpdateQuestText(string message)
     {
-        currentScore -= n;
+        if (questText) questText.text = message;
     }
 
-    void UnlockExit()
+    public void CompleteQuest()
     {
-        if (LevelEnder != null)
-        {
-             LevelEnder.SetActive(true);
-        }
+        questComplete = true;
+        currentScore += completionScore;
+        UpdateQuestText("Quest complete!");
+        if (LevelEnder) LevelEnder.SetActive(true);
     }
 
     // open level complete panel when player reaches the level ender portal
@@ -150,7 +146,7 @@ public class StageScoreCompleteManager : MonoBehaviour
         dummySinglePlayerLives dummy = player.GetComponent<dummySinglePlayerLives>();
         Time.timeScale = 0f;
         WinPanel.SetActive(true);
-        currentScore += completionAddScore + (1000 * (dummy.lives)) - (int)(2 * timer);
+        currentScore += completionScore + (1000 * (dummy.lives)) - (int)(2 * timer);
 
         Finalscore = currentScore;
         winpaneltext.text = $"You Scored: \n  {Finalscore} points!\n";
