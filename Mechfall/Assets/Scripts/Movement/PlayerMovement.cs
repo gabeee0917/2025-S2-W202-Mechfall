@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     //movement variables
     public float HorizontalVelo { get; private set; }
     private bool isFacingRight;
+    float speedMultiplier = 1f;
 
     //collision check variables
     private RaycastHit2D groundHit;
@@ -65,8 +67,9 @@ public class PlayerMovement : MonoBehaviour
         isFacingRight = true;
         rb = GetComponent<Rigidbody2D>();
         AudioSource = GetComponent<AudioSource>();
+        SpeedItem.onSpeedCollected += startSpeedBoost;
     }
-
+    
     private void Update()
     {
         CountTimers();
@@ -94,12 +97,27 @@ public class PlayerMovement : MonoBehaviour
         }
         ApplyVelo();
     }
-
     private void ApplyVelo()
     {
-         // Clamp Fall Speed
+        // Clamp Fall Speed
         VerticalVelo = Mathf.Clamp(VerticalVelo, -MoveStats.MaxFallSpeed, 50f);
-        rb.linearVelocity = new Vector2(HorizontalVelo, VerticalVelo);
+        rb.linearVelocity = new Vector2(HorizontalVelo * speedMultiplier, VerticalVelo);
+    }
+    void startSpeedBoost(float multiplier)
+    {
+        StartCoroutine(speedBoostCoroutine(multiplier));
+    }
+    private IEnumerator speedBoostCoroutine(float multiplier)
+    {
+        Debug.Log("Speed boost started: " + multiplier);
+        speedMultiplier = multiplier;
+        yield return new WaitForSeconds(2f);
+        speedMultiplier = 1f;
+        Debug.Log("Speed boost ended");
+    }
+    public void SetVerticalVelocity(float newVel)
+    {
+        VerticalVelo = newVel;
     }
 
     #region Movement
@@ -113,13 +131,13 @@ public class PlayerMovement : MonoBehaviour
             float targetVelocity = 0f;
             if (InputManager.RunHeld)
             {
-                targetVelocity = moveInput.x * MoveStats.MaxRunSpeed;
+                targetVelocity = moveInput.x * MoveStats.MaxRunSpeed * speedMultiplier;
                 animator.SetBool("isRunning", true);
 
             }
             else
             {
-                targetVelocity = moveInput.x * MoveStats.MaxWalkSpeed;
+                targetVelocity = moveInput.x * MoveStats.MaxWalkSpeed * speedMultiplier;
                 animator.SetBool("isWalking", true);
             }
 
@@ -254,7 +272,7 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
 
-            HorizontalVelo = MoveStats.DashSpeed * dashDirection.x;
+            HorizontalVelo = MoveStats.DashSpeed * dashDirection.x * speedMultiplier;
 
             if (dashDirection.y > 0f)
             {
@@ -481,7 +499,6 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Collision Checks
-
     private void checkGrounded()
     {
         Vector2 boxCastOrigin = new Vector2(feetCollider.bounds.center.x, feetCollider.bounds.min.y);
@@ -516,13 +533,7 @@ public class PlayerMovement : MonoBehaviour
         BumpedHead();
 
     }
-
     #endregion
-
-    public void SetVerticalVelocity(float newVel)
-    {
-        VerticalVelo = newVel;
-    }
 
     #region Timers
     private void CountTimers()
@@ -544,5 +555,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     #endregion
-
 }
