@@ -9,10 +9,12 @@ public class CoinLevelEnder : MonoBehaviour
     private float timer;
     private float coinCheckTimer;
     private int coinCount;
+    private bool levelover;
 
     private void Start()
     {
         startTime = Time.time;
+        levelover = false;
 
         if (levelEnder != null)
             levelEnder.SetActive(false);
@@ -20,21 +22,32 @@ public class CoinLevelEnder : MonoBehaviour
 
     private void Update()
     {
+        
         timer = Time.time - startTime;
         int seconds = (int)timer;
 
-        coinCheckTimer += Time.deltaTime;
-        if (coinCheckTimer >= 0.3f)
+        if (!levelover)
         {
-            coinCount = GameObject.FindGameObjectsWithTag("Coin").Length;
-
-            if (coinCount == 0)
+            coinCheckTimer += Time.deltaTime;
+            if (coinCheckTimer >= 0.3f)
             {
-                if (levelEnder != null)
-                    levelEnder.SetActive(true);
-            }
+                coinCount = GameObject.FindGameObjectsWithTag("Coin").Length;
 
-            coinCheckTimer = 0f;
+                if (coinCount == 0)
+                {
+                    //if (levelEnder != null)
+                    //levelEnder.SetActive(true);
+                    GameObject stagescorecompletemanager = GameObject.FindGameObjectsWithTag("PlayerUI")[0];
+                    StageScoreCompleteManager sscm = stagescorecompletemanager.GetComponentInChildren<StageScoreCompleteManager>();
+                    if (sscm != null)
+                    {
+                        sscm.openLevelCompletePage();
+                    }
+                    levelover = true;
+                }
+
+                coinCheckTimer = 0f;
+            }
         }
     }
 }
