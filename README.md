@@ -26,11 +26,13 @@ Ted
 **If wanting to open in Unity Editor:**    
 
 
-2. Download 2 package files below and import into project:  
+1. Download 2 package files below and import into project:  
 - https://drive.google.com/file/d/1rYF0o4Z3K6IUX8yQptoBY6sS9XbJ5zE6/view?usp=sharing
 - https://drive.google.com/file/d/160cQlUZiq_t05lGSVKNcKra046zqVlkB/view?usp=sharing
-3. Download json file and place in asset folder:
+2. Download json file and place in asset folder:
 - https://drive.google.com/file/d/1kXauIP2dbgnOqZ5hun7eCQ3XV8Wtd3_Q/view?usp=sharing
+
+3. Start Playmode from scene called "TestStartPage"
 
 ## Contributions
 Pull Requests are open. For any Major changes/adjustments, please request an issue where the dev team will discuss what you would like us to change or implement.
