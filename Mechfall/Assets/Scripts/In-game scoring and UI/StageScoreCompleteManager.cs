@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI; 
 using TMPro;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 // Script is in UIManager prefab that is in every single player level 
 public class StageScoreCompleteManager : MonoBehaviour
